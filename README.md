@@ -18,7 +18,7 @@ In addition, the app integrates with the OpenAI API to translate lyrics into dif
 - [Jake](docs/ai_disclosure_forms/M0/M0_AI_Declaration_Jake_Choi_301552446.pdf)
 - [Caiden](docs/ai_disclosure_forms/M0/M0_AI_Declaration_Caiden_Merklin_301608302.pdf)
 
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=16375530&assignment_repo_type=AssignmentRepo)
-
 ## User Interface Storyboard
 ![Storyboard](docs/design/UI_storyboard.jpg)
+
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=16375530&assignment_repo_type=AssignmentRepo)
