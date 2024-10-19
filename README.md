@@ -9,6 +9,9 @@ In addition, the app integrates with the OpenAI API to translate lyrics into dif
 - Jake Choi (301552446)
 - Caiden Merklin (301608302)
 
+## Link to Project Proposal Report
+[Link to Project Proposal Report](docs/CMPT_276_Milestone_0_Group_07_Hills_Proposal_Report.pdf)
+
 ## AI Disclosure Forms
 - [An](docs/M0_AI_Declaration_An_Luu_301574874.pdf)
 - [Parsa](docs/M0_AI_Declaration_MohamadParsa_Ghaderi_301623337.pdf)
