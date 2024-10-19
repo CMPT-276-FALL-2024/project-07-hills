@@ -11,7 +11,7 @@ In addition, the app integrates with the OpenAI API to translate lyrics into dif
 
 ## AI Disclosure Forms
 - [An](TODO)
-- [Parsa](TODO)
+- [Parsa](docs/M0_AI_Declaration_MohamadParsa_Ghaderi_301623337.pdf)
 - [Jake](TODO)
 - [Caiden](docs/M0_AI_Declaration_Caiden_Merklin_301608302.pdf)
 
