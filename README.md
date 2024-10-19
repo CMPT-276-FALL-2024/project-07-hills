@@ -6,8 +6,8 @@ In addition, the app integrates with the OpenAI API to translate lyrics into dif
 ## Group members
 - An Luu (301574874)
 - Parsa Ghaderi (301623337)
-- Jake Choi(301552446)
-- Caiden Merklin(301608302)
+- Jake Choi (301552446)
+- Caiden Merklin (301608302)
 
 ## AI Disclosure Forms
 - [An](TODO)
