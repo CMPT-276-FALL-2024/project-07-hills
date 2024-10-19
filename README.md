@@ -15,4 +15,4 @@ In addition, the app integrates with the OpenAI API to translate lyrics into dif
 - [An](TODO)
 - [Parsa](TODO)
 - [Jake](TODO)
-- [Caiden](TODO)
+- [Caiden](docs/M0_AI_Declaration_Caiden_Merklin_301608302.pdf)
