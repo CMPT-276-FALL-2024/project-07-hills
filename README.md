@@ -10,13 +10,13 @@ In addition, the app integrates with the OpenAI API to translate lyrics into dif
 - Caiden Merklin (301608302)
 
 ## Link to Project Proposal Report
-[Link to Project Proposal Report](docs/proposal/CMPT_276_Milestone_0_Group_07_Hills_Proposal_Report.pdf)
+[Link to Project Proposal Report](docs/proposal/CMPT_276_Milestone_1_Group_07_Hills_Proposal_Report.pdf)
 
 ## AI Disclosure Forms
-- [An](docs/ai_disclosure_forms/M0/M0_AI_Declaration_An_Luu_301574874.pdf)
-- [Parsa](docs/ai_disclosure_forms/M0/M0_AI_Declaration_MohamadParsa_Ghaderi_301623337.pdf)
-- [Jake](docs/ai_disclosure_forms/M0/M0_AI_Declaration_Jake_Choi_301552446.pdf)
-- [Caiden](docs/ai_disclosure_forms/M0/M0_AI_Declaration_Caiden_Merklin_301608302.pdf)
+- [An](docs/ai_disclosure_forms/M1/M1_AI_Declaration_An_Luu_301574874.pdf)
+- [Parsa](docs/ai_disclosure_forms/M1/M1_AI_Declaration_MohamadParsa_Ghaderi_301623337.pdf)
+- [Jake](docs/ai_disclosure_forms/M1/M1_AI_Declaration_Jake_Choi_301552446.pdf)
+- [Caiden](docs/ai_disclosure_forms/M1/M1_AI_Declaration_Caiden_Merklin_301608302.pdf)
 
 ## User Interface Storyboard
 ![Storyboard](docs/design/UI_storyboard.jpg)
