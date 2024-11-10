@@ -1,0 +1,2 @@
+2024-11-10 00:39:29,290 - __main__ - INFO - Starting log
+2024-11-10 00:39:29,311 - __main__ - INFO - Processing youtube link: https://www.youtube.com/watch?v=1-M4JrFcrNY
