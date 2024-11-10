@@ -1,0 +1,7 @@
+brew install ffmpeg
+pip install fastapi
+pip install uvicorn
+pip install yt-dlp
+pip install "audio-separator[cpu]"
+pip install audio-separator
+
