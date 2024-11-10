@@ -9,12 +9,13 @@ separator = Separator(
     output_format="mp3",
     normalization_threshold=0.9,
     output_single_stem="Instrumental",
+    #22050  
     sample_rate=44100,
     mdx_params={
         "hop_length": 1024,
-        "segment_size": 256,
-        "overlap": 0.25,
-        "batch_size": 8
+        "segment_size": 512,  # Try increasing if memory permits
+        "overlap": 0.1,       # Lower overlap to reduce redundant processing
+        "batch_size": 16     # Increase batch size if memory is available
     }
 )
 
