@@ -55,14 +55,14 @@ DOWNLOADS_FOLDER = "./downloads"
 async def submit_link(link: str):
     logger.info(f"Received Youtube link: {link}")
 
-    #     Call the ytdl.py file and send it the link
-    #     should receive the file_path from the yt-dl.py file and send it over to the
+    # Call the ytdl.py file and send it the link
+    # should receive the file_path from the yt-dl.py file and send it over to the
     try:
         audio_data = await get_audio(link)  # Call the async get_audio function
         json = JSONResponse(content=audio_data)
         audio_path = audio_data["file_path"]  # Extract path from get_audio
-        artist_name = audio_data["artist"]
         song_name = audio_data["song_name"]
+        artist = audio_data["artist"]
 
 
     except Exception as e:
@@ -71,9 +71,8 @@ async def submit_link(link: str):
 
     # Separate the audio to generate an instrumental
     instrumental_path = separate_audio(audio_path)
-#   Get lyrics from genius -- maybe do this async
-#     get_genius_lyrics()
-
+    #   Get lyrics from genius -- maybe do this async
+    get_genius_lyrics(song_name, artist)
 
 
 #     send the instrumental path to the json
