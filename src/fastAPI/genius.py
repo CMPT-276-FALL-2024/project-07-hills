@@ -7,16 +7,18 @@ from dotenv import load_dotenv
 from lyricsgenius import Genius
 
 
-def get_genius_lyrics():
+def get_genius_lyrics(song_name, artist):
     # Load environment variables from .env file
     load_dotenv()
 
     genius_token = os.getenv('GENIUS_API_TOKEN')
-    genius = Genius('')
+    if not genius_token:
+        raise ValueError("GENIUS_API_TOKEN is not set in the environment variables")
+    genius = Genius(genius_token)
 
     # search for the artist and song and assign it to artist and song
-    artist = genius.search_artist('Playboi Carti', max_songs=0, sort='title')
-    song = artist.song('Stop Breathing')
+    artist = genius.search_artist(artist, max_songs=0, sort='title')
+    song = artist.song(song_name)
 
     # get the raw lyrics unformatted
     raw_lyrics = song.lyrics
@@ -35,5 +37,6 @@ def get_genius_lyrics():
     }
 
     # write the song data to a JSON file with indents for better readability
+    # todo: maybe rename this to the song_name_lyrics.json to be able to save multiples in the future.
     with open('lyrics.json', 'w') as f:
         json.dump(song_data, f, indent=4)
