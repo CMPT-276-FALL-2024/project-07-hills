@@ -1,5 +1,8 @@
 import dlp as dlp
 import yt_dlp
+from ytdl import get_audio
+from uvr import separate_audio
+from genius import get_genius_lyrics
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -31,15 +34,14 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+# Configure CORS to allow requests from your frontend (or set origins=["*"] to allow all origins)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace with specific origins like ["http://localhost:3000"] if needed
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods, or use ["POST"] if only POST should be allowed
+    allow_headers=["*"],  # Allows all headers
+)
 
 
 class YouTubeLink(BaseModel):
@@ -48,68 +50,38 @@ class YouTubeLink(BaseModel):
 
 DOWNLOADS_FOLDER = "./downloads"
 
+
 @app.post("/submit-link")
-# link: YouTubeLink -- needed in the get_audio
-async def get_audio(link: YouTubeLink):
-    logger.info(f"Processing youtube link: {link.youtubeLink}")
+async def submit_link(link: str):
+    logger.info(f"Received Youtube link: {link}")
 
-    youtube_downloader_options ={
-        'format': 'm4a/bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3'
-        }],
-        'outtmpl': os.path.join(DOWNLOADS_FOLDER, '%(title)s.%(ext)s')
-    }
+    # Call the ytdl.py file and send it the link
+    # should receive the file_path from the yt-dl.py file and send it over to the
+    try:
+        audio_data = await get_audio(link)  # Call the async get_audio function
+        json = JSONResponse(content=audio_data)
+        audio_path = audio_data["file_path"]  # Extract path from get_audio
+        song_name = audio_data["song_name"]
+        artist = audio_data["artist"]
 
-    with yt_dlp.YoutubeDL(youtube_downloader_options) as ydl:
-           info = ydl.extract_info(link.youtubeLink)
 
-def test_get_audio(link):
-    logger.info(f"Processing youtube link: {link}")
-    youtube_downloader_options = {
-    'format': 'bestaudio/best',
-    'postprocessors': [{
-        'key': 'FFmpegExtractAudio',
-        'preferredcodec': 'mp3',
-        'preferredquality': '192',
-    }],
-    'ffmpeg_location': '/opt/homebrew/bin/ffmpeg',  # Replace with the actual path to ffmpeg NOTE: MAKE SURE THIS LEADS TO YOUR ffmpeg -- use which ffmpeg or add ffmpeg to src path
-    'outtmpl': 'downloads/%(title)s.%(ext)s'
-}
+    except Exception as e:
+        logger.error(f"Error processing link: {e}")
+        raise HTTPException(status_code=500, detail="Failed to process YouTube link")
 
-    with yt_dlp.YoutubeDL(youtube_downloader_options) as ydl:
-        info = ydl.extract_info(link, download=True)
-        original_filename = ydl.prepare_filename(info).rsplit(".", 1)[0] + ".mp3"
-        youtube_title = os.path.basename(original_filename)
+    # Separate the audio to generate an instrumental
+    instrumental_path = separate_audio(audio_path)
+    #   Get lyrics from genius -- maybe do this async
+    get_genius_lyrics(song_name, artist)
 
-        # Extract track information
-        song_name = info.get("track", "Unknown Title")
-        artist = info.get("artist", "Unknown Artist")
-        print("Song Name:", song_name, "Artist:", artist)
 
-        # Find the instrumental file
-        instrumental_files = glob.glob(
-            os.path.join(DOWNLOADS_FOLDER, f"*{youtube_title.rsplit('.', 1)[0]}*Instrumental*.mp3"))
-        if not instrumental_files:
-            raise HTTPException(status_code=404, detail="Instrumental file not found")
-        instrumental_file = instrumental_files[0]
-
-        # Remove the original MP3 if it exists
-        if os.path.exists(original_filename):
-            os.remove(original_filename)
-
-        # Rename the vocal-removed file to match the original YouTube title
-        new_filename = os.path.join(DOWNLOADS_FOLDER, youtube_title)
-        os.rename(instrumental_file, new_filename)
-
-        file_url = f"/downloads/{youtube_title}"
-
+#     send the instrumental path to the json
 
 
 if __name__ == "__main__":
     logger.info(f"Starting log")
     import uvicorn
-    # uvicorn.run(app, host="0.0.0.0",port=8001)
-    testLink = "https://www.youtube.com/watch?v=1-M4JrFcrNY"
-    test_get_audio(testLink)
+
+    uvicorn.run(app, host="0.0.0.0", port=8001)
+    # testLink = "https://www.youtube.com/watch?v=1-M4JrFcrNY"
+    # test_get_audio(testLink)
