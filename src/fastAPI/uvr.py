@@ -34,8 +34,5 @@ def separate_audio(file_path):
     print(output_file)
     return output_file
 
-
-
-
 # # Perform the separation on specific audio files without reloading the model
 # output_files = separator.separate('downloads/The Real Slim Shady.mp3')
