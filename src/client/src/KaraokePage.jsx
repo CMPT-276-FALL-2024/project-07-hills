@@ -12,6 +12,8 @@ const Karaoke = () => {
 
       {/** Navigation bar */}
       <SideNavbar />
+      {/** Lyrics Display, (the whole things as all, Videoverlay is a component of LyricsDisplay) */}
+      <LyricsDisplay />
     </div>
   );
 };
