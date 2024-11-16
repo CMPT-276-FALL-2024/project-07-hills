@@ -7,6 +7,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import os
 import logging
 from datetime import datetime
@@ -33,6 +34,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="./downloads/instrumental"), name="static")
 
 # Configure CORS to allow requests from your frontend (or set origins=["*"] to allow all origins)
 app.add_middleware(
@@ -74,7 +76,6 @@ async def submit_link(link: str):
     #   Get lyrics from genius -- maybe do this async
     get_genius_lyrics(song_name, artist)
 
-
 #     send the instrumental path to the json
 
 
@@ -83,5 +84,6 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="0.0.0.0", port=8001)
+    
     # testLink = "https://www.youtube.com/watch?v=1-M4JrFcrNY"
     # test_get_audio(testLink)
