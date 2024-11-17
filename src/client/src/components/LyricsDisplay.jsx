@@ -1,9 +1,9 @@
 import React from 'react'
 
-const DataContext = () => {
+const LyricsDisplay = () => {
   return (
-    <div>DataContext</div>
+    <div>LyricsDisplay</div>
   )
 }
 
-export default DataContext
+export default LyricsDisplay

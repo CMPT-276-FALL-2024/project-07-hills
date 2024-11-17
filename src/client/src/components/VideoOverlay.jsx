@@ -1,9 +1,9 @@
 import React from 'react'
 
-const DataContext = () => {
+const VideoOverlay = () => {
   return (
-    <div>DataContext</div>
+    <div>VideoOverlay</div>
   )
 }
 
-export default DataContext
+export default VideoOverlay
