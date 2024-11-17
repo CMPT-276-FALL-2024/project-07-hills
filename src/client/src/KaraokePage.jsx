@@ -29,6 +29,7 @@ const Karaoke = () => {
       <Playbutton
         instrumental_url={instrumental_url}
         onTimeUpdate={handleTimeUpdate}
+        currentTime={currentTime}
       />
       {/** Progress bar and the timer */}
       <ProgressBar />
