@@ -85,5 +85,3 @@ async def get_audio(link: str):
         }
     
     pass
-
-get_audio("https://www.youtube.com/watch?v=-8xhmV3JoG4")

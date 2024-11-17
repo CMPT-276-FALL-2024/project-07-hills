@@ -76,9 +76,8 @@ async def submit_link(link: str):
                 "song_name": lyrics_data["title"],
                 "artist": lyrics_data["artist"],
                 "instrumental_url": instrumental_url,
-                "lyrics":
-                "message": "Processing complete"
-                
+                "lyrics": lyrics_data
+                "message": "Processing complete"      
         })
 
     except Exception as e:

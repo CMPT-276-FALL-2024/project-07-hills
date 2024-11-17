@@ -1,8 +1,8 @@
 from syrics.api import Spotify
 import json
 
-sp = Spotify("AQBnq1-gKi5YR_-KWuKbcxgSHL8KIXtVfRtx1h9DBea-clrgS_3Svm9h78UjjrF1y0D-2X96bwwWUpUt_gvbu34volkoUn1bSzLIedqs_GUYzHnHOUJEbHllqkxS1GECc70On55LMQhOv9iB9lUtJD2dJvC_OQ-0")
+sp = Spotify("AQBhbWVZc1X9XxlywNmMa7uIr8H_dfx5vGbAoKk1ycUj3_spUwHB4a24wbcUXcIUb__wsxC_kgxnYd6RoqCQgIZ83UtfqeRC3vUzCsnymQq2cIBs166GvXPPWomfNxyAI2SY5GA330lZOY1sJHjM7IpRNwK_hXE")
 
-lyrics = sp.get_lyrics("7lQ8MOhq6IN2w8EYcFNSUk")
+lyrics = sp.get_lyrics("3GCL1PydwsLodcpv0Ll1ch")
 
-print(json.dumps(lyrics, indent=4))
+print(json.dumps(lyrics['lyrics']['lines'], indent=4))
