@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Playbutton = () => {
-    return (
-        <div>Playbutton</div>
-    )
+const DataContext = () => {
+  return (
+    <div>DataContext</div>
+  )
 }
 
-export default Playbutton
+export default DataContext
