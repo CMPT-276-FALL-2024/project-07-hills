@@ -22,7 +22,7 @@ spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 syrics_sp = Spotify(sp_cookie)
 
 # Search for a track
-track_name = "Stronger kelly"
+track_name = "Creep"
 results = spotify.search(q=track_name, type="track", limit=1)
 
 # Print track details
@@ -38,7 +38,19 @@ if results["tracks"]["items"]:
     lyrics = syrics_sp.get_lyrics(track_id)
     
     print(f"Lyrics")
-    print(json.dumps(lyrics, indent=4))
+    
+    
+    lyrics_data = {
+        "title": "Creep",   
+        "artist": "Radiohead",
+        "instrumental_url": "../client/src/Creep - Radiohead (Lyrics).mp3",
+        "lyrics": lyrics["lyrics"]
+    }
+    file_name = 'sample.json'
+    with open(file_name, 'w') as file:
+        json.dump(lyrics_data, file, indent=4)
+
+    
 else:
     print("No tracks found.")
 
@@ -46,4 +58,3 @@ else:
 
 
 
-print(json.dumps(lyrics, indent=4))
