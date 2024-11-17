@@ -1,6 +1,8 @@
 import React from 'react';
 import SideNavbar from './components/SideNavbar';
 import LyricsDisplay from './components/LyricsDisplay.jsx';
+import Playbutton from './components/Playbutton.jsx';
+import ProgressBar from './components/ProgressBar.jsx';
 const Karaoke = () => {
   return (
     <div className="flex h-screen">
@@ -12,8 +14,12 @@ const Karaoke = () => {
 
       {/** Navigation bar */}
       <SideNavbar />
-      {/** Lyrics Display, (the whole things as all, Videoverlay is a component of LyricsDisplay) */}
+      {/** Lyrics Display, synced in with time stamps */}
       <LyricsDisplay />
+      {/**Play button, plays the mp3 and plays and pauses */}
+      <Playbutton />
+      {/** Progress bar and the timer */}
+      <ProgressBar />
     </div>
   );
 };
