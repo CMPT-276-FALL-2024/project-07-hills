@@ -28,15 +28,23 @@ def get_genius_lyrics(song_name, artist):
         r"(?i)(Translations|Contributors|Espa\u00f1ol|Portugu\u00eas|English|Deutsch|Français|Русский|Svenska|العربية|Polski|Italiano|Hebrew|Az\u0259rbaycanca|.*\d{3,} Contributors.*)",
         "", raw_lyrics
     ).strip()
-
-    # prepare data for JSON output
-    song_data = {
-        'title': song.title,
-        'artist': artist.name,
-        'lyrics': cleaned_lyrics
+    
+    return {
+        "title": song.title,
+        "artist": artist.name,
+        "lyrics": cleaned_lyrics,
     }
+    
+    #  OLD CODE OF WHEN WE WRITE TO JSON FILE
+    
+    # # prepare data for JSON output
+    # song_data = {
+    #     'title': song.title,
+    #     'artist': artist.name,
+    #     'lyrics': cleaned_lyrics
+    # }
 
-    # write the song data to a JSON file with indents for better readability
-    # todo: maybe rename this to the song_name_lyrics.json to be able to save multiples in the future.
-    with open('lyrics.json', 'w') as f:
-        json.dump(song_data, f, indent=4)
+    # # write the song data to a JSON file with indents for better readability
+    # # todo: maybe rename this to the song_name_lyrics.json to be able to save multiples in the future.
+    # with open('lyrics.json', 'w') as f:
+    #     json.dump(song_data, f, indent=4)

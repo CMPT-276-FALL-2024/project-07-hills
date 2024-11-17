@@ -65,18 +65,27 @@ async def submit_link(link: str):
         audio_path = audio_data["file_path"]  # Extract path from get_audio
         song_name = audio_data["song_name"]
         artist = audio_data["artist"]
+            # Separate the audio to generate an instrumental
+        instrumental_path = separate_audio(audio_path)
+        
+        lyrics_data = get_genius_lyrics(song_name, artist)
 
+        instrumental_url = f"/static/{os.path.basename(instrumental_path)}"
+        
+        return JSONResponse(content={
+                "song_name": lyrics_data["title"],
+                "artist": lyrics_data["artist"],
+                "instrumental_url": instrumental_url,
+                "lyrics":
+                "message": "Processing complete"
+                
+        })
 
     except Exception as e:
         logger.error(f"Error processing link: {e}")
         raise HTTPException(status_code=500, detail="Failed to process YouTube link")
 
-    # Separate the audio to generate an instrumental
-    instrumental_path = separate_audio(audio_path)
-    #   Get lyrics from genius -- maybe do this async
-    get_genius_lyrics(song_name, artist)
 
-#     send the instrumental path to the json
 
 
 if __name__ == "__main__":
