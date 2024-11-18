@@ -73,50 +73,50 @@ const ProgressBar = () => {
   };
 
   return (
-    <div className="w-[200px] mt-[30px]">
-      {/* Progress Bar */}
-      <div className="w-[100%] h-[7px] rounded-[10px] bg-gray-400 mb-[10px]">
+    <div className="w-[1200px] ml-[30px] mt-[30px] mb-[30px] flex items-center">
+        {/* Play/Pause Button with Icons */}
+        <button
+            onClick={handlePlayPauseClick}
+            className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
+        >
+            {isPlaying ? <FaPause /> : <FaPlay />} {/* Use Icons here */}
+        </button>
+
+        {/* Replay Button with Circular Arrow Icon */}
+        <button
+            onClick={handleReplayClick}
+            className="px-2 py-2 bg-gray-500 text-white rounded-md"
+        >
+            <FaRedoAlt /> {/* Replay (Circular Arrow) Icon */}
+        </button>
+    
+        {/* Progress Bar */}
+        <div className="w-[1000px] h-[7px] rounded-[10px] bg-gray-400 mb-[10px] mt-[10px]  ml-[20px] mr-[20px]">
         <div
-          className="h-[7px] rounded-[10px] bg-green-500 transition-[width_0.5s_ease-out]"
-          style={{ width: `${progress}%` }}
+            className="h-[7px] rounded-[10px] bg-green-500 transition-[width_0.5s_ease-out]"
+            style={{ width: `${progress}%` }}
         ></div>
-      </div>
+        </div>
 
-      {/* Progress Text */}
-      <div className="mt-[10px] text-[24px] font-bold text-[#444444]">
-        {formatTime(elapsedTime)} / {minutes}:{seconds.toString().padStart(2, '0')}
-      </div>
+        {/* Progress Text */}
+        <div className="text-[18px] w-[200px] font-bold text-[#444444] mr-[0px]">
+            {formatTime(elapsedTime)} / {minutes}:{seconds.toString().padStart(2, '0')}
+        </div>
 
-      {/* Play/Pause Button with Icons */}
-      <button
-        onClick={handlePlayPauseClick}
-        className="px-4 py-2 bg-blue-500 text-white rounded-md mr-2"
-      >
-        {isPlaying ? <FaPause /> : <FaPlay />} {/* Use Icons here */}
-      </button>
-
-      {/* Replay Button with Circular Arrow Icon */}
-      <button
-        onClick={handleReplayClick}
-        className="px-4 py-2 bg-gray-500 text-white rounded-md mt-2"
-      >
-        <FaRedoAlt /> {/* Replay (Circular Arrow) Icon */}
-      </button>
-
-      {/* Volume Slider with Volume Icon */}
-      <div className="Volume-Slider flex items-center">
-        <FaVolumeUp size={30} className="mr-2" /> {/* Volume Icon */}
-        <input
-          id="volume"
-          type="range"
-          min="0"
-          max="1.0"
-          step="0.1"
-          value={volume}
-          onChange={handleVolumeChange}
-          className="w-[80%]"
-        />
-      </div>
+        {/* Volume Slider with Volume Icon */}
+        <div className="flex items-center">
+            <FaVolumeUp size={30} className="mr-2" /> {/* Volume Icon */}
+            <input
+            id="volume"
+            type="range"
+            min="0"
+            max="1.0"
+            step="0.1"
+            value={volume}
+            onChange={handleVolumeChange}
+            className="w-[120px]"
+            />
+        </div>
     </div>
   );
 };

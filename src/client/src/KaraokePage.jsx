@@ -16,16 +16,16 @@ const Karaoke = () => {
     <div className="flex h-screen">
       {/** Lyrics and music player area */}
       <div className="flex-1 bg-gray-100 p-8">
-        <h1 className="text-2xl font-bold">Lyrics Display</h1>
-
+        {/** Progress bar and the timer */}
+        <ProgressBar />
+        
+        <h1 className="text-2xl font-bold">Lyrics</h1>
+        {/** Lyrics Display, synced in with time stamps */}
+        <LyricsDisplay />
       </div>
 
       {/** Navigation bar */}
       <SideNavbar />
-      {/** Lyrics Display, synced in with time stamps */}
-      <LyricsDisplay />
-      {/** Progress bar and the timer */}
-      <ProgressBar />
     </div>
   );
 };
