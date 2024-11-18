@@ -1,12 +1,11 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-
 from dotenv import load_dotenv
 import os
-
 from syrics.api import Spotify
 import json
 
+# Load environment variables
 load_dotenv("python.env")
 
 client_id = os.getenv("CLIENT_ID")
@@ -15,8 +14,8 @@ sp_cookie = os.getenv("SPOTIFY_COOKIE")
 
 # Set up authentication
 client_credentials_manager = SpotifyClientCredentials(
-    client_id= client_id,
-    client_secret= client_secret
+    client_id=client_id,
+    client_secret=client_secret
 )
 spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 syrics_sp = Spotify(sp_cookie)
@@ -58,9 +57,17 @@ if results["tracks"]["items"]:
         "lyrics": lyrics["lyrics"]
     }
 
-    file_name = 'sample.json'
-    with open(file_name, 'w') as file:
+    # Define the full path to save the file
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    save_path = os.path.join(repo_root, 'src', 'client', 'src', 'sample.json')
+
+    # Ensure the directory exists
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+    # Write to the JSON file
+    with open(save_path, 'w') as file:
         json.dump(lyrics_data, file, indent=4)
     
+    print(f"Data saved to {save_path}")
 else:
     print("No tracks found.")
