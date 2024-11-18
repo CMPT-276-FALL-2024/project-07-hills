@@ -1,259 +1,644 @@
 {
-    "title": "Creep",
-    "artist": "Radiohead",
+    "title": "Shook Ones, Pt. II",
+    "artist": "Mobb Deep",
     "instrumental_url": "../client/src/Creep - Radiohead (Lyrics).mp3",
+    "duration": "5m 25s",
     "lyrics": {
         "syncType": "LINE_SYNCED",
         "lines": [
             {
-                "startTimeMs": "19420",
-                "words": "When you were here before",
+                "startTimeMs": "1950",
+                "words": "Word up son, word",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "24620",
-                "words": "Couldn't look you in the eye",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "29740",
-                "words": "You're just like an angel",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "34980",
-                "words": "Your skin makes me cry",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "40240",
-                "words": "You float like a feather",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "45280",
-                "words": "In a beautiful world",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "50640",
-                "words": "I wish I was special",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "55640",
-                "words": "You're so fuckin' special",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "61090",
-                "words": "But I'm a creep",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "66290",
-                "words": "I'm a weirdo",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "71050",
-                "words": "What the hell am I doin' here?",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "76540",
-                "words": "I don't belong here",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "81910",
-                "words": "I don't care if it hurts",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "87030",
-                "words": "I wanna have control",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "92360",
-                "words": "I want a perfect body",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "97550",
-                "words": "I want a perfect soul",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "102950",
-                "words": "I want you to notice",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "108100",
-                "words": "When I'm not around",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "113460",
-                "words": "So fuckin' special",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "118500",
-                "words": "I wish I was special",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "123890",
-                "words": "But I'm a creep",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "129060",
-                "words": "I'm a weirdo",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "134180",
-                "words": "What the hell am I doin' here?",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "139870",
-                "words": "I don't belong here",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "144090",
+                "startTimeMs": "4870",
                 "words": "",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "146120",
-                "words": "She's running out the door (run)",
+                "startTimeMs": "7220",
+                "words": "Yeah, to all the killers and the hundred dollar billers",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "156820",
-                "words": "She's running out",
+                "startTimeMs": "13220",
+                "words": "For real, niggas who ain't got no feelings",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "161670",
-                "words": "She run, run, run, run",
-                "syllables": [],
-                "endTimeMs": "0"
-            },
-            {
-                "startTimeMs": "171950",
+                "startTimeMs": "17470",
                 "words": "\u266a",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "177160",
-                "words": "Run",
+                "startTimeMs": "20540",
+                "words": "Check it out now",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "184150",
-                "words": "",
+                "startTimeMs": "23590",
+                "words": "\u266a",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "186340",
-                "words": "Whatever makes you happy",
+                "startTimeMs": "28080",
+                "words": "I got you stuck off the realness",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "191360",
-                "words": "Whatever you want",
+                "startTimeMs": "29940",
+                "words": "We be the infamous, you heard of us",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "196410",
-                "words": "You're so fuckin' special",
+                "startTimeMs": "31780",
+                "words": "Official Queensbridge murderers",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "201560",
-                "words": "I wish I was special",
+                "startTimeMs": "33540",
+                "words": "The Mobb comes equipped with warfare",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "206780",
-                "words": "But I'm a creep",
+                "startTimeMs": "35440",
+                "words": "Beware of my crime family",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "212060",
-                "words": "I'm a weirdo",
+                "startTimeMs": "37090",
+                "words": "Who got 'nuff shots to share",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "217050",
-                "words": "What the hell am I doin' here?",
+                "startTimeMs": "38590",
+                "words": "For all of those who wanna profile and pose",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "222630",
-                "words": "I don't belong here",
+                "startTimeMs": "41350",
+                "words": "Rock you in your face",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "228140",
-                "words": "I don't belong here",
+                "startTimeMs": "42340",
+                "words": "Stab your brain with your nose bone",
                 "syllables": [],
                 "endTimeMs": "0"
             },
             {
-                "startTimeMs": "230800",
+                "startTimeMs": "43810",
+                "words": "You're all alone in these streets, cousin",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "46030",
+                "words": "Every man for their self in this land we be gunnin'",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "48760",
+                "words": "And keep them shook crews runnin' like they supposed to",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "51750",
+                "words": "They come around but they never come close to",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "54350",
+                "words": "I can see it inside your face",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "56200",
+                "words": "You're in the wrong place",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "57260",
+                "words": "Cowards like you just get they're whole body laced up",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "60000",
+                "words": "With bullet holes and such",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "61390",
+                "words": "Speak the wrong words man and you will get touched",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "63860",
+                "words": "You can put your whole army against my team and",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "66580",
+                "words": "I guarantee you it'll be your very last time breathin'",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "69270",
+                "words": "Your simple words just don't move me",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "71020",
+                "words": "You're minor, we're major",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "72520",
+                "words": "You all up in the game and don't deserve to be a playa",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "75070",
+                "words": "Don't make me have to call your name out",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "76860",
+                "words": "Your crew is featherweight",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "77840",
+                "words": "My gunshots'll make you levitate",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "79460",
+                "words": "I'm only 19 but my mind is older",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "81810",
+                "words": "And when the things get for real",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "82960",
+                "words": "My warm heart turns cold",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "84380",
+                "words": "Another nigga deceased, another story gets told",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "86860",
+                "words": "It ain't nuttin' really, ay yo dun, fuck the Philly",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "89750",
+                "words": "So I can get my mind off these yellow backed niggas",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "92330",
+                "words": "Why they still alive? I don't know, go figure",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "94640",
+                "words": "Meanwhile, back in Queens the realness is foundation",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "97300",
+                "words": "If I die, I couldn't choose a better location",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "99980",
+                "words": "When the slugs penetrate, you feel a burning sensation",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "102340",
+                "words": "Gettin' closer to God in a tight situation now",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "105490",
+                "words": "Take these words home and think it through",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "107430",
+                "words": "Or the next rhyme I write might be about you",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "109980",
+                "words": "Son, they shook",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "110810",
+                "words": "'Cause ain't no such things as halfway crooks",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "113560",
+                "words": "Scared to death, scared to look, they shook",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "115950",
+                "words": "'Cause ain't no such things as halfway crooks",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "118560",
+                "words": "Scared to death, scared to look",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "120420",
+                "words": "Livin' the life that of diamonds and guns",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "122350",
+                "words": "There's numerous ways you can choose to earn funds",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "125330",
+                "words": "So some get shot, locked down, and turn nuns",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "128320",
+                "words": "Cowardly hearts and straight up shook ones, shook ones",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "132040",
+                "words": "He ain't a crook, son, he's just a shook one",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "137630",
+                "words": "\u266a",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "140500",
+                "words": "For every rhyme I write it's twenty-five to life",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "143000",
+                "words": "Yo, it's a must, in gats we trust, safeguardin' my life",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "145610",
+                "words": "Ain't no time for hesitation, that only leads to incarceration",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "149130",
+                "words": "You don't know me, there's no relation",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "151030",
+                "words": "Queensbridge and we don't play",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "152800",
+                "words": "I don't got time for your petty-thinkin' mind",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "154780",
+                "words": "Son, I'm bigger than those",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "156170",
+                "words": "Claimin' that you pack heat, but you're scared to hold",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "158550",
+                "words": "And once the smoke clears, you'll be left with one in your dome",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "161000",
+                "words": "13 years in the projects, my mentality is what, kid?",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "164430",
+                "words": "You talk a good one, but you don't want it",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "166440",
+                "words": "Sometimes I wonder, do I deserve to live?",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "168660",
+                "words": "Or am I gonna burn in Hell for all the things I did?",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "171590",
+                "words": "No time to dwell on that, 'cause my brain reacts",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "174380",
+                "words": "Front if you want, kid, lay on your back",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "176500",
+                "words": "I don't fake jax, kid, you know I bring it to you live",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "179690",
+                "words": "Stay in a child's place, kid, you out of line",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "182160",
+                "words": "Criminal minds thirsty for recognition",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "184940",
+                "words": "I'm sippin', E&J got my mind flippin'",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "187090",
+                "words": "I'm buggin', diggin' my ways out of holes by hustlin'",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "189490",
+                "words": "Get that loot, kid, you know my function",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "191930",
+                "words": "'Cause long as I'm alive, I'ma live illegal",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "194600",
+                "words": "And once I get on, I'ma put on all my peoples",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "197360",
+                "words": "React quick, spit lyrics like MACs, I hit your dome up",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "200190",
+                "words": "When I roll up, don't be caught sleepin', 'cause I'm creepin'",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "202070",
+                "words": "Son, they shook",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "203490",
+                "words": "'Cause ain't no such things as halfway crooks",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "205640",
+                "words": "Scared to death, scared to look, they shook",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "207900",
+                "words": "'Cause ain't no such things as halfway crooks",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "210910",
+                "words": "Scared to death, scared to look, they shook",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "212190",
+                "words": "(We live the life that of diamonds)",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "213110",
+                "words": "'Cause ain't no such things as halfway crooks",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "215720",
+                "words": "Scared to death, scared to look, they shook",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "218100",
+                "words": "'Cause ain't no such things as halfway crooks",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "222130",
+                "words": "Livin' the life that of diamonds and guns",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "224550",
+                "words": "There's numerous ways you can choose to earn funds",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "227700",
+                "words": "So some get shot, locked down, and turn nuns",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "230620",
+                "words": "Cowardly hearts and straight up shook ones, shook ones",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "234320",
+                "words": "He ain't a crook, son, he's just a shook one",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "239630",
+                "words": "\u266a",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "245950",
+                "words": "To all the villains and a hundred dollar billers",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "251120",
+                "words": "To real brothers who ain't got no feelings",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "254760",
+                "words": "G-yeah, the whole Bridge",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "257800",
+                "words": "Queens get the money",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "259390",
+                "words": "41st side, keepin' it real, you know",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "262860",
+                "words": "Queens get the money",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "266490",
+                "words": "It's all good, you wha'msayin'? Yeah",
+                "syllables": [],
+                "endTimeMs": "0"
+            },
+            {
+                "startTimeMs": "269620",
                 "words": "",
                 "syllables": [],
                 "endTimeMs": "0"
             }
         ],
         "provider": "MusixMatch",
-        "providerLyricsId": "13616",
+        "providerLyricsId": "9461923",
         "providerDisplayName": "Musixmatch",
         "syncLyricsUri": "",
         "isDenseTypeface": false,

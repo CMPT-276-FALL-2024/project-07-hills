@@ -21,7 +21,7 @@ spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 syrics_sp = Spotify(sp_cookie)
 
 # Search for a track
-track_name = "stop breathing"
+track_name = "Shook Ones, Pt. II"
 results = spotify.search(q=track_name, type="track", limit=1)
 
 # Print track details

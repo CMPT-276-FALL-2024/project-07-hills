@@ -1,14 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// Import JSON file (alternatively, use fetch if needed)
+import sample from "../sample.json";
+
 const ProgressBar = () => {
-    // Set initial progress and total song time (3 minutes and 25 seconds in milliseconds)
+    // State variables
     const [progress, setProgress] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const songDuration = (3 * 60 + 25) * 1000; // 3 minutes 25 seconds in total (205 seconds * 1000)
     const [elapsedTime, setElapsedTime] = useState(0); // Elapsed time in milliseconds
 
     // Ref to store the interval ID
     const intervalRef = useRef(null);
+
+    // Extract minutes and seconds from the JSON duration
+    const durationParts = sample.duration.match(/(\d+)m\s*(\d+)s/);
+    const minutes = durationParts ? parseInt(durationParts[1], 10) : 0;
+    const seconds = durationParts ? parseInt(durationParts[2], 10) : 0;
+
+    // Calculate total song duration in milliseconds
+    const songDuration = (minutes * 60 + seconds) * 1000;
 
     // Start or stop the timer based on the play/pause state
     useEffect(() => {
@@ -30,13 +40,13 @@ const ProgressBar = () => {
 
         // Cleanup interval when the component unmounts
         return () => clearInterval(intervalRef.current);
-    }, [isPlaying]);
+    }, [isPlaying, songDuration]);
 
     // Update the progress bar based on elapsed time (in milliseconds)
     useEffect(() => {
         const progressPercentage = (elapsedTime / songDuration) * 100;
         setProgress(progressPercentage);
-    }, [elapsedTime]);
+    }, [elapsedTime, songDuration]);
 
     // Handle play/pause button click
     const handlePlayPauseClick = () => {
@@ -70,7 +80,7 @@ const ProgressBar = () => {
 
             {/* Progress Text */}
             <div className="mt-[10px] text-[24px] font-bold text-[#444444]">
-                {formatTime(elapsedTime)} / 3:25
+                {formatTime(elapsedTime)} / {minutes}:{seconds.toString().padStart(2, '0')}
             </div>
 
             {/* Play/Pause Button */}
