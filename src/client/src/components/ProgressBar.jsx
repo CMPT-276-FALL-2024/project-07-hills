@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import sample from "../sample.json";
 import instrumental from "../Creep - Radiohead (Lyrics).mp3";
-import { FaPlay, FaPause } from 'react-icons/fa'; // Import React Icons
+import { FaPlay, FaPause, FaVolumeUp, FaRedoAlt } from 'react-icons/fa'; // Import necessary icons
 
 const ProgressBar = () => {
   const audioRef = useRef(new Audio(instrumental));
@@ -56,11 +56,13 @@ const ProgressBar = () => {
     setIsPlaying(!isPlaying);
   };
 
-  const handleResetClick = () => {
+  const handleReplayClick = () => {
     setProgress(0);
     setElapsedTime(0);
     setIsPlaying(false);
     audioRef.current.currentTime = 0;
+    audioRef.current.play(); // Start playing again when replaying
+    setIsPlaying(true);
   };
 
   const formatTime = (timeInMs) => {
@@ -93,9 +95,17 @@ const ProgressBar = () => {
         {isPlaying ? <FaPause /> : <FaPlay />} {/* Use Icons here */}
       </button>
 
-      {/* Volume Slider */}
-      <div className="Volume-Slider">
-        <label htmlFor="volume">Volume:</label>
+      {/* Replay Button with Circular Arrow Icon */}
+      <button
+        onClick={handleReplayClick}
+        className="px-4 py-2 bg-gray-500 text-white rounded-md mt-2"
+      >
+        <FaRedoAlt /> {/* Replay (Circular Arrow) Icon */}
+      </button>
+
+      {/* Volume Slider with Volume Icon */}
+      <div className="Volume-Slider flex items-center">
+        <FaVolumeUp size={30} className="mr-2" /> {/* Volume Icon */}
         <input
           id="volume"
           type="range"
@@ -104,16 +114,9 @@ const ProgressBar = () => {
           step="0.1"
           value={volume}
           onChange={handleVolumeChange}
+          className="w-[80%]"
         />
       </div>
-
-      {/* Reset Button */}
-      <button
-        onClick={handleResetClick}
-        className="px-4 py-2 bg-gray-500 text-white rounded-md"
-      >
-        Reset
-      </button>
     </div>
   );
 };
