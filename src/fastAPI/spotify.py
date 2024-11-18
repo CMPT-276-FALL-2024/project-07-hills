@@ -22,7 +22,7 @@ spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 syrics_sp = Spotify(sp_cookie)
 
 # Search for a track
-track_name = "Creep"
+track_name = "stop breathing"
 results = spotify.search(q=track_name, type="track", limit=1)
 
 # Print track details
@@ -38,23 +38,29 @@ if results["tracks"]["items"]:
     lyrics = syrics_sp.get_lyrics(track_id)
     
     print(f"Lyrics")
+
+    # Retrieve the artist name(s) and join them if there are multiple artists
+    artist_name = ', '.join(artist['name'] for artist in track['artists'])
+
+    # Retrieve the song's duration (in milliseconds)
+    duration_ms = track['duration_ms']
     
+    # Convert milliseconds to minutes and seconds
+    duration_min = duration_ms // 60000
+    duration_sec = (duration_ms % 60000) // 1000
+    song_duration = f"{duration_min}m {duration_sec}s"
     
     lyrics_data = {
-        "title": "Creep",   
-        "artist": "Radiohead",
+        "title": track["name"], 
+        "artist": artist_name, 
         "instrumental_url": "../client/src/Creep - Radiohead (Lyrics).mp3",
+        "duration": song_duration,
         "lyrics": lyrics["lyrics"]
     }
+
     file_name = 'sample.json'
     with open(file_name, 'w') as file:
         json.dump(lyrics_data, file, indent=4)
-
     
 else:
     print("No tracks found.")
-
-
-
-
-
