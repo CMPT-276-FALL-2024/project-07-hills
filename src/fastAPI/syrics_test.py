@@ -1,14 +1,8 @@
 from syrics.api import Spotify
 import json
-import os
 
-# pip3 install syrics
-SP_DC = os.getenv('SP_DC')
-if not SP_DC:
-    raise ValueError("SP_DC is not set in the environment variables")
+sp = Spotify("AQBhbWVZc1X9XxlywNmMa7uIr8H_dfx5vGbAoKk1ycUj3_spUwHB4a24wbcUXcIUb__wsxC_kgxnYd6RoqCQgIZ83UtfqeRC3vUzCsnymQq2cIBs166GvXPPWomfNxyAI2SY5GA330lZOY1sJHjM7IpRNwK_hXE")
 
-sp = Spotify(SP_DC)
+lyrics = sp.get_lyrics("3GCL1PydwsLodcpv0Ll1ch")
 
-lyrics = sp.get_lyrics("0Ajm7DFmbGEURySKm7G2jf?si=a8c70b3436f14f3f")
-
-print(json.dumps(lyrics, indent=4))
+print(json.dumps(lyrics['lyrics']['lines'], indent=4))
