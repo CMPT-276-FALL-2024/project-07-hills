@@ -50,6 +50,14 @@ const ProgressBar = () => {
         setIsPlaying(false); // Stop playing
     };
 
+    // Function to format time as minutes:seconds
+    const formatTime = (timeInMs) => {
+        const timeInSeconds = Math.floor(timeInMs / 1000); // Convert to seconds
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = timeInSeconds % 60;
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`; // Format as mm:ss
+    };
+
     return (
         <div className="w-[200px] mt-[30px]">
             {/* Progress Bar */}
@@ -62,7 +70,7 @@ const ProgressBar = () => {
 
             {/* Progress Text */}
             <div className="mt-[10px] text-[24px] font-bold text-[#444444]">
-                {Math.floor(elapsedTime / 60000)}:{((elapsedTime % 60000) / 1000).toFixed(3).padStart(6, '0')} / 3:25.000
+                {formatTime(elapsedTime)} / 3:25
             </div>
 
             {/* Play/Pause Button */}
