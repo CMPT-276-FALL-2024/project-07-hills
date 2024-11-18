@@ -1,85 +1,73 @@
 import React, { useState, useEffect, useRef } from 'react';
 import sample from "../sample.json";
 import instrumental from "../Creep - Radiohead (Lyrics).mp3";
+import { FaPlay, FaPause } from 'react-icons/fa'; // Import React Icons
 
 const ProgressBar = () => {
-  // Audio Ref for both versions
   const audioRef = useRef(new Audio(instrumental));
 
-  // State variables for progress and elapsed time
   const [progress, setProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [volume, setVolume] = useState(1); // Volume state (1 = 100%)
+  const [volume, setVolume] = useState(1);
 
-  // Ref to store the interval ID
   const intervalRef = useRef(null);
 
-  // Duration from the sample.json (extracted from the JSON string)
   const durationParts = sample.duration.match(/(\d+)m\s*(\d+)s/);
   const minutes = durationParts ? parseInt(durationParts[1], 10) : 0;
   const seconds = durationParts ? parseInt(durationParts[2], 10) : 0;
-  const songDuration = (minutes * 60 + seconds) * 1000; // Convert to milliseconds
+  const songDuration = (minutes * 60 + seconds) * 1000;
 
-  // Handle volume change
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value;
-    setVolume(newVolume); // Update volume state
-    audioRef.current.volume = newVolume; // Update audio element volume
+    setVolume(newVolume);
+    audioRef.current.volume = newVolume;
   };
 
-  // Start or stop the timer based on the play/pause state
   useEffect(() => {
     if (isPlaying) {
-      // Start the timer
       intervalRef.current = setInterval(() => {
         setElapsedTime((prev) => {
           if (prev < songDuration) {
-            return prev + 100; // Increase by 100 milliseconds
+            return prev + 100;
           }
-          clearInterval(intervalRef.current); // Stop interval when the song finishes
+          clearInterval(intervalRef.current);
           return prev;
         });
-      }, 100); // Update every 100 milliseconds
+      }, 100);
     } else {
-      // Pause the timer
       clearInterval(intervalRef.current);
     }
 
-    // Cleanup interval when the component unmounts
     return () => clearInterval(intervalRef.current);
   }, [isPlaying, songDuration]);
 
-  // Update the progress bar based on elapsed time
   useEffect(() => {
     const progressPercentage = (elapsedTime / songDuration) * 100;
     setProgress(progressPercentage);
   }, [elapsedTime, songDuration]);
 
-  // Handle play/pause button click
   const handlePlayPauseClick = () => {
     if (isPlaying) {
-      audioRef.current.pause(); // Pause the audio
+      audioRef.current.pause();
     } else {
-      audioRef.current.play(); // Play the audio
+      audioRef.current.play();
     }
     setIsPlaying(!isPlaying);
   };
 
-  // Handle reset button click (reset progress, elapsed time, and stop playing)
   const handleResetClick = () => {
-    setProgress(0); // Reset progress
-    setElapsedTime(0); // Reset elapsed time
-    setIsPlaying(false); // Stop playing
-    audioRef.current.currentTime = 0; // Reset audio to start
+    setProgress(0);
+    setElapsedTime(0);
+    setIsPlaying(false);
+    audioRef.current.currentTime = 0;
   };
 
-  // Function to format time as minutes:seconds
   const formatTime = (timeInMs) => {
-    const timeInSeconds = Math.floor(timeInMs / 1000); // Convert to seconds
+    const timeInSeconds = Math.floor(timeInMs / 1000);
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`; // Format as mm:ss
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -97,12 +85,12 @@ const ProgressBar = () => {
         {formatTime(elapsedTime)} / {minutes}:{seconds.toString().padStart(2, '0')}
       </div>
 
-      {/* Play/Pause Button */}
+      {/* Play/Pause Button with Icons */}
       <button
         onClick={handlePlayPauseClick}
         className="px-4 py-2 bg-blue-500 text-white rounded-md mr-2"
       >
-        {isPlaying ? 'Pause' : 'Play'}
+        {isPlaying ? <FaPause /> : <FaPlay />} {/* Use Icons here */}
       </button>
 
       {/* Volume Slider */}
