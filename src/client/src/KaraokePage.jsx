@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import SideNavbar from './components/SideNavbar';
 import LyricsDisplay from './components/LyricsDisplay.jsx';
-import Playbutton from './components/Playbutton.jsx';
 import ProgressBar from './components/ProgressBar.jsx';
 import data from './sample.json';
 
@@ -25,12 +24,6 @@ const Karaoke = () => {
       <SideNavbar />
       {/** Lyrics Display, synced in with time stamps */}
       <LyricsDisplay />
-      {/**Play button, plays the mp3 and plays and pauses */}
-      <Playbutton
-        instrumental_url={instrumental_url}
-        onTimeUpdate={handleTimeUpdate}
-        currentTime={currentTime}
-      />
       {/** Progress bar and the timer */}
       <ProgressBar />
     </div>
