@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const ProgressBar = () => {
-    // Set initial progress and total song time (3 minutes and 25 seconds)
+    // Set initial progress and total song time (3 minutes and 25 seconds in milliseconds)
     const [progress, setProgress] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const songDuration = 3 * 60 + 25; // 3 minutes 25 seconds in total (205 seconds)
-    const [elapsedTime, setElapsedTime] = useState(0);
+    const songDuration = (3 * 60 + 25) * 1000; // 3 minutes 25 seconds in total (205 seconds * 1000)
+    const [elapsedTime, setElapsedTime] = useState(0); // Elapsed time in milliseconds
 
     // Ref to store the interval ID
     const intervalRef = useRef(null);
@@ -13,16 +13,16 @@ const ProgressBar = () => {
     // Start or stop the timer based on the play/pause state
     useEffect(() => {
         if (isPlaying) {
-            // Start the timer
+            // Start the timer (update every 100 milliseconds)
             intervalRef.current = setInterval(() => {
                 setElapsedTime((prev) => {
                     if (prev < songDuration) {
-                        return prev + 1;
+                        return prev + 100; // Increase by 100 milliseconds
                     }
                     clearInterval(intervalRef.current); // Stop interval when the song finishes
                     return prev;
                 });
-            }, 1000); // Update every second
+            }, 100); // Update every 100 milliseconds
         } else {
             // Pause the timer
             clearInterval(intervalRef.current);
@@ -32,16 +32,18 @@ const ProgressBar = () => {
         return () => clearInterval(intervalRef.current);
     }, [isPlaying]);
 
-    // Update the progress bar based on elapsed time
+    // Update the progress bar based on elapsed time (in milliseconds)
     useEffect(() => {
         const progressPercentage = (elapsedTime / songDuration) * 100;
         setProgress(progressPercentage);
     }, [elapsedTime]);
 
+    // Handle play/pause button click
     const handlePlayPauseClick = () => {
         setIsPlaying(!isPlaying); // Toggle play/pause
     };
 
+    // Handle reset button click (reset progress, elapsed time, and stop playing)
     const handleResetClick = () => {
         setProgress(0); // Reset progress
         setElapsedTime(0); // Reset elapsed time
@@ -60,7 +62,7 @@ const ProgressBar = () => {
 
             {/* Progress Text */}
             <div className="mt-[10px] text-[24px] font-bold text-[#444444]">
-                {Math.floor(elapsedTime / 60)}:{(elapsedTime % 60).toString().padStart(2, '0')} / 3:25
+                {Math.floor(elapsedTime / 60000)}:{((elapsedTime % 60000) / 1000).toFixed(3).padStart(6, '0')} / 3:25.000
             </div>
 
             {/* Play/Pause Button */}
