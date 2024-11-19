@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from syrics.api import Spotify
 import json
+from spotdl import Spotdl
 
 # Load environment variables
 load_dotenv("python.env")
@@ -23,6 +24,9 @@ syrics_sp = Spotify(sp_cookie)
 # Search for a track
 track_name = "creep"
 results = spotify.search(q=track_name, type="track", limit=1)
+
+spotdl = Spotdl(client_id = client_id, client_secret = client_secret)
+# song = spotdl.search("https://open.spotify.com/track/70LcF31zb1H0PyJoS1Sx1r") # Creates a Song object
 
 # Print track details
 if results["tracks"]["items"]:
@@ -64,9 +68,11 @@ if results["tracks"]["items"]:
     # Ensure the directory exists
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
-    # Write to the JSON file
-    with open(save_path, 'w') as file:
-        json.dump(lyrics_data, file, indent=4)
+    # # Write to the JSON file
+    # with open(save_path, 'w') as file:
+    #     json.dump(lyrics_data, file, indent=4)
+    
+    spotdl.download(track)
     
     print(f"Data saved to {save_path}")
 else:
