@@ -50,7 +50,7 @@ class Song(BaseModel):
         )
         
     def download_original(self):
-        output_folder = "./downloads/{artist} - {title}.mp3"
+        output_folder = "./downloads/{artist} - {title}"
         
         # CLI command
         command = [

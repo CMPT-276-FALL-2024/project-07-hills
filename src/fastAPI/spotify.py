@@ -35,6 +35,7 @@ lyrics = Lyrics(lines = syrics_sp.get_lyrics(track_id)["lyrics"]["lines"])
 
 song = Song.create_from_track(track,lyrics)
 # Use Pydantic's `dict()` method to convert the object to a dictionary
+song.get_audio()
 song_dict = song.dict()
 
 # Convert the dictionary to JSON format with `json.dumps`
