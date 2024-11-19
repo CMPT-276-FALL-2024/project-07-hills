@@ -87,6 +87,5 @@ class Song(BaseModel):
     def get_audio(self):
         self.original_path = self.download_original()
         self.instrumental_path = separate_audio(self.original_path)
-        
-        
-# Create a Song object
+
+    

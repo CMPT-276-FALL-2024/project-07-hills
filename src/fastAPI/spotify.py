@@ -7,91 +7,46 @@ import json
 from spotdl import Spotdl
 from Song import *
 
-# Load environment variables
-load_dotenv("python.env")
+class SpotifyDIY:
+    def __init__(self, env_file="python.env"):
+        #Load environment variables
+        load_dotenv("python.env")
+        self.client_id = os.getenv("CLIENT_ID")
+        self.client_secret = os.getenv("CLIENT_SECRET")
+        self.sp_cookie = os.getenv("SPOTIFY_COOKIE")
+        if not all([self.client_id, self.client_secret, self.sp_cookie]):
+            raise ValueError("Environment variables CLIENT_ID, CLIENT_SECRET, or SPOTIFY_COOKIE are missing")
+        
+        #setup spotify client
+        client_credentials_manager = SpotifyClientCredentials(client_id=self.client_id, client_secret=self.client_secret)
+        self.spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-client_id = os.getenv("CLIENT_ID")
-client_secret = os.getenv("CLIENT_SECRET")
-sp_cookie = os.getenv("SPOTIFY_COOKIE")
-
-# Set up authentication
-client_credentials_manager = SpotifyClientCredentials(
-    client_id=client_id,
-    client_secret=client_secret
-)
-spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-syrics_sp = Spotify(sp_cookie)
-
-# Search for a track
-track_name = "creep"
-results = spotify.search(q=track_name, type="track", limit=1)
-
-spotdl = Spotdl(client_id = client_id, client_secret = client_secret)
-# song = spotdl.search("https://open.spotify.com/track/70LcF31zb1H0PyJoS1Sx1r") # Creates a Song object
-
-track = results["tracks"]["items"][0]
-track_id = track['id']
-lyrics = Lyrics(lines = syrics_sp.get_lyrics(track_id)["lyrics"]["lines"])
-
-song = Song.create_from_track(track,lyrics)
-
-
-# Use Pydantic's `dict()` method to convert the object to a dictionary
-song.get_audio()
-song_dict = song.dict()
-
-# Convert the dictionary to JSON format with `json.dumps`
-song_json = json.dumps(song_dict, indent=4)
-
-# Print the JSON string
-print(song_json)
-
-# # Print track details
-# if results["tracks"]["items"]:
-#     track = results["tracks"]["items"][0]
-#     print(f"Track Name: {track['name']}")
-#     print(f"Artist: {', '.join(artist['name'] for artist in track['artists'])}")
-#     print(f"Album: {track['album']['name']}")
-#     print(f"Spotify URL: {track['external_urls']['spotify']}")
-#     print(f"Track ID: {track['id']}")
+        # Set up syrics
+        self.syrics_sp = Spotify(self.sp_cookie)
+        
+        # Set up SpotDL for downloading
+        self.spotdl = Spotdl(client_id=self.client_id, client_secret=self.client_secret)
     
-#   
-#     lyrics = syrics_sp.get_lyrics(track_id)
+    def search_tracks(self, track_name, limit=5):
+        return
     
-#     print(f"Lyrics")
-
-#     # Retrieve the artist name(s) and join them if there are multiple artists
-#     artist_name = ', '.join(artist['name'] for artist in track['artists'])
-
-#     # Retrieve the song's duration (in milliseconds)
-#     duration_ms = track['duration_ms']
+    def get_single_track(self, track_name, limit=1):
+        results = self.spotify.search(q=track_name, type="track", limit=limit)
+        if results["tracks"]["items"]:
+            return results["tracks"]["items"][0]
+        else:
+            raise ValueError(f"No tracks found for '{track_name}'")
     
-#     # Convert milliseconds to minutes and seconds
-#     duration_min = duration_ms // 60000
-#     duration_sec = (duration_ms % 60000) // 1000
-#     song_duration = f"{duration_min}m {duration_sec}s"
+    def get_lyrics(self, track_id):
+        """
+        Retrieve lyrics for a Spotify track using the Syrics API.
+        Args:
+            track_id (str): Spotify track ID.
+        Returns:
+            Lyrics: A Lyrics object containing lines of the lyrics.
+        """
+        lyrics_data = self.syrics.get_lyrics(track_id)
+        if lyrics_data is None:
+            return None
+        return Lyrics(lines=lyrics_data["lyrics"]["lines"])
     
-#     lyrics_data = {
-#         "title": track["name"], 
-#         "artist": artist_name, 
-#         "instrumental_url": "../client/src/Creep - Radiohead (Lyrics).mp3",
-#         "duration": song_duration,
-#         "lyrics": lyrics["lyrics"]
-#     }
-
-#     # Define the full path to save the file
-#     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-#     save_path = os.path.join(repo_root, 'src', 'client', 'src', 'sample.json')
-
-#     # Ensure the directory exists
-#     os.makedirs(os.path.dirname(save_path), exist_ok=True)
-
-#     # # Write to the JSON file
-#     # with open(save_path, 'w') as file:
-#     #     json.dump(lyrics_data, file, indent=4)
-    
-#     spotdl.download(track)
-    
-#     print(f"Data saved to {save_path}")
-# else:
-#     print("No tracks found.")
