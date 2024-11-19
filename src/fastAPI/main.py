@@ -12,6 +12,7 @@ import os
 import logging
 from datetime import datetime
 import glob
+import uvicorn
 
 # Create a folder for logs if it doesn't exist
 LOGS_FOLDER = "./logs"
@@ -89,7 +90,7 @@ async def submit_link(link: str):
 
 if __name__ == "__main__":
     logger.info(f"Starting log")
-    import uvicorn
+
 
     uvicorn.run(app, host="0.0.0.0", port=8001)
 

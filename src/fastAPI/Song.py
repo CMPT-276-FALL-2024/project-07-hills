@@ -8,7 +8,7 @@ from uvr import separate_audio
 from genius import get_genius_lyrics
 import subprocess
 import os
-
+from urllib.parse import quote
 # Structure of a single line
 class Line(BaseModel):
     startTimeMs: str
@@ -26,7 +26,7 @@ class Song(BaseModel):
     artist: str
     spotify_url: str
     original_path: str
-    instrumental_path: str
+    instrumental_URL: str
     duration: str
     lyrics: Lyrics  # The Lyrics object without syncType
     
@@ -36,7 +36,7 @@ class Song(BaseModel):
         artist = ", ".join([artist["name"] for artist in track["artists"]])  # Join multiple artists
         spotify_url = track["external_urls"]["spotify"]
         original_path = ""
-        instrumental_path = ""
+        instrumental_URL = ""
         duration = f"{track['duration_ms'] // 60000}:{(track['duration_ms'] // 1000) % 60:02}"  # Convert ms to mm:ss
         lyrics = lyrics
         
@@ -44,7 +44,7 @@ class Song(BaseModel):
             title=title,
             artist=artist,
             spotify_url=spotify_url,
-            instrumental_path="",  # Default empty paths
+            instrumental_URL="",  # Default empty paths
             original_path="",
             duration=duration,
             lyrics=lyrics,
@@ -86,6 +86,15 @@ class Song(BaseModel):
     
     def get_audio(self):
         self.original_path = self.download_original()
-        self.instrumental_path = separate_audio(self.original_path)
+        instrumental_filename  = separate_audio(self.original_path)
+        
+        # Encode the file name to make it URL-safe
+        encoded_file_name = quote(instrumental_filename)
+        #change file_name to URL name
+        self.instrumental_URL = f"http://localhost:8000/static/{encoded_file_name}"
+    
+    
+    
+        
 
     

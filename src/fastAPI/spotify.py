@@ -5,7 +5,7 @@ import os
 from syrics.api import Spotify
 import json
 from spotdl import Spotdl
-from Song import *
+from Song import Lyrics
 
 class SpotifyDIY:
     def __init__(self, env_file="python.env"):
@@ -22,7 +22,7 @@ class SpotifyDIY:
         self.spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
         # Set up syrics
-        self.syrics_sp = Spotify(self.sp_cookie)
+        self.syrics = Spotify(self.sp_cookie)
         
         # Set up SpotDL for downloading
         self.spotdl = Spotdl(client_id=self.client_id, client_secret=self.client_secret)
@@ -37,7 +37,7 @@ class SpotifyDIY:
         else:
             raise ValueError(f"No tracks found for '{track_name}'")
     
-    def get_lyrics(self, track_id):
+    def get_lyrics(self, track):
         """
         Retrieve lyrics for a Spotify track using the Syrics API.
         Args:
@@ -45,7 +45,7 @@ class SpotifyDIY:
         Returns:
             Lyrics: A Lyrics object containing lines of the lyrics.
         """
-        lyrics_data = self.syrics.get_lyrics(track_id)
+        lyrics_data = self.syrics.get_lyrics(track["id"])
         if lyrics_data is None:
             return None
         return Lyrics(lines=lyrics_data["lyrics"]["lines"])

@@ -41,7 +41,7 @@ def check_instrumental_exists(file_path):
     full_instrumental_path = os.path.join(instrumental_directory, instrumental_file_name)
     
     if os.path.exists(full_instrumental_path):
-        return True, full_instrumental_path
+        return True, instrumental_file_name
     else:
         return False, None
 
@@ -50,13 +50,10 @@ def separate_audio(file_path):
     exists, instrumental_path = check_instrumental_exists(file_path)
     if exists:
         print(f"File already exists at: {instrumental_path}")
-        return instrumental_path
+        
+        return os.path.basename(instrumental_path)
     
     instrumental_path = separator.separate(file_path)
-    # print(f"Separation complete! Output file(s): {' '.join(output_files)}")
-    # print("separation complete")
-    instrumental_path = rename_uvr_output(output_file)
-    print(instrumental_path)
-    return instrumental_path
+    return os.path.basename(instrumental_path)
 # # Perform the separation on specific audio files without reloading the model
 # output_files = separator.separate('downloads/The Real Slim Shady.mp3')
