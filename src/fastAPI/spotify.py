@@ -5,6 +5,7 @@ import os
 from syrics.api import Spotify
 import json
 from spotdl import Spotdl
+from Song import *
 
 # Load environment variables
 load_dotenv("python.env")
@@ -28,52 +29,66 @@ results = spotify.search(q=track_name, type="track", limit=1)
 spotdl = Spotdl(client_id = client_id, client_secret = client_secret)
 # song = spotdl.search("https://open.spotify.com/track/70LcF31zb1H0PyJoS1Sx1r") # Creates a Song object
 
-# Print track details
-if results["tracks"]["items"]:
-    track = results["tracks"]["items"][0]
-    print(f"Track Name: {track['name']}")
-    print(f"Artist: {', '.join(artist['name'] for artist in track['artists'])}")
-    print(f"Album: {track['album']['name']}")
-    print(f"Spotify URL: {track['external_urls']['spotify']}")
-    print(f"Track ID: {track['id']}")
-    
-    track_id = track['id']
-    lyrics = syrics_sp.get_lyrics(track_id)
-    
-    print(f"Lyrics")
+track = results["tracks"]["items"][0]
+track_id = track['id']
+lyrics = Lyrics(lines = syrics_sp.get_lyrics(track_id)["lyrics"]["lines"])
 
-    # Retrieve the artist name(s) and join them if there are multiple artists
-    artist_name = ', '.join(artist['name'] for artist in track['artists'])
+song = Song.create_from_track(track,lyrics)
+# Use Pydantic's `dict()` method to convert the object to a dictionary
+song_dict = song.dict()
 
-    # Retrieve the song's duration (in milliseconds)
-    duration_ms = track['duration_ms']
-    
-    # Convert milliseconds to minutes and seconds
-    duration_min = duration_ms // 60000
-    duration_sec = (duration_ms % 60000) // 1000
-    song_duration = f"{duration_min}m {duration_sec}s"
-    
-    lyrics_data = {
-        "title": track["name"], 
-        "artist": artist_name, 
-        "instrumental_url": "../client/src/Creep - Radiohead (Lyrics).mp3",
-        "duration": song_duration,
-        "lyrics": lyrics["lyrics"]
-    }
+# Convert the dictionary to JSON format with `json.dumps`
+song_json = json.dumps(song_dict, indent=4)
 
-    # Define the full path to save the file
-    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-    save_path = os.path.join(repo_root, 'src', 'client', 'src', 'sample.json')
+# Print the JSON string
+print(song_json)
 
-    # Ensure the directory exists
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+# # Print track details
+# if results["tracks"]["items"]:
+#     track = results["tracks"]["items"][0]
+#     print(f"Track Name: {track['name']}")
+#     print(f"Artist: {', '.join(artist['name'] for artist in track['artists'])}")
+#     print(f"Album: {track['album']['name']}")
+#     print(f"Spotify URL: {track['external_urls']['spotify']}")
+#     print(f"Track ID: {track['id']}")
+    
+#   
+#     lyrics = syrics_sp.get_lyrics(track_id)
+    
+#     print(f"Lyrics")
 
-    # # Write to the JSON file
-    # with open(save_path, 'w') as file:
-    #     json.dump(lyrics_data, file, indent=4)
+#     # Retrieve the artist name(s) and join them if there are multiple artists
+#     artist_name = ', '.join(artist['name'] for artist in track['artists'])
+
+#     # Retrieve the song's duration (in milliseconds)
+#     duration_ms = track['duration_ms']
     
-    spotdl.download(track)
+#     # Convert milliseconds to minutes and seconds
+#     duration_min = duration_ms // 60000
+#     duration_sec = (duration_ms % 60000) // 1000
+#     song_duration = f"{duration_min}m {duration_sec}s"
     
-    print(f"Data saved to {save_path}")
-else:
-    print("No tracks found.")
+#     lyrics_data = {
+#         "title": track["name"], 
+#         "artist": artist_name, 
+#         "instrumental_url": "../client/src/Creep - Radiohead (Lyrics).mp3",
+#         "duration": song_duration,
+#         "lyrics": lyrics["lyrics"]
+#     }
+
+#     # Define the full path to save the file
+#     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+#     save_path = os.path.join(repo_root, 'src', 'client', 'src', 'sample.json')
+
+#     # Ensure the directory exists
+#     os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+#     # # Write to the JSON file
+#     # with open(save_path, 'w') as file:
+#     #     json.dump(lyrics_data, file, indent=4)
+    
+#     spotdl.download(track)
+    
+#     print(f"Data saved to {save_path}")
+# else:
+#     print("No tracks found.")

@@ -24,11 +24,31 @@ class Song(BaseModel):
     title: str
     artist: str
     spotify_url: str
-    instrumental_path: str
     original_path: str
+    instrumental_path: str
     duration: str
     lyrics: Lyrics  # The Lyrics object without syncType
     
+    @classmethod
+    def create_from_track(cls, track: dict, lyrics) -> "Song":
+        title = track["name"]
+        artist = ", ".join([artist["name"] for artist in track["artists"]])  # Join multiple artists
+        spotify_url = track["external_urls"]["spotify"]
+        original_path = ""
+        instrumental_path = ""
+        duration = f"{track['duration_ms'] // 60000}:{(track['duration_ms'] // 1000) % 60:02}"  # Convert ms to mm:ss
+        lyrics = lyrics
+        
+        return cls(
+            title=title,
+            artist=artist,
+            spotify_url=spotify_url,
+            instrumental_path="",  # Default empty paths
+            original_path="",
+            duration=duration,
+            lyrics=lyrics,
+        )
+        
     def download_original(self):
         output_folder = "./downloads/{artist} - {title}.mp3"
         
@@ -38,7 +58,6 @@ class Song(BaseModel):
             self.spotify_url,
             "--output",
             output_folder,
-            
         ]
         
         try:
@@ -63,19 +82,5 @@ class Song(BaseModel):
         self.original_path = self.download_original()
         self.instrumental_path = separate_audio(self.original_path)
         
-    
-    def set_duration(track):
-        
         
 # Create a Song object
-song = Song(
-    title="Example Song",
-    artist="Example Artist",
-    spotify_url="https://open.spotify.com/track/70LcF31zb1H0PyJoS1Sx1r",
-    instrumental_path="",
-    original_path="",
-    duration="",
-    lyrics=Lyrics(lines=[])  # Provide an empty Lyrics object
-)
-
-print(song.download_original())
