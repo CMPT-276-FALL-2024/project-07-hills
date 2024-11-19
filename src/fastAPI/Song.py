@@ -7,6 +7,7 @@ from ytdl import get_audio
 from uvr import separate_audio
 from genius import get_genius_lyrics
 import subprocess
+import os
 
 # Structure of a single line
 class Line(BaseModel):
@@ -50,7 +51,12 @@ class Song(BaseModel):
         )
         
     def download_original(self):
-        output_folder = "./downloads/{artist} - {title}"
+        output_folder = "./downloads"
+        inferred_path = f"{output_folder}/{self.artist} - {self.title}.mp3"
+        
+        if os.path.exists(inferred_path):
+            print(f"File already downloaded: {inferred_path}")
+            return inferred_path
         
         # CLI command
         command = [
