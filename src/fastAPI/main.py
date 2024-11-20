@@ -1,7 +1,6 @@
 import dlp as dlp
 import yt_dlp
 from ytdl import get_audio
-from uvr import separate_audio
 from genius import get_genius_lyrics
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
@@ -13,6 +12,8 @@ import logging
 from datetime import datetime
 import glob
 import uvicorn
+from spotify import *
+from Song import *
 
 # Create a folder for logs if it doesn't exist
 LOGS_FOLDER = "./logs"
@@ -49,49 +50,69 @@ app.add_middleware(
 
 class YouTubeLink(BaseModel):
     youtubeLink: str
+class SearchQuery(BaseModel):
+    query: str  # The text string sent from the frontend
 
 
 DOWNLOADS_FOLDER = "./downloads"
 
+#Iniliaze SpotifyDIY object
+spotify = SpotifyDIY(env_file="python.env")
 
-@app.post("/submit-link")
-async def submit_link(link: str):
-    logger.info(f"Received Youtube link: {link}")
-
-    # Call the ytdl.py file and send it the link
-    # should receive the file_path from the yt-dl.py file and send it over to the
+@app.post("/fetch-song")
+async def fetch_song(search_query: SearchQuery):
     try:
-        audio_data = await get_audio(link)  # Call the async get_audio function
-        json = JSONResponse(content=audio_data)
-        audio_path = audio_data["file_path"]  # Extract path from get_audio
-        song_name = audio_data["song_name"]
-        artist = audio_data["artist"]
-            # Separate the audio to generate an instrumental
-        instrumental_path = separate_audio(audio_path)
+        track = spotify.get_single_track(search_query.query)
+        lyrics = spotify.get_lyrics(track)
         
-        lyrics_data = get_genius_lyrics(song_name, artist)
-
-        instrumental_url = f"/static/{os.path.basename(instrumental_path)}"
+        # Check for lyrics
+        if not lyrics:
+            raise HTTPException(status_code=404, detail="Lyrics not found for this song")
         
-        return JSONResponse(content={
-                "song_name": lyrics_data["title"],
-                "artist": lyrics_data["artist"],
-                "instrumental_url": instrumental_url,
-                "lyrics": lyrics_data
-                "message": "Processing complete"      
-        })
+        # Create and return song object
+        song = Song.create_from_track(track, lyrics)
+        song.get_audio()
+        return song
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
 
-    except Exception as e:
-        logger.error(f"Error processing link: {e}")
-        raise HTTPException(status_code=500, detail="Failed to process YouTube link")
+
+# @app.post("/submit-link")
+# async def submit_link(link: str):
+#     logger.info(f"Received Youtube link: {link}")
+
+#     # Call the ytdl.py file and send it the link
+#     # should receive the file_path from the yt-dl.py file and send it over to the
+#     try:
+#         audio_data = await get_audio(link)  # Call the async get_audio function
+#         json = JSONResponse(content=audio_data)
+#         audio_path = audio_data["file_path"]  # Extract path from get_audio
+#         song_name = audio_data["song_name"]
+#         artist = audio_data["artist"]
+#             # Separate the audio to generate an instrumental
+#         instrumental_path = separate_audio(audio_path)
+        
+#         lyrics_data = get_genius_lyrics(song_name, artist)
+
+#         instrumental_url = f"/static/{os.path.basename(instrumental_path)}"
+        
+#         return JSONResponse(content={
+#                 "song_name": lyrics_data["title"],
+#                 "artist": lyrics_data["artist"],
+#                 "instrumental_url": instrumental_url,
+#                 "lyrics": lyrics_data
+#                 "message": "Processing complete"      
+#         })
+
+#     except Exception as e:
+#         logger.error(f"Error processing link: {e}")
+#         raise HTTPException(status_code=500, detail="Failed to process YouTube link")
 
 
 
 
 if __name__ == "__main__":
     logger.info(f"Starting log")
-
-
     uvicorn.run(app, host="0.0.0.0", port=8001)
 
     # testLink = "https://www.youtube.com/watch?v=1-M4JrFcrNY"

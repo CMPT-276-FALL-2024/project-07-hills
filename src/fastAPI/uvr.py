@@ -53,7 +53,7 @@ def separate_audio(file_path):
         
         return os.path.basename(instrumental_path)
     
-    instrumental_path = separator.separate(file_path)
+    instrumental_path = separator.separate(file_path)[0]
     return os.path.basename(instrumental_path)
 # # Perform the separation on specific audio files without reloading the model
 # output_files = separator.separate('downloads/The Real Slim Shady.mp3')
