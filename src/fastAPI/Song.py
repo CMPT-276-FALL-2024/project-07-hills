@@ -9,6 +9,7 @@ from genius import get_genius_lyrics
 import subprocess
 import os
 from urllib.parse import quote
+import re
 # Structure of a single line
 class Line(BaseModel):
     startTimeMs: str
@@ -32,7 +33,7 @@ def sanitize_filename(filename: str) -> str:
 class Song(BaseModel):
     title: str
     artist: str
-    img_url: str
+    # img_url: str
     spotify_url: str
     original_path: str
     instrumental_URL: str
@@ -41,8 +42,11 @@ class Song(BaseModel):
     
     @classmethod
     def create_from_track(cls, track: dict, lyrics) -> "Song":
-        title = track["name"]
-        artist = ", ".join([artist["name"] for artist in track["artists"]])  # Join multiple artists
+        # title = track["name"]
+        # artist = ", ".join([artist["name"] for artist in track["artists"]])  # Join multiple artists
+        title = sanitize_filename(track["name"])  # Sanitize title
+        artist = sanitize_filename(", ".join([artist["name"] for artist in track["artists"]]))  # Sanitize artist
+
         spotify_url = track["external_urls"]["spotify"]
         original_path = ""
         instrumental_URL = ""
@@ -58,7 +62,14 @@ class Song(BaseModel):
             duration=duration,
             lyrics=lyrics,
         )
-        
+
+    def sanitize_filename(filename: str) -> str:
+        """
+        Sanitize the filename by removing characters that are not allowed in file names.
+        """
+        # Regex pattern to allow only alphanumeric characters, spaces, dashes, underscores, and periods
+        return re.sub(r'[<>:"/\\|?*\[\]]', '', filename).strip()
+
     def download_original(self):
         output_folder = "./downloads"
         # Delete the stars if it contains them
