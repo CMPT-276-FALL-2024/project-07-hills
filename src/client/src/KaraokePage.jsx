@@ -15,15 +15,14 @@ const Karaoke = () => {
   return (
     <div className="flex h-screen">
       {/** Lyrics and music player area */}
-      <div className="flex-1 bg-gray-100 p-8">
+      <div className="flex-1 bg-gray-100 p-8 flex-col">
         {/** Progress bar and the timer */}
         <ProgressBar />
-        
-        <h1 className="text-2xl font-bold">Lyrics</h1>
+        {/* <h1 className="text-[35px] font-bold">Lyrics</h1> */}
         {/** Lyrics Display, synced in with time stamps */}
-        <LyricsDisplay />
+        {/* <LyricsDisplay /> */}
+        {/* <LyricsDisplay currentTime={elapsedTime} /> */}
       </div>
-
       {/** Navigation bar */}
       <SideNavbar />
     </div>
