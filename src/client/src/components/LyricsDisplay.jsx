@@ -32,7 +32,7 @@ const LyricsDisplay = ({ currentTime, onLyricClick }) => {
   return (
     <div className="text-center mt-[4px] text-[24px]">
       <h1 className="text-[32px] mb-[18px] font-bold">Lyrics</h1>
-      <div className="max-h-[calc(100vh-200px)] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+      <div className="max-h-[calc(100vh-400px)] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
         {currentLyrics.map((line, index) => (
           <div
             key={index}
