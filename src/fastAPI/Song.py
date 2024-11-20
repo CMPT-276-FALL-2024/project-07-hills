@@ -20,10 +20,19 @@ class Line(BaseModel):
 class Lyrics(BaseModel):
     lines: List[Line]  # A list of Line objects
 
+def sanitize_filename(filename: str) -> str:
+    """
+    Sanitize the filename by removing characters that are not allowed in file names.
+    """
+    # Regex pattern to allow only alphanumeric characters, spaces, dashes, underscores, and periods
+    return re.sub(r'[<>:"/\\|?*\[\]]', '', filename).strip()
+
+
 # Song object
 class Song(BaseModel):
     title: str
     artist: str
+    img_url: str
     spotify_url: str
     original_path: str
     instrumental_URL: str
@@ -52,7 +61,10 @@ class Song(BaseModel):
         
     def download_original(self):
         output_folder = "./downloads"
+        # Delete the stars if it contains them
+        
         inferred_path = f"{output_folder}/{self.artist} - {self.title}.mp3"
+        print(self.title)
         
         if os.path.exists(inferred_path):
             print(f"File already downloaded: {inferred_path}")
@@ -67,6 +79,7 @@ class Song(BaseModel):
         ]
         
         try:
+            print("Downloading...")
             result = subprocess.run(command, capture_output=True, text=True, check=True)
             print("SpotDL Output:", result.stdout) #Print SpotDLs output for debugging
             for line in result.stdout.splitlines():

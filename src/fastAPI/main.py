@@ -59,6 +59,8 @@ DOWNLOADS_FOLDER = "./downloads"
 #Iniliaze SpotifyDIY object
 spotify = SpotifyDIY(env_file="python.env")
 
+@app.post("/search-song")
+
 @app.post("/fetch-song")
 async def fetch_song(search_query: SearchQuery):
     try:
