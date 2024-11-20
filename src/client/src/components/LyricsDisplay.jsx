@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from "react";
 import sample from "../sample.json";
 
+// Added the onLyricClick function to optimize code, this is much more organized hoenstly lol
 const LyricsDisplay = ({ currentTime, onLyricClick }) => {
   const [currentLyrics, setCurrentLyrics] = useState([]);
 
@@ -13,8 +14,9 @@ const LyricsDisplay = ({ currentTime, onLyricClick }) => {
 
     const updatedLyrics = sample.lyrics.lines.map((line) => {
       const startTime = parseInt(line.startTimeMs, 10);
-      const endTime = parseInt(line.endTimeMs, 10) || startTime + 2500;
+      const endTime = parseInt(line.endTimeMs, 10) || startTime + 2500; // Extra 2.5 seconds just in case (this is in milliseconds)
 
+      // organize by current and upcoming and passed parts
       if (currentTime >= startTime && currentTime <= endTime) {
         return { ...line, status: "current" };
       } else if (currentTime < startTime) {
@@ -77,17 +79,17 @@ export default LyricsDisplay;
 //     const currentIndex = sample.lyrics.lines.findIndex((line, index) => {
 //       const startTime = parseInt(line.startTimeMs, 10);
 //       const endTime = parseInt(
-//         sample.lyrics.lines[index + 1]?.startTimeMs || line.startTimeMs + 1000,
+//         sample.lyrics.lines[index + 1]?.startTimeMs || line.startTimeMs + 2500,
 //         10
-//       );
+//       ); // make it 2.5 seconds
 
 //       return currentTime >= startTime && currentTime < endTime;
 //     });
 
-//     // Set the current line
+//     // Set the current line, null if theres nothing
 //     const current = sample.lyrics.lines[currentIndex] || null;
 
-//     // Set the next line
+//     // Set the next line, null if theres nothing
 //     const next = sample.lyrics.lines[currentIndex + 1] || null;
 
 //     setCurrentLine(current);

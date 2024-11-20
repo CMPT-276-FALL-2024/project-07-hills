@@ -1,4 +1,4 @@
-// To be used with LyricsDisplay Version 2
+// // To be used with LyricsDisplay Version 2
 import React, { useState, useEffect, useRef } from "react";
 import sample from "../sample.json";
 import instrumental from "../Creep - Radiohead (Lyrics).mp3";
@@ -20,6 +20,7 @@ const ProgressBar = () => {
   const seconds = durationParts ? parseInt(durationParts[2], 10) : 0;
   const songDuration = (minutes * 60 + seconds) * 1000;
 
+  // Function for volume change
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value;
     setVolume(newVolume);
@@ -45,6 +46,7 @@ const ProgressBar = () => {
     setProgress(progressPercentage);
   }, [elapsedTime, songDuration]);
 
+  // Function to play and puase the audio
   const handlePlayPauseClick = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -54,6 +56,7 @@ const ProgressBar = () => {
     setIsPlaying(!isPlaying);
   };
 
+  // Replay function 
   const handleReplayClick = () => {
     setProgress(0);
     setElapsedTime(0);
@@ -63,6 +66,7 @@ const ProgressBar = () => {
     setIsPlaying(true);
   };
 
+  // Function to convert milliseconds into minutes and seconds
   const formatTime = (timeInMs) => {
     const timeInSeconds = Math.floor(timeInMs / 1000);
     const minutes = Math.floor(timeInSeconds / 60);
@@ -70,6 +74,7 @@ const ProgressBar = () => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  // Make the progress bar interactive and switch to parts in the song
   const handleScrub = (e) => {
     const bar = e.currentTarget;
     const rect = bar.getBoundingClientRect();
@@ -83,6 +88,7 @@ const ProgressBar = () => {
     audioRef.current.currentTime = newElapsedTime / 1000;
   };
 
+  // Function for the timestamp when you click on the lyrics
   const handleLyricClick = (timestamp) => {
     setElapsedTime(timestamp);
     audioRef.current.currentTime = timestamp / 1000;
