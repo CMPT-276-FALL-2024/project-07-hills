@@ -1,4 +1,4 @@
-// To be used with LyricsDisplay Version 3
+// To be used with LyricsDisplay Version 2
 import React, { useState, useEffect, useRef } from "react";
 import sample from "../sample.json";
 import instrumental from "../Creep - Radiohead (Lyrics).mp3";
@@ -152,9 +152,7 @@ export default ProgressBar;
 
 
 
-
-
-// Progress bar (to be used with LyricsDisplay Version 1 or 2)
+// // Progress bar Version 1 (To be used with LyricsDisplay Version 1)
 // import React, { useState, useEffect, useRef } from "react";
 // import sample from "../sample.json";
 // import instrumental from "../Creep - Radiohead (Lyrics).mp3";

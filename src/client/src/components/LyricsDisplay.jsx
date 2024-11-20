@@ -1,4 +1,7 @@
-// Version 3
+// // Version 2
+// // Show all lyrics
+// // Made it scrollable so that it doesn't go over past the bottom boundary
+// // Made it interactive so you can go to the specific point in the song by clicking on lyrics
 import React, { useState, useEffect } from "react";
 import sample from "../sample.json";
 
@@ -27,21 +30,23 @@ const LyricsDisplay = ({ currentTime, onLyricClick }) => {
   return (
     <div className="text-center mt-[4px] text-[24px]">
       <h1 className="text-[32px] mb-[18px] font-bold">Lyrics</h1>
-      {currentLyrics.map((line, index) => (
-        <div
-          key={index}
-          onClick={() => onLyricClick(parseInt(line.startTimeMs, 10))}
-          className={`cursor-pointer ${
-            line.status === "current"
-              ? "text-gray-800 font-bold"
-              : line.status === "upcoming"
-              ? "text-gray-400"
-              : "text-gray-200"
-          }`}
-        >
-          {line.words}
-        </div>
-      ))}
+      <div className="max-h-[calc(100vh-200px)] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+        {currentLyrics.map((line, index) => (
+          <div
+            key={index}
+            onClick={() => onLyricClick(parseInt(line.startTimeMs, 10))}
+            className={`cursor-pointer ${
+              line.status === "current"
+                ? "text-gray-800 font-bold"
+                : line.status === "upcoming"
+                ? "text-gray-400"
+                : "text-gray-200"
+            }`}
+          >
+            {line.words}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -53,60 +58,11 @@ export default LyricsDisplay;
 
 
 
-// Show lyrics altogether (Version 2)
-// import React, { useState, useEffect } from "react";
-// import sample from "../sample.json";
-
-// const LyricsDisplay = ({ currentTime }) => {
-//   const [currentLyrics, setCurrentLyrics] = useState([]);
-
-//   useEffect(() => {
-//     if (!sample?.lyrics?.lines) return;
-
-//     const updatedLyrics = sample.lyrics.lines.map((line) => {
-//       const startTime = parseInt(line.startTimeMs, 10);
-//       const endTime = parseInt(line.endTimeMs, 10) || startTime + 2500; // Default to 1s duration if endTime is 0
-
-//       if (currentTime >= startTime && currentTime <= endTime) {
-//         return { ...line, status: "current" };
-//       } else if (currentTime < startTime) {
-//         return { ...line, status: "upcoming" };
-//       } else {
-//         return { ...line, status: "passed" };
-//       }
-//     });
-
-//     setCurrentLyrics(updatedLyrics);
-//   }, [currentTime]);
-
-//   return (
-//     <div className="text-center mt-[4px] text-[24px]">
-//       <h1 className="text-[32px] mb-[18px] font-bold">Lyrics</h1>
-//       {currentLyrics.map((line, index) => (
-//         <div
-//           key={index}
-//           className={`${
-//             line.status === "current"
-//               ? "text-gray-800 font-bold"
-//               : line.status === "upcoming"
-//               ? "text-gray-400"
-//               : "text-gray-200"
-//           }`}
-//         >
-//           {line.words}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default LyricsDisplay;
 
 
 
-
-
-// Show lyrics piece by piece (version 1)
+// // Version 1
+// // Show lyrics line by line only, so current and next lyrics only
 // import React, { useState, useEffect } from "react";
 // import sample from "../sample.json";
 
