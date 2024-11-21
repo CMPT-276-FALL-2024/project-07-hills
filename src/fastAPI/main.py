@@ -57,11 +57,19 @@ DOWNLOADS_FOLDER = "./downloads"
 #Iniliaze SpotifyDIY object
 spotify = SpotifyDIY(env_file="python.env")
 
+
 @app.post("/search-songs")
 async def search_songs(search_query: SearchQuery):
-    
+    # Take a query
+    # Return a List of 6 Song objects
+
 
 @app.post("/fetch-song")
+# takes in a song object
+# return a song object with instrumental_url and
+
+
+@app.post("/fetch-song-by-title")
 async def fetch_song(search_query: SearchQuery):
     try:
         track = spotify.get_single_track(search_query.query)
@@ -78,6 +86,9 @@ async def fetch_song(search_query: SearchQuery):
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
+@app.get("/delete-song")
+    #takes a query
+    # Deletes files associated with that song
 
 # @app.post("/submit-link")
 # async def submit_link(link: str):
