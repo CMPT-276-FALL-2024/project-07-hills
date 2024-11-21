@@ -35,7 +35,7 @@ def sanitize_filename(filename: str) -> str:
     ascii_only = normalized.encode('ascii', 'ignore').decode('ascii')
 
     # Remove illegal characters
-    sanitized = re.sub(r'[<>:"/\\|?*\[\]]', '', ascii_only).strip()
+    sanitized = re.sub(r'[<>:"/\\|?*\[\],]', '', ascii_only).strip()
 
     # Replace multiple spaces or underscores with a single underscore
     sanitized = re.sub(r'\s+', '_', sanitized)
@@ -124,7 +124,7 @@ class Song(BaseModel):
     
     def get_audio(self):
         self.original_path = self.download_original()
-        instrumental_filename  = separate_audio(self.original_path)
+        instrumental_filename = separate_audio(self.original_path)
         
         # Encode the file name to make it URL-safe
         encoded_file_name = quote(instrumental_filename)
