@@ -1,8 +1,11 @@
+import asyncio
+
 import dlp as dlp
 import yt_dlp
+
 from ytdl import get_audio
 from genius import get_genius_lyrics
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, WebSocket, BackgroundTasks
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,6 +17,7 @@ import glob
 import uvicorn
 from spotify import *
 from Song import *
+from Task import *
 
 # Create a folder for logs if it doesn't exist
 LOGS_FOLDER = "./logs"
@@ -54,26 +58,59 @@ class SearchQuery(BaseModel):
 
 DOWNLOADS_FOLDER = "./downloads"
 
-#Iniliaze SpotifyDIY object
-spotify = SpotifyDIY(env_file="python.env")
+# Iniliaze SpotifyDIY object
+# spotify = SpotifyDIY(env_file="python.env")
 
-@app.post("/search-songs")
-async def search_songs(search_query: SearchQuery):
-    
+# @app.post("/search-songs")
+# async def search_songs(search_query: SearchQuery):
+
+# This will handle the loading bars
+
+tasks = {}
+class TaskCreateRequest(BaseModel):
+    query: str
+
+
+# todo above is a dictionary of tasks
+@app.post("/task/create")
+async def create_task(request: TaskCreateRequest, background_tasks: BackgroundTasks):
+    task = Task()  # Create a new task instance
+    tasks[task.id] = task  # Store task in the task dictionary
+    background_tasks.add_task(process_task, task, request.query)  # Add task to background tasks
+    return {"task_id": str(task.id)}
+
+# Task status endpoint
+@app.get("/task/status/{task_id}")
+async def get_task_status(task_id: UUID):
+    task = tasks.get(task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    return task.dict()
+
+@app.get("/task/output/{task_id}")
+async def get_task_output(task_id: UUID):
+    task = tasks.get(task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    if task.progress < 100:
+        raise HTTPException(status_code=400, detail="Task is still in progress")
+    return {"result": task.result}
+
 
 @app.post("/fetch-song")
 async def fetch_song(search_query: SearchQuery):
     try:
         track = spotify.get_single_track(search_query.query)
         lyrics = spotify.get_lyrics(track)
-        
+
         # Check for lyrics
         if not lyrics:
             raise HTTPException(status_code=404, detail="Lyrics not found for this song")
-        
+
         # Create and return song object
         song = Song.create_from_track(track, lyrics)
         song.get_audio()
+        # This should be where the loading bar disapears
         return song
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
@@ -93,11 +130,11 @@ async def fetch_song(search_query: SearchQuery):
 #         artist = audio_data["artist"]
 #             # Separate the audio to generate an instrumental
 #         instrumental_path = separate_audio(audio_path)
-        
+
 #         lyrics_data = get_genius_lyrics(song_name, artist)
 
 #         instrumental_url = f"/static/{os.path.basename(instrumental_path)}"
-        
+
 #         return JSONResponse(content={
 #                 "song_name": lyrics_data["title"],
 #                 "artist": lyrics_data["artist"],
@@ -111,11 +148,9 @@ async def fetch_song(search_query: SearchQuery):
 #         raise HTTPException(status_code=500, detail="Failed to process YouTube link")
 
 
-
-
 if __name__ == "__main__":
     logger.info(f"Starting log")
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
     # testLink = "https://www.youtube.com/watch?v=1-M4JrFcrNY"
     # test_get_audio(testLink)

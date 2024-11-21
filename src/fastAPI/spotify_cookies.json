@@ -1,0 +1,15 @@
+[
+  {
+    "domain": ".spotify.com",
+    "expirationDate": 1700000000,
+    "hostOnly": false,
+    "httpOnly": false,
+    "name": "sp_dc",
+    "path": "/",
+    "sameSite": "no_restriction",
+    "secure": true,
+    "session": false,
+    "storeId": null,
+    "value": "AQAo9XDtAKLJ4sUZX_OV5VmflNSbzc76XgsZMQAXETfGmKoiF9drkZjTlqZMRh68RhVUxfERYEKQrMJEgaOQxRtvvdSvrGPx9pj8B-ie7yc8dqeXV9m49FFKfcnAQFHvbA3eXZQEMNK3ePuIqrZJFINh0i3mPAGk"
+  }
+]

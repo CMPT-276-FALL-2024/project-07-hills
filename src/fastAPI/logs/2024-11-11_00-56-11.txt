@@ -1,0 +1,6 @@
+2024-11-11 00:56:11,957 - __main__ - INFO - Starting log
+2024-11-11 00:56:15,605 - __main__ - INFO - Received Youtube link: https://www.youtube.com/watch?v=G16ZXU9SUWo
+2024-11-11 00:56:21,517 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: downloads/Crooked Teeth.mp3
+2024-11-11 00:56:45,057 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Crooked Teeth_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-11 00:56:48,439 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-11 00:56:48,441 - audio_separator.separator.separator - INFO - Separation duration: 00:00:26
