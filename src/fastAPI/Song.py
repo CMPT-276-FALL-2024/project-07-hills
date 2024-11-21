@@ -1,3 +1,5 @@
+import unicodedata
+
 from pydantic import BaseModel
 from typing import List, Optional
 from syrics.api import Spotify
@@ -23,10 +25,22 @@ class Lyrics(BaseModel):
 
 def sanitize_filename(filename: str) -> str:
     """
-    Sanitize the filename by removing characters that are not allowed in file names.
-    """
-    # Regex pattern to allow only alphanumeric characters, spaces, dashes, underscores, and periods
-    return re.sub(r'[<>:"/\\|?*\[\]]', '', filename).strip()
+      Sanitize the filename by:
+      - Removing illegal characters (e.g., < > : " / \ | ? * [ ])
+      - Stripping leading/trailing whitespace
+      - Removing or replacing Unicode characters
+      """
+    # Normalize Unicode characters to remove accents and diacritics
+    normalized = unicodedata.normalize('NFKD', filename)
+    ascii_only = normalized.encode('ascii', 'ignore').decode('ascii')
+
+    # Remove illegal characters
+    sanitized = re.sub(r'[<>:"/\\|?*\[\]]', '', ascii_only).strip()
+
+    # Replace multiple spaces or underscores with a single underscore
+    sanitized = re.sub(r'\s+', '_', sanitized)
+
+    return sanitized
 
 
 # Song object
