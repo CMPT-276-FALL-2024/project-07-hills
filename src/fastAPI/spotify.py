@@ -27,9 +27,13 @@ class SpotifyDIY:
         # Set up SpotDL for downloading
         self.spotdl = Spotdl(client_id=self.client_id, client_secret=self.client_secret)
     
-    def search_tracks(self, track_name, limit=5):
-        return
-    
+    def get_tracks(self, track_name, limit=6):
+        results = results = self.spotify.search(q=track_name, type="track", limit=limit)
+        if results["tracks"]["items"]:
+            return results["tracks"]["items"]
+        else:
+            raise ValueError(f"No tracks found for '{track_name}'")
+        
     def get_single_track(self, track_name, limit=1):
         results = self.spotify.search(q=track_name, type="track", limit=limit)
         if results["tracks"]["items"]:
@@ -37,7 +41,7 @@ class SpotifyDIY:
         else:
             raise ValueError(f"No tracks found for '{track_name}'")
     
-    def get_lyrics(self, track):
+    def get_lyrics_from_track(self, track):
         """
         Retrieve lyrics for a Spotify track using the Syrics API.
         Args:
@@ -46,6 +50,12 @@ class SpotifyDIY:
             Lyrics: A Lyrics object containing lines of the lyrics.
         """
         lyrics_data = self.syrics.get_lyrics(track["id"])
+        if lyrics_data is None:
+            return None
+        return Lyrics(lines=lyrics_data["lyrics"]["lines"])
+    
+    def get_lyrics_from_id(self, id):
+        lyrics_data = self.syrics.get_lyrics(id)
         if lyrics_data is None:
             return None
         return Lyrics(lines=lyrics_data["lyrics"]["lines"])

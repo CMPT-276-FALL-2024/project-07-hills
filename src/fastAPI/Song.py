@@ -49,10 +49,13 @@ class Song(BaseModel):
     artist: str
     # img_url: str
     spotify_url: str
+    spotify_id: str
+    album_image_URL: str
     original_path: str
     instrumental_URL: str
     duration: str
-    lyrics: Lyrics  # The Lyrics object without syncType
+    lyrics: Optional[Lyrics]
+    has_instrumental_audio: bool = False  
     
     @classmethod
     def create_from_track(cls, track: dict, lyrics) -> "Song":
@@ -62,8 +65,8 @@ class Song(BaseModel):
         artist = sanitize_filename(", ".join([artist["name"] for artist in track["artists"]]))  # Sanitize artist
 
         spotify_url = track["external_urls"]["spotify"]
-        original_path = ""
-        instrumental_URL = ""
+        spotify_id = track["id"]
+        album_image_URL = track["album"]["images"][0]['url']
         duration = f"{track['duration_ms'] // 60000}:{(track['duration_ms'] // 1000) % 60:02}"  # Convert ms to mm:ss
         lyrics = lyrics
         
@@ -71,10 +74,13 @@ class Song(BaseModel):
             title=title,
             artist=artist,
             spotify_url=spotify_url,
-            instrumental_URL="",  # Default empty paths
+            spotify_id=spotify_id,
+            album_image_URL = album_image_URL,
+            instrumental_URL="",  
             original_path="",
             duration=duration,
             lyrics=lyrics,
+            has_instrumental_audio=False,  
         )
 
     def sanitize_filename(filename: str) -> str:
@@ -93,6 +99,7 @@ class Song(BaseModel):
         
         if os.path.exists(inferred_path):
             print(f"File already downloaded: {inferred_path}")
+            print("inferred path: " + inferred_path)
             return inferred_path
         
         # CLI command
@@ -114,9 +121,11 @@ class Song(BaseModel):
                     artist, title = downloaded_info.split(" - ", 1) #Split artist and title
                     
                     file_path = f"./downloads/{artist} - {title}.mp3"
-                    return file_path
-                
+                    return inferred_path
+            print("file path: " + file_path)
+            print("inferred path: " + inferred_path)
             print("Could not infer the file path from SpotDL's output.")
+
             return None   
         except subprocess.CalledProcessError as e:
             print(f"Error downloading song: {e}")
@@ -130,6 +139,7 @@ class Song(BaseModel):
         encoded_file_name = quote(instrumental_filename)
         #change file_name to URL name
         self.instrumental_URL = f"http://localhost:8000/static/{encoded_file_name}"
+        self.has_audio = True  # Update the flag
     
     
     

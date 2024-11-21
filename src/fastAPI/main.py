@@ -51,7 +51,6 @@ app.add_middleware(
 class SearchQuery(BaseModel):
     query: str  # The text string sent from the frontend
 
-
 DOWNLOADS_FOLDER = "./downloads"
 
 #Iniliaze SpotifyDIY object
@@ -60,66 +59,58 @@ spotify = SpotifyDIY(env_file="python.env")
 
 @app.post("/search-songs")
 async def search_songs(search_query: SearchQuery):
-    # Take a query
-    # Return a List of 6 Song objects
+    try:
+        track_list = spotify.get_tracks(search_query.query)
+        
+        if not track_list:
+            raise HTTPException(status_code=404, detail="No tracks found for the given query.")
+        song_obj_list = []
+        for track in track_list:
+            try:
+                # Create a Song object
+                song = Song.create_from_track(track, None)
 
+                # Append the song object to the list
+                song_obj_list.append(song)
+
+            except Exception as e:
+                logger.error(f"Error processing track {track.get('name', 'Unknown Track')}: {e}")
+            
+        return {"status": "success", "songs": song_obj_list}
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        raise HTTPException(status_code=500, detail="An unexpected error occurred.")
 
 @app.post("/fetch-song")
-# takes in a song object
-# return a song object with instrumental_url and
-
-
-@app.post("/fetch-song-by-title")
-async def fetch_song(search_query: SearchQuery):
+async def fetch_song(song: Song):
+    """
+    Takes in a Song object, check if it has lyrics, return lyric-ed song object if it has.
+    """
     try:
-        track = spotify.get_single_track(search_query.query)
-        lyrics = spotify.get_lyrics(track)
-        
         # Check for lyrics
+        
+        lyrics = spotify.get_lyrics_from_id(song.spotify_id)
         if not lyrics:
             raise HTTPException(status_code=404, detail="Lyrics not found for this song")
         
-        # Create and return song object
-        song = Song.create_from_track(track, lyrics)
-        song.get_audio()
+        song.lyrics = lyrics
         return song
-    except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        # Handle errors and send an HTTP exception response
+        logger.error(f"Error processing song with ID {song.spotify_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Error processing the song: {str(e)}")
+
+@app.post("/get-audio")
+
+@app.post("/check-lyrics-available")
+
+@app.post("/get-audio")
 
 @app.get("/delete-song")
     #takes a query
     # Deletes files associated with that song
-
-# @app.post("/submit-link")
-# async def submit_link(link: str):
-#     logger.info(f"Received Youtube link: {link}")
-
-#     # Call the ytdl.py file and send it the link
-#     # should receive the file_path from the yt-dl.py file and send it over to the
-#     try:
-#         audio_data = await get_audio(link)  # Call the async get_audio function
-#         json = JSONResponse(content=audio_data)
-#         audio_path = audio_data["file_path"]  # Extract path from get_audio
-#         song_name = audio_data["song_name"]
-#         artist = audio_data["artist"]
-#             # Separate the audio to generate an instrumental
-#         instrumental_path = separate_audio(audio_path)
-        
-#         lyrics_data = get_genius_lyrics(song_name, artist)
-
-#         instrumental_url = f"/static/{os.path.basename(instrumental_path)}"
-        
-#         return JSONResponse(content={
-#                 "song_name": lyrics_data["title"],
-#                 "artist": lyrics_data["artist"],
-#                 "instrumental_url": instrumental_url,
-#                 "lyrics": lyrics_data
-#                 "message": "Processing complete"      
-#         })
-
-#     except Exception as e:
-#         logger.error(f"Error processing link: {e}")
-#         raise HTTPException(status_code=500, detail="Failed to process YouTube link")
 
 
 

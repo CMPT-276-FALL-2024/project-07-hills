@@ -3,8 +3,10 @@ from spotify import *
 import json
 spotify_diy = SpotifyDIY(env_file="python.env")
 track = spotify_diy.get_single_track("creep")
+print(track["album"]["images"][0]['url'])
+print(track["id"])
 
-print(track)
+# print(track)
 
 # lyrics = spotify_diy.get_lyrics(track)
 
