@@ -67,17 +67,15 @@ def process_task(task: Task, query: str):
         task.update_progress("Receiving song name", 40)
         song = Song.create_from_track(track, lyrics)
 
-        task.update_progress("Downloading song",50)
+        task.update_progress("Downloading song", 50)
         song.download_audio()
 
-        task.update_progress("Separating Vocals",70)
+        task.update_progress("Separating Vocals", 70)
         song.get_instrumental()
-
-
 
         # song.get_audio()
 
-        # Step 5: Complete
+        # # Step 5: Complete
         task.complete({
             "title": song.title,
             "artist": song.artist,
@@ -85,5 +83,6 @@ def process_task(task: Task, query: str):
             "lyrics": song.lyrics.lines,
             "instrumental_URL": song.instrumental_URL,
         })
+        # task.complete(song)
     except Exception as e:
         task.fail(str(e))
