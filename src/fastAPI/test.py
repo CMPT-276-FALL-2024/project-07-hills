@@ -1,10 +1,12 @@
 # from Song import *
 from spotify import *
 import json
-spotify_diy = SpotifyDIY(env_file="python.env")
-track = spotify_diy.get_single_track("creep")
-print(track["album"]["images"][0]['url'])
-print(track["id"])
+from Song import sanitize_filename
+# spotify_diy = SpotifyDIY(env_file="python.env")
+# track = spotify_diy.get_single_track("love story")
+print("before santize: " + "Love Story")
+print("after santize: " + sanitize_filename("Love Story"))
+
 
 # print(track)
 

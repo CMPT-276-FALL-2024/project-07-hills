@@ -37,8 +37,8 @@ def sanitize_filename(filename: str) -> str:
     # Remove illegal characters
     sanitized = re.sub(r'[<>:"/\\|?*\[\],]', '', ascii_only).strip()
 
-    # Replace multiple spaces or underscores with a single underscore
-    sanitized = re.sub(r'\s+', '_', sanitized)
+    # Replace multiple spaces or underscores with a single white space
+    sanitized = re.sub(r'\s+', ' ', sanitized)
 
     return sanitized
 
@@ -59,10 +59,8 @@ class Song(BaseModel):
     
     @classmethod
     def create_from_track(cls, track: dict, lyrics) -> "Song":
-        # title = track["name"]
-        # artist = ", ".join([artist["name"] for artist in track["artists"]])  # Join multiple artists
         title = sanitize_filename(track["name"])  # Sanitize title
-        artist = sanitize_filename(", ".join([artist["name"] for artist in track["artists"]]))  # Sanitize artist
+        artist = sanitize_filename(track["artists"][0]["name"])  # Get and sanitize only the first artist's name
 
         spotify_url = track["external_urls"]["spotify"]
         spotify_id = track["id"]
@@ -83,23 +81,14 @@ class Song(BaseModel):
             has_instrumental_audio=False,  
         )
 
-    def sanitize_filename(filename: str) -> str:
-        """
-        Sanitize the filename by removing characters that are not allowed in file names.
-        """
-        # Regex pattern to allow only alphanumeric characters, spaces, dashes, underscores, and periods
-        return re.sub(r'[<>:"/\\|?*\[\]]', '', filename).strip()
 
     def download_original(self):
         output_folder = "./downloads"
-        # Delete the stars if it contains them
-        
         inferred_path = f"{output_folder}/{self.artist} - {self.title}.mp3"
-        print(self.title)
         
+        print("Inferred path: " + inferred_path)
         if os.path.exists(inferred_path):
             print(f"File already downloaded: {inferred_path}")
-            print("inferred path: " + inferred_path)
             return inferred_path
         
         # CLI command
@@ -107,7 +96,7 @@ class Song(BaseModel):
             "spotdl",
             self.spotify_url,
             "--output",
-            output_folder,
+            f"{output_folder}/{{artist}} - {{title}}"
         ]
         
         try:
@@ -121,11 +110,9 @@ class Song(BaseModel):
                     artist, title = downloaded_info.split(" - ", 1) #Split artist and title
                     
                     file_path = f"./downloads/{artist} - {title}.mp3"
-                    return inferred_path
-            print("file path: " + file_path)
-            print("inferred path: " + inferred_path)
+                    print(file_path)
+                    return file_path
             print("Could not infer the file path from SpotDL's output.")
-
             return None   
         except subprocess.CalledProcessError as e:
             print(f"Error downloading song: {e}")
@@ -139,7 +126,7 @@ class Song(BaseModel):
         encoded_file_name = quote(instrumental_filename)
         #change file_name to URL name
         self.instrumental_URL = f"http://localhost:8000/static/{encoded_file_name}"
-        self.has_audio = True  # Update the flag
+        self.has_instrumental_audio = True  # Update the flag
     
     
     

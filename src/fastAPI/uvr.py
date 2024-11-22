@@ -37,6 +37,7 @@ def check_instrumental_exists(file_path):
     base_name = os.path.basename(file_path)
     base_name_without_extension = os.path.splitext(base_name)[0]
     instrumental_file_name = f"{base_name_without_extension}_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3"
+    
     # Check if the file exists
     full_instrumental_path = os.path.join(instrumental_directory, instrumental_file_name)
     
@@ -47,11 +48,11 @@ def check_instrumental_exists(file_path):
 
 # Takes in file path, generate an instrumental file and return its file_path
 def separate_audio(file_path):
-    exists, instrumental_path = check_instrumental_exists(file_path)
+    exists, instrumental_name = check_instrumental_exists(file_path)
     if exists:
-        print(f"File already exists at: {instrumental_path}")
+        print(f"File already exists at: {instrumental_name}")
         
-        return os.path.basename(instrumental_path)
+        return os.path.basename(instrumental_name)
     
     instrumental_path = separator.separate(file_path)[0]
     return os.path.basename(instrumental_path)
