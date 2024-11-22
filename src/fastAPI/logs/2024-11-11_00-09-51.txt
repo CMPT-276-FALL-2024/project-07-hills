@@ -1,0 +1,4 @@
+2024-11-11 00:09:51,559 - __main__ - INFO - Starting log
+2024-11-11 00:10:22,673 - __main__ - INFO - Received Youtube link: https://www.youtube.com/watch?v=G16ZXU9SUWo
+2024-11-11 00:10:29,336 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: downloads/Crooked Teeth.mp3
+2024-11-11 00:10:29,337 - __main__ - ERROR - Error processing link: 'NoneType' object has no attribute 'separate'

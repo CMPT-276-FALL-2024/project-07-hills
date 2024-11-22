@@ -1,0 +1,6 @@
+2024-11-10 15:44:57,819 - __main__ - INFO - Starting log
+2024-11-10 15:50:11,278 - __main__ - INFO - Received YouTube link: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+2024-11-10 15:50:12,262 - __main__ - INFO - Received YouTube link: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+2024-11-10 15:50:12,770 - __main__ - INFO - Received YouTube link: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+2024-11-10 15:52:01,990 - __main__ - INFO - Received YouTube link: https://www.youtube.com/watch?v=yzTuBuRdAyA
+2024-11-10 15:53:09,805 - __main__ - INFO - Received YouTube link: https://www.youtube.com/watch?v=yzTuBuRdAyA
