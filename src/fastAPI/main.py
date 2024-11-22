@@ -55,7 +55,6 @@ app.add_middleware(
 class SearchQuery(BaseModel):
     query: str  # The text string sent from the frontend
 
-
 DOWNLOADS_FOLDER = "./downloads"
 
 # Iniliaze SpotifyDIY object
@@ -101,55 +100,72 @@ async def get_task_output(task_id: UUID):
     return {"result": task.result}
 
 
-@app.post("/fetch-song")
-async def fetch_song(search_query: SearchQuery):
+@app.post("/search-songs")
+async def search_songs(search_query: SearchQuery):
     try:
-        track = spotify.get_single_track(search_query.query)
-        lyrics = spotify.get_lyrics(track)
+        track_list = spotify.get_tracks(search_query.query)
+        song_obj_list = []
+        if not track_list:
+            raise HTTPException(status_code=404, detail="No tracks found for the given query.")
+        for track in track_list:
+            try:
+                # Create a Song object
+                song = Song.create_from_track(track, None)
 
-        # Check for lyrics
-        if not lyrics:
-            raise HTTPException(status_code=404, detail="Lyrics not found for this song")
-
-        # Create and return song object
-        song = Song.create_from_track(track, lyrics)
-        song.get_audio()
-        # This should be where the loading bar disapears
-        return song
+                # Append the song object to the list
+                song_obj_list.append(song)
+                
+            except Exception as e:
+                logger.error(f"Error processing track {track.get('name', 'Unknown Track')}: {e}")
+            
+        return song_obj_list
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        raise HTTPException(status_code=500, detail="An unexpected error occurred.")
 
 
-# @app.post("/submit-link")
-# async def submit_link(link: str):
-#     logger.info(f"Received Youtube link: {link}")
+@app.post("/fetch-song")
+async def fetch_song(song: Song):
+    """
+    Takes in a Song object, check if it has lyrics, return lyric-ed song object if it has.
+    """
+    try:
 
-#     # Call the ytdl.py file and send it the link
-#     # should receive the file_path from the yt-dl.py file and send it over to the
-#     try:
-#         audio_data = await get_audio(link)  # Call the async get_audio function
-#         json = JSONResponse(content=audio_data)
-#         audio_path = audio_data["file_path"]  # Extract path from get_audio
-#         song_name = audio_data["song_name"]
-#         artist = audio_data["artist"]
-#             # Separate the audio to generate an instrumental
-#         instrumental_path = separate_audio(audio_path)
+        track = spotify.get_single_track(search_query.query)
+        lyrics = spotify.get_lyrics_from_id(song.spotify_id)
+        if not lyrics:
+            raise HTTPException(status_code=404, detail="Lyrics not found for this song")
+            
+        song.lyrics = lyrics
+        return song
+    except Exception as e:
+        # Handle errors and send an HTTP exception response
+        logger.error(f"Error processing song with ID {song.spotify_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Error processing the song: {str(e)}")
 
-#         lyrics_data = get_genius_lyrics(song_name, artist)
+@app.post("/get-audio")
+async def get_audio(song: Song):
+    """
+    Receives a song object with an empty instrumental_url.
+    Generates the instrumental file if it doesn't exist, and returns the URL.
+    """
+    try:
+        # Check if the song already has an instrumental file
+        if song.instrumental_URL:
+            return song.instrumental_URL
+        song.get_audio()
+        return song.instrumental_URL
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error processing audio: {str(e)}")
 
-#         instrumental_url = f"/static/{os.path.basename(instrumental_path)}"
 
-#         return JSONResponse(content={
-#                 "song_name": lyrics_data["title"],
-#                 "artist": lyrics_data["artist"],
-#                 "instrumental_url": instrumental_url,
-#                 "lyrics": lyrics_data
-#                 "message": "Processing complete"      
-#         })
+# @app.get("/delete-song")
+#     #takes a query
+#     # Deletes files associated with that song
 
-#     except Exception as e:
-#         logger.error(f"Error processing link: {e}")
-#         raise HTTPException(status_code=500, detail="Failed to process YouTube link")
 
 
 if __name__ == "__main__":

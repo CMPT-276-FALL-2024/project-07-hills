@@ -41,8 +41,8 @@ def sanitize_filename(filename: str) -> str:
     # Remove illegal characters
     sanitized = re.sub(r'[<>:"/\\|?*\[\],]', '', ascii_only).strip()
 
-    # Replace multiple spaces or underscores with a single underscore
-    sanitized = re.sub(r'\s+', '_', sanitized)
+    # Replace multiple spaces or underscores with a single white space
+    sanitized = re.sub(r'\s+', ' ', sanitized)
 
     return sanitized
 
@@ -53,21 +53,23 @@ class Song(BaseModel):
     artist: str
     # img_url: str
     spotify_url: str
+    spotify_id: str
+    album_image_URL: str
     original_path: str
     instrumental_URL: str
     duration: str
-    lyrics: Lyrics  # The Lyrics object without syncType
 
+    lyrics: Optional[Lyrics]
+    has_instrumental_audio: bool = False  
+    
     @classmethod
     def create_from_track(cls, track: dict, lyrics) -> "Song":
-        # title = track["name"]
-        # artist = ", ".join([artist["name"] for artist in track["artists"]])  # Join multiple artists
         title = sanitize_filename(track["name"])  # Sanitize title
-        artist = sanitize_filename(", ".join([artist["name"] for artist in track["artists"]]))  # Sanitize artist
+        artist = sanitize_filename(track["artists"][0]["name"])  # Get and sanitize only the first artist's name
 
         spotify_url = track["external_urls"]["spotify"]
-        original_path = ""
-        instrumental_URL = ""
+        spotify_id = track["id"]
+        album_image_URL = track["album"]["images"][0]['url']
         duration = f"{track['duration_ms'] // 60000}:{(track['duration_ms'] // 1000) % 60:02}"  # Convert ms to mm:ss
         lyrics = lyrics
 
@@ -75,25 +77,20 @@ class Song(BaseModel):
             title=title,
             artist=artist,
             spotify_url=spotify_url,
-            instrumental_URL="",  # Default empty paths
+            spotify_id=spotify_id,
+            album_image_URL = album_image_URL,
+            instrumental_URL="",  
             original_path="",
             duration=duration,
             lyrics=lyrics,
+            has_instrumental_audio=False,  
         )
 
-    def sanitize_filename(filename: str) -> str:
-        """
-        Sanitize the filename by removing characters that are not allowed in file names.
-        """
-        # Regex pattern to allow only alphanumeric characters, spaces, dashes, underscores, and periods
-        return re.sub(r'[<>:"/\\|?*\[\]]', '', filename).strip()
 
     def download_original(self):
         output_folder = "./downloads"
-        # Delete the stars if it contains them
-
+        
         inferred_path = f"{output_folder}/{self.artist} - {self.title}.mp3"
-        print(self.title)
 
         if os.path.exists(inferred_path):
             print(f"File already downloaded: {inferred_path}")
@@ -104,7 +101,7 @@ class Song(BaseModel):
             "spotdl",
             self.spotify_url,
             "--output",
-            output_folder,
+            f"{output_folder}/{{artist}} - {{title}}"
         ]
 
         try:
@@ -119,6 +116,7 @@ class Song(BaseModel):
                     artist, title = downloaded_info.split(" - ", 1)  # Split artist and title
 
                     file_path = f"./downloads/{artist} - {title}.mp3"
+                    print(file_path)
                     return file_path
 
             print("Could not infer the file path from SpotDL's output.")
@@ -146,3 +144,4 @@ class Song(BaseModel):
         encoded_file_name = quote(instrumental_filename)
         # change file_name to URL name
         self.instrumental_URL = f"http://localhost:8000/static/{encoded_file_name}"
+        self.has_instrumental_audio = True  # Update the flag

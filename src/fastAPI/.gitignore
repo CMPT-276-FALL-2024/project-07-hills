@@ -1,2 +1,4 @@
 *.env
 downloads/
+.DS_Store
+.cache
