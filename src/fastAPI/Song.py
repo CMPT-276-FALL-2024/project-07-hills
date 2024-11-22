@@ -127,6 +127,15 @@ class Song(BaseModel):
             print(f"Error downloading song: {e}")
             return None
 
+    def download_audio(self):
+        self.original_path = self.download_original()
+
+    def get_instrumental(self):
+        instrumental_filename = separate_audio(self.original_path)
+        encoded_file_name = quote(instrumental_filename)
+        self.instrumental_URL = f"http://localhost:8000/static/{encoded_file_name}"
+
+
     def get_audio(self):
         self.original_path = self.download_original()
         # This should be move to 40% -- slow speed to 80%

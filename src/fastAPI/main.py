@@ -67,6 +67,8 @@ DOWNLOADS_FOLDER = "./downloads"
 # This will handle the loading bars
 
 tasks = {}
+
+
 class TaskCreateRequest(BaseModel):
     query: str
 
@@ -79,6 +81,7 @@ async def create_task(request: TaskCreateRequest, background_tasks: BackgroundTa
     background_tasks.add_task(process_task, task, request.query)  # Add task to background tasks
     return {"task_id": str(task.id)}
 
+
 # Task status endpoint
 @app.get("/task/status/{task_id}")
 async def get_task_status(task_id: UUID):
@@ -86,6 +89,7 @@ async def get_task_status(task_id: UUID):
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
     return task.dict()
+
 
 @app.get("/task/output/{task_id}")
 async def get_task_output(task_id: UUID):

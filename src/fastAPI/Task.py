@@ -7,6 +7,7 @@ from spotify import *
 from Song import *
 from Task import *
 
+
 class Task(BaseModel):
     # Create a task with a unique id
     id: UUID = Field(default_factory=uuid4)
@@ -43,6 +44,7 @@ def process_task_test(task: Task, query: str):
     except Exception as e:
         task.fail(str(e))
 
+
 spotify = SpotifyDIY(env_file="python.env")
 
 
@@ -52,19 +54,28 @@ def process_task(task: Task, query: str):
         task.update_progress("Initializing task", 10)
 
         # Step 2: Fetch the track details
-        task.update_progress("Fetching track details", 30)
+        task.update_progress("Fetching track details", 20)
         track = spotify.get_single_track(query)
 
         # Step 3: Fetch lyrics
-        task.update_progress("Fetching lyrics", 50)
+        task.update_progress("Fetching lyrics", 30)
         lyrics = spotify.get_lyrics(track)
         if not lyrics:
             raise ValueError("Lyrics not found")
 
         # Step 4: Download audio
-        task.update_progress("Downloading audio", 70)
+        task.update_progress("Receiving song name", 40)
         song = Song.create_from_track(track, lyrics)
-        song.get_audio()
+
+        task.update_progress("Downloading song",50)
+        song.download_audio()
+
+        task.update_progress("Separating Vocals",70)
+        song.get_instrumental()
+
+
+
+        # song.get_audio()
 
         # Step 5: Complete
         task.complete({
@@ -76,4 +87,3 @@ def process_task(task: Task, query: str):
         })
     except Exception as e:
         task.fail(str(e))
-
