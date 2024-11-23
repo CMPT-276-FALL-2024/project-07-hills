@@ -1,8 +1,11 @@
 {
     "title": "Creep",
     "artist": "Radiohead",
-    "instrumental_url": "../client/src/Creep - Radiohead (Lyrics).mp3",
+    "spotify_id": "70LcF31zb1H0PyJoS1Sx1r",
+    "spotify_url": "https://open.spotify.com/track/70LcF31zb1H0PyJoS1Sx1r",
+    "instrumental_url": "http://localhost:8000/static/Radiohead%20-%20Creep_%28Instrumental%29_UVR-MDX-NET-Inst_HQ_3.mp3",
     "duration": "3m 58s",
+    "album_image_URL": "https://i.scdn.co/image/ab67616d0000b273df55e326ed144ab4f5cecf95",
     "lyrics": {
         "syncType": "LINE_SYNCED",
         "lines": [
