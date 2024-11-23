@@ -2,35 +2,34 @@ import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 const SideNavbar = () => {
-  // State to keep track of the active subpage
   const [activePage, setActivePage] = useState('search');
-  const [searchQuery, setSearchQuery] = useState(''); // State to hold the search query
+  const [searchQuery, setSearchQuery] = useState('');// State to hold the search query
+  const [showResults, setShowResults] = useState(false); // State to control the result visibility
 
-  // note: how are we gonna make this ocntect to natacontext? 
-  const [results, setResults] = useState([ // examples for the data with placehoolder images 
+  const [results, setResults] = useState([ // Example data with placeholder images for now lolol :skull: 
     { title: 'Song Title 1', artist: 'Artist 1', imageUrl: 'https://via.placeholder.com/50' },
     { title: 'Song Title 2', artist: 'Artist 2', imageUrl: 'https://via.placeholder.com/50' },
     { title: 'Song Title 3', artist: 'Artist 3', imageUrl: 'https://via.placeholder.com/50' },
     { title: 'Song Title 1', artist: 'Artist 1', imageUrl: 'https://via.placeholder.com/50' },
     { title: 'Song Title 2', artist: 'Artist 2', imageUrl: 'https://via.placeholder.com/50' },
     { title: 'Song Title 3', artist: 'Artist 3', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 1', artist: 'Artist 1', imageUrl: 'https://via.placeholder.com/50' },
   ]); 
 
   // Function to handle changes in the search input
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-    // For now we're just using mock results, need to get them from spotiofy api 
   };
 
-  // Function to switch pages ( we don't need this anymore)
-  const handlePageChange = (page) => {
-    setActivePage(page);
+  // Function to handle search button click
+  const handleSearchClick = () => {
+    if (searchQuery) {
+      setShowResults(true); // Show results only after clicking the search button
+      console.log('Searching for:', searchQuery);
+    }
   };
 
   return (
     <div className="w-80 bg-gray-800 text-white flex flex-col justify-between p-0 h-screen">
-      {/* Search page */}
       {activePage === 'search' && (
         <div className="search-subpage flex flex-col justify-center items-center mt-8">
           <h2 className="text-2xl font-bold mb-4 text-center">Separate a Song!</h2>
@@ -42,15 +41,16 @@ const SideNavbar = () => {
               value={searchQuery}
               onChange={handleSearchChange}
             />
-            {/* <button
+            {/* Search Button */}
+            <button
               className="w-10 h-10 bg-blue-500 rounded text-white flex justify-center items-center hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
-              onClick={() => console.log('Separating song...')}
+              onClick={handleSearchClick} // Trigger the searchON LY ont the on click
             >
               <FaSearch />
-            </button> */}
+            </button>
 
             {/* Dropdown Results */}
-            {searchQuery && (
+            {showResults && (
               <div className="absolute mt-[525px] left-[-8px] w-[200px] bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto">
                 {results.map((result, index) => (
                   <div
