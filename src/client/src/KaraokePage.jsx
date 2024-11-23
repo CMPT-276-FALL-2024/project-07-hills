@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import SideNavbar from "./components/SideNavbar";
-import LyricsDisplay from "./components/LyricsDisplay.jsx";
-import ProgressBar from "./components/ProgressBar.jsx";
-import QueueUI from "./components/QueueUI.jsx";
-import data from "./sample.json";
+import React, { useState } from 'react';
+import SideNavbar from './components/SideNavbar';
+import LyricsDisplay from './components/LyricsDisplay.jsx';
+import ProgressBar from './components/ProgressBar.jsx';
+import data from './sample.json';
+import QueueUI from './components/QueueUI.jsx';
 
 const Karaoke = () => {
   const [currentTime, setCurrentTime] = useState(0);
@@ -13,25 +13,20 @@ const Karaoke = () => {
   const handleTimeUpdate = (time) => {
     setCurrentTime(time);
   };
-
   return (
     <div className="flex h-screen">
-      {/** Side Navbar */}
-      <SideNavbar />
-
-      {/** Main Content Area */}
-      <div className="flex-1 flex flex-col">
-        {/** Top Section: Lyrics and ProgressBar */}
-        <div className="flex-1 bg-gray-100 p-4 overflow-y-auto">
-          <ProgressBar />
-          <LyricsDisplay currentTime={currentTime} onLyricClick={handleTimeUpdate} />
-        </div>
-
-        {/** Bottom Section: Queue */}
-        <div className="flex-1 bg-white p-4 border-t border-gray-300 overflow-y-auto">
-          <QueueUI />
-        </div>
+      {/** Lyrics and music player area */}
+      <div className="flex-1 bg-gray-100 p-8 flex-col">
+        {/** Progress bar and the timer */}
+        <ProgressBar />
+        {/* <h1 className="text-[35px] font-bold">Lyrics</h1> */}
+        {/** Lyrics Display, synced in with time stamps */}
+        {/* <LyricsDisplay /> */}
+        {/* <LyricsDisplay currentTime={elapsedTime} /> */}
+        <QueueUI />
       </div>
+      {/** Navigation bar */}
+      <SideNavbar />
     </div>
   );
 };
