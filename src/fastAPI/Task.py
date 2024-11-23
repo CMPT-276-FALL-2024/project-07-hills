@@ -45,7 +45,7 @@ def process_task_test(task: Task, query: str):
         task.fail(str(e))
 
 
-spotify = SpotifyDIY(env_file="python.env")
+# spotify = SpotifyDIY(env_file="python.env")
 
 
 def process_task(task: Task, query: str):

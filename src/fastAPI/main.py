@@ -58,7 +58,7 @@ class SearchQuery(BaseModel):
 DOWNLOADS_FOLDER = "./downloads"
 
 # Iniliaze SpotifyDIY object
-# spotify = SpotifyDIY(env_file="python.env")
+spotify = SpotifyDIY(env_file="python.env")
 
 # @app.post("/search-songs")
 # async def search_songs(search_query: SearchQuery):
@@ -103,7 +103,9 @@ async def get_task_output(task_id: UUID):
 @app.post("/search-songs")
 async def search_songs(search_query: SearchQuery):
     try:
+        print("gigity1")
         track_list = spotify.get_tracks(search_query.query)
+        print("gigity2")
         song_obj_list = []
         if not track_list:
             raise HTTPException(status_code=404, detail="No tracks found for the given query.")
@@ -117,7 +119,7 @@ async def search_songs(search_query: SearchQuery):
                 
             except Exception as e:
                 logger.error(f"Error processing track {track.get('name', 'Unknown Track')}: {e}")
-            
+        
         return song_obj_list
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))

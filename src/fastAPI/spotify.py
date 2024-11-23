@@ -28,7 +28,9 @@ class SpotifyDIY:
         self.spotdl = Spotdl(client_id=self.client_id, client_secret=self.client_secret)
     
     def get_tracks(self, track_name, limit=6):
-        results = results = self.spotify.search(q=track_name, type="track", limit=limit)
+        print("gigitytrack")
+        results = self.spotify.search(q=track_name, type="track", limit=limit)
+        print("gigity results")
         if results["tracks"]["items"]:
             return results["tracks"]["items"]
         else:
