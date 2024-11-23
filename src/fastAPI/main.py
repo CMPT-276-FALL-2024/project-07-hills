@@ -18,6 +18,7 @@ import uvicorn
 from spotify import *
 from Song import *
 from Task import *
+from spotify_singleton import SpotifySingleton
 
 # Create a folder for logs if it doesn't exist
 LOGS_FOLDER = "./logs"
@@ -58,7 +59,7 @@ class SearchQuery(BaseModel):
 DOWNLOADS_FOLDER = "./downloads"
 
 # Iniliaze SpotifyDIY object
-spotify = SpotifyDIY(env_file="python.env")
+spotify = SpotifySingleton.get_instance()
 
 # @app.post("/search-songs")
 # async def search_songs(search_query: SearchQuery):
@@ -103,6 +104,7 @@ async def get_task_output(task_id: UUID):
 @app.post("/search-songs")
 async def search_songs(search_query: SearchQuery):
     try:
+        print("gigity")
         track_list = spotify.get_tracks(search_query.query)
         song_obj_list = []
         if not track_list:

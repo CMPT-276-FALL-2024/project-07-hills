@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 from spotify import *
 from Song import *
 from Task import *
+from spotify_singleton import SpotifySingleton
 
 
 class Task(BaseModel):
@@ -45,7 +46,8 @@ def process_task_test(task: Task, query: str):
         task.fail(str(e))
 
 
-# spotify = SpotifyDIY(env_file="python.env")
+
+spotify = SpotifySingleton.get_instance()
 
 
 def process_task(task: Task, query: str):
@@ -59,7 +61,7 @@ def process_task(task: Task, query: str):
 
         # Step 3: Fetch lyrics
         task.update_progress("Fetching lyrics", 30)
-        lyrics = spotify.get_lyrics(track)
+        lyrics = spotify.get_lyrics_from_track(track)
         if not lyrics:
             raise ValueError("Lyrics not found")
 
