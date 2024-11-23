@@ -11,18 +11,20 @@ import glob
 
 DOWNLOADS_FOLDER = "./downloads"
 
+
 def test_get_audio(link):
     # logger.info(f"Processing youtube link: {link}")
     youtube_downloader_options = {
-    'format': 'bestaudio/best',
-    'postprocessors': [{
-        'key': 'FFmpegExtractAudio',
-        'preferredcodec': 'mp3',
-        'preferredquality': '192',
-    }],
-    'ffmpeg_location': '/opt/homebrew/bin/ffmpeg',  # Replace with the actual path to ffmpeg NOTE: MAKE SURE THIS LEADS TO YOUR ffmpeg -- use which ffmpeg or add ffmpeg to src path
-    'outtmpl': 'downloads/%(title)s.%(ext)s'
-}
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+        'ffmpeg_location': '/opt/homebrew/bin/ffmpeg',
+        # Replace with the actual path to ffmpeg NOTE: MAKE SURE THIS LEADS TO YOUR ffmpeg -- use which ffmpeg or add ffmpeg to src path
+        'outtmpl': 'downloads/%(title)s.%(ext)s'
+    }
 
     with yt_dlp.YoutubeDL(youtube_downloader_options) as ydl:
         info = ydl.extract_info(link, download=True)
@@ -50,9 +52,11 @@ def test_get_audio(link):
         os.rename(instrumental_file, new_filename)
 
         file_url = f"/downloads/{youtube_title}"
-    
+
+
 import yt_dlp
 import os
+
 
 async def get_audio(link: str):
     youtube_downloader_options = {
@@ -83,5 +87,8 @@ async def get_audio(link: str):
             "song_name": song_name,
             "artist": artist
         }
-    
+
     pass
+
+
+get_audio("https://www.youtube.com/watch?v=-8xhmV3JoG4")

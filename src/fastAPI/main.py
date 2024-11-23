@@ -1,9 +1,11 @@
+import asyncio
+
 import dlp as dlp
 import yt_dlp
+
 from ytdl import get_audio
-from uvr import separate_audio
 from genius import get_genius_lyrics
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, WebSocket, BackgroundTasks
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,6 +14,10 @@ import os
 import logging
 from datetime import datetime
 import glob
+import uvicorn
+from spotify import *
+from Song import *
+from Task import *
 
 # Create a folder for logs if it doesn't exist
 LOGS_FOLDER = "./logs"
@@ -46,52 +52,125 @@ app.add_middleware(
 )
 
 
-class YouTubeLink(BaseModel):
-    youtubeLink: str
-
+class SearchQuery(BaseModel):
+    query: str  # The text string sent from the frontend
 
 DOWNLOADS_FOLDER = "./downloads"
 
+# Iniliaze SpotifyDIY object
+# spotify = SpotifyDIY(env_file="python.env")
 
-@app.post("/submit-link")
-async def submit_link(link: str):
-    logger.info(f"Received Youtube link: {link}")
+# @app.post("/search-songs")
+# async def search_songs(search_query: SearchQuery):
 
-    # Call the ytdl.py file and send it the link
-    # should receive the file_path from the yt-dl.py file and send it over to the
+# This will handle the loading bars
+
+tasks = {}
+
+
+class TaskCreateRequest(BaseModel):
+    query: str
+
+
+# todo above is a dictionary of tasks
+@app.post("/task/create")
+async def create_task(request: TaskCreateRequest, background_tasks: BackgroundTasks):
+    task = Task()  # Create a new task instance
+    tasks[task.id] = task  # Store task in the task dictionary
+    background_tasks.add_task(process_task, task, request.query)  # Add task to background tasks
+    return {"task_id": str(task.id)}
+
+
+# Task status endpoint
+@app.get("/task/status/{task_id}")
+async def get_task_status(task_id: UUID):
+    task = tasks.get(task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    return task.dict()
+
+
+@app.get("/task/output/{task_id}")
+async def get_task_output(task_id: UUID):
+    task = tasks.get(task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    if task.progress < 100:
+        raise HTTPException(status_code=400, detail="Task is still in progress")
+    return {"result": task.result}
+
+
+@app.post("/search-songs")
+async def search_songs(search_query: SearchQuery):
     try:
-        audio_data = await get_audio(link)  # Call the async get_audio function
-        json = JSONResponse(content=audio_data)
-        audio_path = audio_data["file_path"]  # Extract path from get_audio
-        song_name = audio_data["song_name"]
-        artist = audio_data["artist"]
-            # Separate the audio to generate an instrumental
-        instrumental_path = separate_audio(audio_path)
-        
-        lyrics_data = get_genius_lyrics(song_name, artist)
+        track_list = spotify.get_tracks(search_query.query)
+        song_obj_list = []
+        if not track_list:
+            raise HTTPException(status_code=404, detail="No tracks found for the given query.")
+        for track in track_list:
+            try:
+                # Create a Song object
+                song = Song.create_from_track(track, None)
 
-        instrumental_url = f"/static/{os.path.basename(instrumental_path)}"
-        
-        return JSONResponse(content={
-                "song_name": lyrics_data["title"],
-                "artist": lyrics_data["artist"],
-                "instrumental_url": instrumental_url,
-                "lyrics": lyrics_data
-                "message": "Processing complete"      
-        })
-
+                # Append the song object to the list
+                song_obj_list.append(song)
+                
+            except Exception as e:
+                logger.error(f"Error processing track {track.get('name', 'Unknown Track')}: {e}")
+            
+        return song_obj_list
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
-        logger.error(f"Error processing link: {e}")
-        raise HTTPException(status_code=500, detail="Failed to process YouTube link")
+        logger.error(f"Unexpected error: {e}")
+        raise HTTPException(status_code=500, detail="An unexpected error occurred.")
 
+
+@app.post("/fetch-song")
+async def fetch_song(song: Song):
+    """
+    Takes in a Song object, check if it has lyrics, return lyric-ed song object if it has.
+    """
+    try:
+
+        track = spotify.get_single_track(search_query.query)
+        lyrics = spotify.get_lyrics_from_id(song.spotify_id)
+        if not lyrics:
+            raise HTTPException(status_code=404, detail="Lyrics not found for this song")
+            
+        song.lyrics = lyrics
+        return song
+    except Exception as e:
+        # Handle errors and send an HTTP exception response
+        logger.error(f"Error processing song with ID {song.spotify_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Error processing the song: {str(e)}")
+
+@app.post("/get-audio")
+async def get_audio(song: Song):
+    """
+    Receives a song object with an empty instrumental_url.
+    Generates the instrumental file if it doesn't exist, and returns the URL.
+    """
+    try:
+        # Check if the song already has an instrumental file
+        if song.instrumental_URL:
+            return song.instrumental_URL
+        song.get_audio()
+        return song.instrumental_URL
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error processing audio: {str(e)}")
+
+
+# @app.get("/delete-song")
+#     #takes a query
+#     # Deletes files associated with that song
 
 
 
 if __name__ == "__main__":
     logger.info(f"Starting log")
-    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
-    uvicorn.run(app, host="0.0.0.0", port=8001)
-    
     # testLink = "https://www.youtube.com/watch?v=1-M4JrFcrNY"
     # test_get_audio(testLink)
