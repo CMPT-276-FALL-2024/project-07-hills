@@ -103,9 +103,7 @@ async def get_task_output(task_id: UUID):
 @app.post("/search-songs")
 async def search_songs(search_query: SearchQuery):
     try:
-        print("gigity1")
         track_list = spotify.get_tracks(search_query.query)
-        print("gigity2")
         song_obj_list = []
         if not track_list:
             raise HTTPException(status_code=404, detail="No tracks found for the given query.")
@@ -134,8 +132,6 @@ async def fetch_song(song: Song):
     Takes in a Song object, check if it has lyrics, return lyric-ed song object if it has.
     """
     try:
-
-        track = spotify.get_single_track(search_query.query)
         lyrics = spotify.get_lyrics_from_id(song.spotify_id)
         if not lyrics:
             raise HTTPException(status_code=404, detail="Lyrics not found for this song")
