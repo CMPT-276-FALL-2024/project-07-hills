@@ -1,0 +1,6 @@
+ffmpeg
+fastapi
+uvicorn
+yt-dlp
+audio-separator[cpu]
+audio-separator

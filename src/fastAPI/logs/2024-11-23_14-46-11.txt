@@ -1,0 +1,6 @@
+2024-11-23 14:47:07,018 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Grant Macdonald - Ram Ranch.mp3
+2024-11-23 14:48:16,709 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Grant Macdonald - Ram Ranch_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-23 14:48:16,780 - audio_separator.separator.separator - INFO - Audio duration is 0.11 hours (409.53 seconds).
+2024-11-23 14:48:16,780 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-23 14:48:22,271 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-23 14:48:22,280 - audio_separator.separator.separator - INFO - Separation duration: 00:01:15

@@ -1,0 +1,4 @@
+2024-11-11 01:11:46,766 - __main__ - INFO - Starting log
+2024-11-11 01:11:55,235 - __main__ - INFO - Received Youtube link: https://www.youtube.com/watch?v=G16ZXU9SUWo
+2024-11-11 01:13:31,644 - __main__ - INFO - Received Youtube link: https://www.youtube.com/watch?v=8RUbM_WSYTI
+2024-11-11 01:13:37,531 - __main__ - ERROR - Error processing link: ERROR: Postprocessing: audio conversion failed: Exiting normally, received signal 2.
