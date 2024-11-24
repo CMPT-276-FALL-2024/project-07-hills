@@ -135,11 +135,14 @@ async def fetch_song(song: Song):
     """
     try:
         lyrics = spotify.get_lyrics_from_id(song.spotify_id)
-        if not lyrics:
+        if lyrics is None:
             raise HTTPException(status_code=404, detail="Lyrics not found for this song")
             
         song.lyrics = lyrics
         return song
+    except HTTPException as http_exc:
+        # Let HTTPExceptions propagate as is
+        raise http_exc
     except Exception as e:
         # Handle errors and send an HTTP exception response
         logger.error(f"Error processing song with ID {song.spotify_id}: {e}")

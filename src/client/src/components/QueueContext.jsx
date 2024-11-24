@@ -1,11 +1,12 @@
-// QueueContext.jsx
-import React, { createContext, useState, useContext } from "react";
+// QueueContext.jsx`
+import React, { createContext, useState, useContext, useEffect } from "react";
 import Queue from "../Model/Queue"; // Import your Queue.js class
 
 const QueueContext = createContext();
 
 export const QueueProvider = ({ children }) => {
   const [queue, setQueue] = useState(new Queue()); // Initialize the Queue.js class
+  const [processingIndex, setProcessingIndex] = useState(null); // Track which song is being processed
 
   const addSongToQueue = (song) => {
     // Clone the current songs to avoid mutating the original
@@ -26,11 +27,73 @@ export const QueueProvider = ({ children }) => {
     return queue.getNextSong();
   };
 
+  // Update a song in the queue
+  const updateSongInQueue = (index, newAttributes) => {
+    const newQueue = new Queue();
+    newQueue.songs = queue.getSongs().map((song, i) =>
+      i === index ? { ...song, ...newAttributes } : song
+    );
+    setQueue(newQueue);
+  };
+
+  // Function to process the next song in the queue
+  const processNextSong = async () => {
+    const songs = queue.getSongs();
+    const nextIndex = songs.findIndex((song, i) => !song.instrumental_url && i !== processingIndex);
+
+    if (nextIndex === -1) {
+      setProcessingIndex(null); // No more songs to process
+      return;
+    }
+
+    setProcessingIndex(nextIndex);
+
+    const song = songs[nextIndex];
+
+    try {
+      const response = await fetch("http://localhost:8000/get-audio", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(song),
+      });
+
+      if (response.ok) {
+        const instrumentalUrl = await response.text(); // Assuming server returns URL as plain text
+        updateSongInQueue(nextIndex, { instrumental_url: instrumentalUrl });
+        console.log(`Instrumental URL added for song: ${song.title}`);
+      } else {
+        console.error(`Failed to fetch audio for song: ${song.title}`);
+      }
+    } catch (error) {
+      console.error(`Error processing song: ${song.title}`, error);
+    } finally {
+      setProcessingIndex(null); // Reset processing index
+    }
+  };
+
+  // Automatically process the next song when the queue updates
+  useEffect(() => {
+    if (processingIndex === null) {
+      processNextSong();
+    }
+  }, [queue]);
+
   return (
-    <QueueContext.Provider value={{ queue, addSongToQueue, removeSongFromQueue, getCurrentSong }}>
+    <QueueContext.Provider
+      value={{
+        queue,
+        addSongToQueue,
+        removeSongFromQueue,
+        updateSongInQueue,
+        getCurrentSong,
+      }}
+    >
       {children}
     </QueueContext.Provider>
   );
 };
+
 
 export const useQueue = () => useContext(QueueContext);

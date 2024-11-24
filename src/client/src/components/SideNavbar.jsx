@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { QueueContext } from './QueueContext'; // Import the QueueContext
+import { useQueue } from './QueueContext'; // Use the hook, no need to re-import the context
 
 const SideNavbar = () => {
   const [activePage, setActivePage] = useState('search');
   const [searchQuery, setSearchQuery] = useState('');// State to hold the search query
   const [showResults, setShowResults] = useState(false); // State to control the result visibility
-    // Access the queue-related functions from the context
-  const { addToQueue } = useContext(QueueContext);
+
   const [results, setResults] = useState([]); 
+  const { addSongToQueue } = useQueue(); // Access functions from QueueContext
 
   // Function to handle changes in the search input
   const handleSearchChange = (event) => {
@@ -43,11 +43,34 @@ const SideNavbar = () => {
       }
     }
   };
-
-  // Function to handle adding a song to the queue
-  const handleAddToQueue = (song) => {
-    addToQueue(song); // Call the context function to add the song to the queue
+  const handleAddToQueue = async (song) => {
+    // Fetch lyriced song form server
+    try {
+      const response = await fetch('http://localhost:8000/fetch-song', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(song),
+      });
+    
+      if (response.ok) {
+        const updatedSong = await response.json();
+        console.log(`Song with lyrics added to queue: ${updatedSong.title}`);
+        addSongToQueue(updatedSong); // Add the song with lyrics to the queue
+      } else if (response.status === 404) {
+        console.error(`Lyrics not found for the song: ${song.title}`);
+        alert(`Lyrics not found for the song: ${song.title}`);
+      } else {
+        throw new Error('Failed to fetch song with lyrics');
+      }
+    }
+    catch (error) {
+      console.error('Error adding song to queue:', error);
+      alert('An error occurred while adding the song to the queue. Please try again.');
+    }
   };
+
 
   return (
     <div className="w-80 bg-gray-800 text-white flex flex-col justify-between p-0 h-screen">
@@ -77,7 +100,7 @@ const SideNavbar = () => {
                   <div
                     key={index}
                     className="flex items-center p-2 hover:bg-gray-600 cursor-pointer"
-                    onClick={() => handleAddToQueue(result)} // Add song to the queue on click
+                    onClick={() => handleAddToQueue(result)} // Add song to queue on click
                   >
                     {/* Album Cover */}
                     <img
