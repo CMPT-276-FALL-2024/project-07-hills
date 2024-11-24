@@ -8,13 +8,18 @@ export const QueueProvider = ({ children }) => {
   const [queue, setQueue] = useState(new Queue()); // Initialize the Queue.js class
 
   const addSongToQueue = (song) => {
-    queue.addSong(song); // Use Queue.js methods
-    setQueue(new Queue(queue.getSongs())); // Update state with the modified queue
+    // Clone the current songs to avoid mutating the original
+    const newQueue = new Queue()
+    newQueue.songs = [...queue.getSongs(), song]; // Create a new Queue with the updated song list
+    setQueue(newQueue); // Update state with the modified queue
   };
 
   const removeSongFromQueue = (index) => {
-    queue.removeSong(index);
-    setQueue(new Queue(queue.getSongs()));
+    // Clone the current songs to avoid mutating the original
+    const newQueue = new Queue();
+    const updatedSongs = queue.getSongs().filter((_, i) => i !== index);
+    newQueue.songs = updatedSongs; // Create a new Queue with the updated song list
+    setQueue(newQueue); // Update state with the new Queue instance
   };
 
   const getCurrentSong = () => {

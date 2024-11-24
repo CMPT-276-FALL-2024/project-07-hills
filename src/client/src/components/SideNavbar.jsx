@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { QueueContext } from './QueueContext'; // Import the QueueContext
 
 const SideNavbar = () => {
   const [activePage, setActivePage] = useState('search');
   const [searchQuery, setSearchQuery] = useState('');// State to hold the search query
   const [showResults, setShowResults] = useState(false); // State to control the result visibility
-
-  const [results, setResults] = useState([ // Example data with placeholder images for now lolol :skull: 
-    { title: 'Song Title 1', artist: 'Artist 1', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 2', artist: 'Artist 2', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 3', artist: 'Artist 3', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 1', artist: 'Artist 1', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 2', artist: 'Artist 2', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 3', artist: 'Artist 3', imageUrl: 'https://via.placeholder.com/50' },
-  ]); 
+    // Access the queue-related functions from the context
+  const { addToQueue } = useContext(QueueContext);
+  const [results, setResults] = useState([]); 
 
   // Function to handle changes in the search input
   const handleSearchChange = (event) => {
@@ -21,11 +16,37 @@ const SideNavbar = () => {
   };
 
   // Function to handle search button click
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
     if (searchQuery) {
       setShowResults(true); // Show results only after clicking the search button
       console.log('Searching for:', searchQuery);
+      try {
+        const response = await fetch('http://localhost:8000/search-songs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query: searchQuery }), // Send the search query as JSON
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch songs');
+        }
+
+        const data = await response.json() // Parse JSON response
+        // Assuming the response is a list of song objects
+        console.log('Received data:', data);
+        setResults(data); // Update the results state with the received song objects
+
+      }
+      catch (error) {
+        console.error('Error fetching songs: ', error)
+      }
     }
+  };
+
+  // Function to handle adding a song to the queue
+  const handleAddToQueue = (song) => {
+    addToQueue(song); // Call the context function to add the song to the queue
   };
 
   return (
@@ -51,15 +72,16 @@ const SideNavbar = () => {
 
             {/* Dropdown Results */}
             {showResults && (
-              <div className="absolute mt-[525px] left-[-8px] w-[200px] bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto">
+              <div className="absolute mt-[610px] left-[-8px] w-[200px] bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto">
                 {results.map((result, index) => (
                   <div
                     key={index}
                     className="flex items-center p-2 hover:bg-gray-600 cursor-pointer"
+                    onClick={() => handleAddToQueue(result)} // Add song to the queue on click
                   >
                     {/* Album Cover */}
                     <img
-                      src={result.imageUrl}
+                      src={result.album_image_URL}
                       alt="Album Cover"
                       className="w-12 h-12 rounded mr-3"
                     />
