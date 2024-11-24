@@ -1,30 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Queue from "../Model/Queue";
 
 const QueueUI = () => {
-  const queue = [
-    { title: "Song 1", artist: "Artist 1" },
-    { title: "Song 2", artist: "Artist 2" },
-    { title: "Song 3", artist: "Artist 3" },
-    { title: "Song 4", artist: "Artist 4" },
-    { title: "Song 5", artist: "Artist 5" },
-    { title: "Song 6", artist: "Artist 6" },
-    { title: "Song 7", artist: "Artist 7" },
-    { title: "Song 8", artist: "Artist 8" },
-    { title: "Song 9", artist: "Artist 9" },
-    { title: "Song 10", artist: "Artist 10" },
-    { title: "Song 11", artist: "Artist 11" },
-    { title: "Song 12", artist: "Artist 12" },
-  ];
-
+  const [queue, setQueue] = useState(new Queue()); // Initialize the Queue instance
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
 
-  const currentItems = queue.slice(
-    currentPage * itemsPerPage,
-    (currentPage + 1) * itemsPerPage
-  );
+  // Add initial songs to the queue using useEffect
+  useEffect(() => {
+    const newQueue = new Queue();
+    newQueue.addSong({ title: "Song 1", artist: "Artist 1" });
+    newQueue.addSong({ title: "Song 2", artist: "Artist 2" });
+    newQueue.addSong({ title: "Song 3", artist: "Artist 3" });
+    newQueue.addSong({ title: "Song 4", artist: "Artist 4" });
+    // newQueue.addSong({ title: "Song 5", artist: "Artist 5" });
+    newQueue.addSong({ title: "Song 6", artist: "Artist 6" });
+    newQueue.addSong({ title: "Song 7", artist: "Artist 7" });
 
-  const hasNextPage = (currentPage + 1) * itemsPerPage < queue.length;
+    setQueue(newQueue); // Update state with the populated queue
+  }, []);
+
+  // Fetch queue items for the current page
+  const currentItems = queue
+    .getSongs()
+    .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+
+  const hasNextPage =
+    (currentPage + 1) * itemsPerPage < queue.getSongs().length;
   const hasPreviousPage = currentPage > 0;
 
   const handleNext = () => {
@@ -38,6 +40,7 @@ const QueueUI = () => {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
+
   const isFirstPage = currentPage === 0;
 
   return (
