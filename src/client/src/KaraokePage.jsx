@@ -3,6 +3,7 @@ import SideNavbar from './components/SideNavbar';
 import LyricsDisplay from './components/LyricsDisplay.jsx';
 import ProgressBar from './components/ProgressBar.jsx';
 import data from './sample.json';
+import QueueUI from './components/QueueUI.jsx';
 
 const Karaoke = () => {
   const [currentTime, setCurrentTime] = useState(0);
@@ -22,6 +23,7 @@ const Karaoke = () => {
         {/** Lyrics Display, synced in with time stamps */}
         {/* <LyricsDisplay /> */}
         {/* <LyricsDisplay currentTime={elapsedTime} /> */}
+        <QueueUI />
       </div>
       {/** Navigation bar */}
       <SideNavbar />

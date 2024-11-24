@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Karaoke from "./KaraokePage.jsx";
 import ProgressBar from "./components/ProgressBar.jsx";
 import LyricsDisplay from "./components/LyricsDisplay.jsx";
-import { QueueProvider } from "./context/QueueContext"; // Import QueueProvider
+import { QueueProvider } from "./components/QueueContext.jsx"; // Import QueueProvider
 
 const App = () => {
   return (
