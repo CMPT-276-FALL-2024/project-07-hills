@@ -11,7 +11,7 @@ const App = () => {
   return (
     <QueueProvider> {/* Wrap the application with the QueueProvider */}
       <Router>
-        <div className="w-full p-6">
+        <div className="w-full p-0">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/karaoke" element={<Karaoke />} />

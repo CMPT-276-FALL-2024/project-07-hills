@@ -7,7 +7,7 @@ const SideNavbar = () => {
   const [searchQuery, setSearchQuery] = useState('');// State to hold the search query
   const [showResults, setShowResults] = useState(false); // State to control the result visibility
 
-  const [results, setResults] = useState([]); 
+  const [results, setResults] = useState([]);
   const { addSongToQueue } = useQueue(); // Access functions from QueueContext
 
   // Function to handle changes in the search input
@@ -53,7 +53,7 @@ const SideNavbar = () => {
         },
         body: JSON.stringify(song),
       });
-    
+
       if (response.ok) {
         const updatedSong = await response.json();
         console.log(`Song with lyrics added to queue: ${updatedSong.title}`);
@@ -84,6 +84,11 @@ const SideNavbar = () => {
               className="w-[200px] p-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
               value={searchQuery}
               onChange={handleSearchChange}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSearchClick();
+                }
+              }}
             />
             {/* Search Button */}
             <button
