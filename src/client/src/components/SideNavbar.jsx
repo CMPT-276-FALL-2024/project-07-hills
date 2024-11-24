@@ -100,7 +100,8 @@ const SideNavbar = () => {
 
             {/* Dropdown Results */}
             {showResults && (
-              <div className="absolute mt-[610px] left-[-8px] w-[200px] bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto">
+              // <div className="absolute mt-[610px] left-[-8px] w-[200px] bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto">
+              <div className="absolute top-full mt-[10px] left-[-8px] w-full bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto z-10">
                 {results.map((result, index) => (
                   <div
                     key={index}
