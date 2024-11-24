@@ -1,4 +1,4 @@
-import { useQueue } from "./QueueContext"; // Ensure this path is correct
+import { useQueue } from "../components/QueueContext"; // Ensure this path is correct
 
 const addSongToQueueFromTask = async (taskId) => {
   const { addSongToQueue } = useQueue(); // Access the Queue context

@@ -14,7 +14,12 @@ const QueueUI = () => {
   const { queue, removeSongFromQueue } = useQueue();
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
+  console.log("Songs in queue:", queue.getSongs());
 
+  // const initialQueue = new Queue();
+  // queue.addSong({ title: "Song A", artist: "Artist 1" });
+  // queue.addSong({ title: "Song B", artist: "Artist 2" });
+  // const [queue, setQueue] = useState(initialQueue);
   // Fetch current page items
   const currentItems = queue
     .getSongs()
