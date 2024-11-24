@@ -38,6 +38,7 @@ const QueueUI = () => {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
+  const isFirstPage = currentPage === 0;
 
   return (
     <div className="flex items-center">
@@ -61,7 +62,7 @@ const QueueUI = () => {
             </div>
 
             {/* Vertical line outside the first box */}
-            {index === 0 && (
+            {index === 0 && isFirstPage && (
               <div className="absolute right-[-8px] -bottom-0 top-2 h-4/5 w-[1px] bg-gray-300"></div>
             )}
           </div>
