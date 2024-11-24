@@ -104,6 +104,14 @@ const SearchBar = () => {
   };
 
   const createTask = async () => {
+    // let tempstateadd = true;
+    // if(tempstate === true){ // for testing
+    //        queue.addSong({ title: "title", artist: "artist" });
+    //        queue.addSong({ title: "title2", artist: "artist2" });
+
+    //   return;
+    // }
+
     if (!query.trim()) {
       console.error("Query cannot be empty");
       return;
@@ -186,5 +194,7 @@ const SearchBar = () => {
     </form>
   );
 };
+
+
 
 export default SearchBar;

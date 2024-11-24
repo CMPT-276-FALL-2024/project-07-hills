@@ -44,6 +44,10 @@ const QueueUI = () => {
     const globalIndex = currentPage * itemsPerPage + index;
     removeSongFromQueue(globalIndex);
   };
+  
+
+    const isFirstPage = currentPage === 0;
+
 
   return (
     <div className="flex items-center">
@@ -68,10 +72,14 @@ const QueueUI = () => {
             </div>
             <button
               onClick={() => handleRemove(index)}
-              className="absolute right-2 top-2 p-2 bg-red-500 text-white rounded"
+              className="absolute right-2 top-2 p-2  text-stone-600 rounded"
             >
-              Remove
+              X
             </button>
+            {index === 0 && isFirstPage && (
+              <div className="absolute right-[-8px] -bottom-0 top-2 h-4/5 w-[1px] bg-gray-300"></div>
+            )}
+            
           </div>
         ))}
       </div>
