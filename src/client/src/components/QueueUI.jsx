@@ -1,50 +1,48 @@
-import React, { useState, useEffect } from "react";
-import Queue from "../Model/Queue";
+import React, { useState } from "react";
+import { useQueue } from "./QueueContext";
+
+//Create a song
+// import { addSongToQueueFromTask } from "./addSongToQ";
+
+// const handleAddSong = async () => {
+//   // const taskId = "your-task-id"; // Replace with actual Task ID
+//   await addSongToQueueFromTask(taskId);
+// };
+
 
 const QueueUI = () => {
-  const [queue, setQueue] = useState(new Queue()); // Initialize the Queue instance
+  const { queue, removeSongFromQueue } = useQueue();
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
 
-  // Add initial songs to the queue using useEffect
-  useEffect(() => {
-    const newQueue = new Queue();
-    newQueue.addSong({ title: "Song 1", artist: "Artist 1" });
-    newQueue.addSong({ title: "Song 2", artist: "Artist 2" });
-    newQueue.addSong({ title: "Song 3", artist: "Artist 3" });
-    newQueue.addSong({ title: "Song 4", artist: "Artist 4" });
-    // newQueue.addSong({ title: "Song 5", artist: "Artist 5" });
-    newQueue.addSong({ title: "Song 6", artist: "Artist 6" });
-    newQueue.addSong({ title: "Song 7", artist: "Artist 7" });
-
-    setQueue(newQueue); // Update state with the populated queue
-  }, []);
-
-  // Fetch queue items for the current page
+  // Fetch current page items
   const currentItems = queue
     .getSongs()
     .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
-  const hasNextPage =
-    (currentPage + 1) * itemsPerPage < queue.getSongs().length;
+  const hasNextPage = (currentPage + 1) * itemsPerPage < queue.getSongs().length;
   const hasPreviousPage = currentPage > 0;
 
   const handleNext = () => {
     if (hasNextPage) {
-      setCurrentPage((prevPage) => prevPage + 1);
+      setCurrentPage((prev) => prev + 1);
     }
   };
 
   const handlePrevious = () => {
     if (hasPreviousPage) {
-      setCurrentPage((prevPage) => prevPage - 1);
+      setCurrentPage((prev) => prev - 1);
     }
   };
 
-  const isFirstPage = currentPage === 0;
+  const handleRemove = (index) => {
+    const globalIndex = currentPage * itemsPerPage + index;
+    removeSongFromQueue(globalIndex);
+  };
 
   return (
     <div className="flex items-center">
+      
       {hasPreviousPage && (
         <button
           onClick={handlePrevious}
@@ -63,11 +61,12 @@ const QueueUI = () => {
               <h3 className="text-lg font-bold">{song.title}</h3>
               <p className="text-sm text-gray-600">{song.artist}</p>
             </div>
-
-            {/* Vertical line outside the first box */}
-            {index === 0 && isFirstPage && (
-              <div className="absolute right-[-8px] -bottom-0 top-2 h-4/5 w-[1px] bg-gray-300"></div>
-            )}
+            <button
+              onClick={() => handleRemove(index)}
+              className="absolute right-2 top-2 p-2 bg-red-500 text-white rounded"
+            >
+              Remove
+            </button>
           </div>
         ))}
       </div>
@@ -82,5 +81,7 @@ const QueueUI = () => {
     </div>
   );
 };
+
+
 
 export default QueueUI;

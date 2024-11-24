@@ -1,6 +1,6 @@
 // QueueContext.jsx
 import React, { createContext, useState, useContext } from "react";
-import Queue from "../package/Queue"; // Import your Queue.js class
+import Queue from "../Model/Queue"; // Import your Queue.js class
 
 const QueueContext = createContext();
 
