@@ -34,6 +34,12 @@ Provide a brief description of what this section covers, such as how the API ret
 ### Parameter-Specific Data Retrieval
 Explain the API's capabilities in retrieving data based on specific parameters like artist name, song title, or a snippet of lyrics.
 
+**Task Status Retrieval**
+- This endpoint retrieves the status of a task using its unique task_id parameter.
+- If the task ID is valid, the API returns the task details in a dictionary format.
+- If the task ID is invalid or does not exist, the API raises a 404 error with the message "Task not found."
+
+
 ### Error Simulation
 Describe how the API handles errors, such as invalid requests or unavailable data, and the simulation tools provided for testing error handling.
 
