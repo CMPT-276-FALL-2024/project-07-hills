@@ -43,6 +43,13 @@ class SpotifyDIY:
         else:
             raise ValueError(f"No tracks found for '{track_name}'")
     
+    def get_single_track_by_id(self, track_id):
+        try:
+            track = self.spotify.track(track_id)  # Fetch track details by ID
+            return track
+        except Exception as e:
+            raise ValueError(f"Failed to retrieve track details for ID '{track_id}': {e}")
+    
     def get_lyrics_from_track(self, track):
         """
         Retrieve lyrics for a Spotify track using the Syrics API.

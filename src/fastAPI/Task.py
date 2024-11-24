@@ -83,3 +83,4 @@ def process_task(task: Task, query: str):
         # task.complete(song)
     except Exception as e:
         task.fail(str(e))
+        
