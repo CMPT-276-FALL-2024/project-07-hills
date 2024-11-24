@@ -75,9 +75,9 @@ export const QueueProvider = ({ children }) => {
 
   // Automatically process the next song when the queue updates
   useEffect(() => {
-    if (processingIndex === null) {
-      processNextSong();
-    }
+    // if (processingIndex === null) {
+    //   processNextSong();
+    // }
   }, [queue]);
 
   return (
