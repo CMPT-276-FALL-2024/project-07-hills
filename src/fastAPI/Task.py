@@ -20,7 +20,7 @@ class Task(BaseModel):
         self.status = status
         self.progress = progress
 
-    def complete(self, result: str):
+    def complete(self, result):
         self.status = "Completed"
         self.progress = 100
         self.result = result
@@ -78,13 +78,8 @@ def process_task(task: Task, query: str):
         # song.get_audio()
 
         # # Step 5: Complete
-        task.complete({
-            "title": song.title,
-            "artist": song.artist,
-            "duration": song.duration,
-            "lyrics": song.lyrics.lines,
-            "instrumental_URL": song.instrumental_URL,
-        })
+        task.complete(song)
+        
         # task.complete(song)
     except Exception as e:
         task.fail(str(e))

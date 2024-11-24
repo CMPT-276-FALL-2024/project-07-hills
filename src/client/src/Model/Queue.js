@@ -7,7 +7,7 @@ class Queue {
     addSong(song) {
       this.songs.push(song);
     }
-  
+    
     // Remove a song from the queue
     removeSong(index) {
       if (index >= 0 && index < this.songs.length) {

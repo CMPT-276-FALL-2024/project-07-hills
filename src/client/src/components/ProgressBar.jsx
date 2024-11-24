@@ -1,15 +1,15 @@
 // // To be used with LyricsDisplay Version 2
 import React, { useState, useEffect, useRef } from "react";
 import sample from "../sample.json";
-import instrumental from "../Creep - Radiohead (Lyrics).mp3";
 import LyricsDisplay from "./LyricsDisplay";
 import { FaPlay, FaPause, FaVolumeUp, FaRedoAlt } from "react-icons/fa";
 
 const ProgressBar = () => {
-  const audioRef = useRef(new Audio(instrumental));
-
+  // const audioRef = useRef(new Audio(instrumental));
+  const audioRef = useRef(null); // Initialize without an Audio instance
   const [progress, setProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [instrumental, setInstrumental] = useState(sample.instrumental_url); // Use instrumental_url from the song object
   const [elapsedTime, setElapsedTime] = useState(0);
   const [volume, setVolume] = useState(1);
 
@@ -26,6 +26,24 @@ const ProgressBar = () => {
     setVolume(newVolume);
     audioRef.current.volume = newVolume;
   };
+
+  useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(instrumental); // Initialize Audio instance if not already
+    } else {
+      audioRef.current.src = instrumental; // Dynamically update the source
+    }
+  }, [instrumental]); // Runs whenever `instrumental` changes
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause(); // Stop audio playback
+        audioRef.current.src = ""; // Clear source
+        audioRef.current = null; // Remove reference
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
