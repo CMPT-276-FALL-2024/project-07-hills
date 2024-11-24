@@ -72,12 +72,12 @@ const QueueUI = () => {
             </div>
             <button
               onClick={() => handleRemove(index)}
-              className="absolute right-2 top-2 p-2  text-stone-600 rounded"
+              className="absolute right-2 top-2 p-2  text-stone-600 rounded-full h-1/2 hover:bg-slate-200 rounded"
             >
               X
             </button>
             {index === 0 && isFirstPage && (
-              <div className="absolute right-[-8px] -bottom-0 top-2 h-4/5 w-[1px] bg-gray-300"></div>
+              <div className="absolute right-[-8px] -bottom-0 top-2 h-4/5 w-[1px] bg-gray-300 "></div>
             )}
             
           </div>
