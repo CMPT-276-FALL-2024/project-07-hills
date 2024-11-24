@@ -39,7 +39,7 @@ def sanitize_filename(filename: str) -> str:
     ascii_only = normalized.encode('ascii', 'ignore').decode('ascii')
 
     # Remove illegal characters
-    sanitized = re.sub(r'[<>:"/\\|?*\[\],]', '', ascii_only).strip()
+    sanitized = re.sub(r'[<>:"/\\|?*\[\]]', '', ascii_only).strip()
 
     # Replace multiple spaces or underscores with a single white space
     sanitized = re.sub(r'\s+', ' ', sanitized)
@@ -91,17 +91,20 @@ class Song(BaseModel):
         output_folder = "./downloads"
         
         inferred_path = f"{output_folder}/{self.artist} - {self.title}.mp3"
-
+        
+        print(inferred_path)
         if os.path.exists(inferred_path):
             print(f"File already downloaded: {inferred_path}")
             return inferred_path
-
+        
+        sanitized_artist = self.artist
+        sanitized_title = self.title
         # CLI command
         command = [
             "spotdl",
             self.spotify_url,
             "--output",
-            f"{output_folder}/{{artist}} - {{title}}"
+            f"{output_folder}/{{sanitized_artist}} - {{sanitized_title}}"
         ]
 
         try:
@@ -115,7 +118,7 @@ class Song(BaseModel):
                     downloaded_info = line.split('"')[1]
                     artist, title = downloaded_info.split(" - ", 1)  # Split artist and title
 
-                    file_path = f"./downloads/{artist} - {title}.mp3"
+                    file_path = f"./downloads/{self.artist} - {self.title}.mp3"
                     print(file_path)
                     return file_path
 
@@ -132,6 +135,7 @@ class Song(BaseModel):
         instrumental_filename = separate_audio(self.original_path)
         encoded_file_name = quote(instrumental_filename)
         self.instrumental_URL = f"http://localhost:8000/static/{encoded_file_name}"
+        self.has_instrumental_audio = True  # Update the flag
 
 
     def get_audio(self):
