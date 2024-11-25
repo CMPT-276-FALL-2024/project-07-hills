@@ -21,6 +21,8 @@ export const QueueProvider = ({ children }) => {
       duration: song.duration,
       lyrics: song.lyrics,
       instrumentalUrl: song.instrumental_URL,
+      instrumental_path: song.instrumental_path,
+      original_path: song.original_path,
     });
     newQueue.songs = [...queue.getSongs(), songFront]; // Create a new Queue with the updated song list
     setQueue(newQueue); // Update state with the modified queue
