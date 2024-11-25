@@ -1,7 +1,7 @@
 // QueueContext.jsx`
 import React, { createContext, useState, useContext, useEffect } from "react";
 import Queue from "../Model/Queue"; // Import your Queue.js class
-
+import SongFront from "../Model/SongFront"; // Import your Queue.js class
 const QueueContext = createContext();
 
 export const QueueProvider = ({ children }) => {
