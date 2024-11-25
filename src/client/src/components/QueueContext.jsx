@@ -11,7 +11,19 @@ export const QueueProvider = ({ children }) => {
   const addSongToQueue = (song) => {
     // Clone the current songs to avoid mutating the original
     const newQueue = new Queue()
-    newQueue.songs = [...queue.getSongs(), song]; // Create a new Queue with the updated song list
+  // Create a SongFront instance
+    const songFront = new SongFront({
+      title: song.title,
+      artist: song.artist,
+      spotifyUrl: song.spotify_url,
+      spotifyId: song.spotify_id,
+      albumImageUrl: song.album_image_URL,
+      duration: song.duration,
+      lyrics: song.lyrics,
+      instrumentalUrl: song.instrumental_URL,
+    });
+
+    newQueue.songs = [...queue.getSongs(), songFront]; // Create a new Queue with the updated song list
     setQueue(newQueue); // Update state with the modified queue
   };
 
