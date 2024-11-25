@@ -76,6 +76,16 @@ class TaskCreateRequest(BaseModel):
 # todo above is a dictionary of tasks
 @app.post("/task/create")
 async def create_task(request: TaskCreateRequest, background_tasks: BackgroundTasks):
+    '''
+        Parameter:
+        {
+            "query": "spotify_track_id"
+        }
+        Output
+        {
+            "task_id": "task_id"
+        }
+    '''
     task = Task()  # Create a new task instance
     tasks[task.id] = task  # Store task in the task dictionary
     background_tasks.add_task(process_task, task, request.query)  # Add task to background tasks
@@ -85,6 +95,19 @@ async def create_task(request: TaskCreateRequest, background_tasks: BackgroundTa
 # Task status endpoint
 @app.get("/task/status/{task_id}")
 async def get_task_status(task_id: UUID):
+    '''
+        Get the status of the task of the given task_id
+        
+        Parameter: No paramater, to make this GET request, put a task_id onto the link like this:
+            "http://127.0.0.1:8000/task/output/task_id"
+        Output: Returns a Task json
+        {
+            "id": "aaebb6b1-175f-4f36-8dcc-ab1d6fec3134",
+            "status": "Completed",
+            "progress": 100,
+            "result": "http://localhost:8000/static/Radiohead%20-%20Creep_%28Instrumental%29_UVR-MDX-NET-Inst_HQ_3.mp3"
+        }
+    '''
     task = tasks.get(task_id)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
@@ -93,6 +116,16 @@ async def get_task_status(task_id: UUID):
 
 @app.get("/task/output/{task_id}")
 async def get_task_output(task_id: UUID):
+    '''
+        Get the instrumental_URL belonging to the task
+        
+        Parameter: No paramater, to make this GET request, put a task_id onto the link like this:
+            "http://127.0.0.1:8000/task/output/task_id"
+        Output: Returns an instrumental_URL
+        {
+            "result": "http://localhost:8000/static/Radiohead%20-%20Creep_%28Instrumental%29_UVR-MDX-NET-Inst_HQ_3.mp3"
+        }
+    '''
     task = tasks.get(task_id)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
@@ -100,9 +133,15 @@ async def get_task_output(task_id: UUID):
         raise HTTPException(status_code=400, detail="Task is still in progress")
     return {"result": task.result}
 
-
 @app.post("/search-songs")
 async def search_songs(search_query: SearchQuery):
+    '''
+    Parameter:
+    {
+        "query": "song name"
+    }
+    Output: List of 6 song objects
+    '''
     try:
         print("gigity")
         track_list = spotify.get_tracks(search_query.query)
@@ -132,6 +171,23 @@ async def search_songs(search_query: SearchQuery):
 async def fetch_song(song: Song):
     """
     Takes in a Song object, check if it has lyrics, return lyric-ed song object if it has.
+    
+    Parameter: A song object like this:
+        {
+            "title": "Creep",
+            "artist": "Radiohead",
+            "spotify_id": "70LcF31zb1H0PyJoS1Sx1r",
+            "spotify_url": "https://open.spotify.com/track/70LcF31zb1H0PyJoS1Sx1r",
+            "instrumental_url": "",
+            "duration": "3m 58s",
+            "album_image_URL": "https://i.scdn.co/image/ab67616d0000b273df55e326ed144ab4f5cecf95",
+            "lyrics":
+        }
+        
+    Output: Returns an equivalent Song object with lyrics
+        {
+            song object with lyirics
+        }
     """
     try:
         lyrics = spotify.get_lyrics_from_id(song.spotify_id)
