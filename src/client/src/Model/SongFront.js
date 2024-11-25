@@ -1,5 +1,5 @@
 class SongFront {
-    constructor({ title, artist, spotifyUrl, spotifyId, albumImageUrl, duration, lyrics, instrumentalUrl }) {
+    constructor({ title, artist, spotifyUrl, spotifyId, albumImageUrl, duration, lyrics, instrumentalUrl, instrumental_path, original_path}) {
       this.title = title || "Unknown Title";
       this.artist = artist || "Unknown Artist";
       this.spotifyUrl = spotifyUrl || "";
@@ -8,6 +8,8 @@ class SongFront {
       this.duration = duration || "0:00";
       this.lyrics = lyrics || null;
       this.instrumentalUrl = instrumentalUrl || null;
+      this.instrumental_path = instrumental_path
+      this.original_path = original_path
       this.taskID = ""
       this.isProcessing = false 
     }
@@ -34,11 +36,48 @@ class SongFront {
         const data = await response.json();
         this.taskID = data.task_id;
         this.isProcessing = true;
+        console.log(`Started processing for ${this.title}. Task ID: ${this.taskID}`);
       } catch (error) {
-        console.error("Error starting audio process:", error);
+        console.error(`Error starting audio process for ${this.title}:`, error);
         return null;
       }
     }
+  
+  // Poll the server for task status
+  async pollTaskStatus(updateCallback) {
+    if (!this.taskID) {
+      console.error(`No task ID for ${this.title}`);
+      return;
+    }
+
+    try {
+      let isCompleted = false;
+
+      while (!isCompleted) {
+        const response = await fetch(`http://localhost:8000/task/status/${this.taskID}`);
+        if (!response.ok) throw new Error(`Failed to fetch task status for ${this.taskID}`);
+
+        const statusData = await response.json();
+        console.log(`Task status for ${this.title}:`, statusData);
+
+        if (statusData.status === "Completed") {
+          isCompleted = true;
+          this.isProcessing = false;
+          this.instrumentalUrl = statusData.result.instrumental_URL; // Assuming the task result includes the URL
+          console.log(`Instrumental ready for ${this.title}: ${this.instrumentalUrl}`);
+
+          if (updateCallback) updateCallback(this); // Notify parent or UI
+        }
+        else {
+          await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds before next poll
+        }
+      }
+    }
+    catch (error) {
+      console.error(`Error polling task status for ${this.title}:`, error);
+      this.isProcessing = false;
+    }
+  }
   
     async getInstrumental() {
       try {

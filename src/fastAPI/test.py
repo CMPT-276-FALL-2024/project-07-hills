@@ -5,7 +5,7 @@ from Song import sanitize_filename
 from Song import *
 
 spotify_diy = SpotifyDIY(env_file="python.env")
-track = spotify_diy.get_single_track("stronger")
+track = spotify_diy.get_single_track("real slim")
 
 lyrics = None
 song = Song.create_from_track(track, lyrics)

@@ -22,7 +22,6 @@ export const QueueProvider = ({ children }) => {
       lyrics: song.lyrics,
       instrumentalUrl: song.instrumental_URL,
     });
-
     newQueue.songs = [...queue.getSongs(), songFront]; // Create a new Queue with the updated song list
     setQueue(newQueue); // Update state with the modified queue
   };
@@ -51,10 +50,10 @@ export const QueueProvider = ({ children }) => {
   // Function to process the next song in the queue
   const processNextSong = async () => {
     const songs = queue.getSongs();
-    const nextIndex = songs.findIndex((song, i) => !song.instrumental_url && i !== processingIndex);
+    const nextIndex = songs.findIndex(song => song.isProcessing);
 
     if (nextIndex === -1) {
-      setProcessingIndex(null); // No more songs to process
+      console.log("No more songs to process.");
       return;
     }
 
