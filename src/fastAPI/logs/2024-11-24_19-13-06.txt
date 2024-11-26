@@ -1,0 +1,11 @@
+2024-11-24 19:13:23,672 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Kanye West - Stronger.mp3
+2024-11-24 19:21:05,261 - main - ERROR - Unexpected error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2024-11-24 19:29:56,534 - spotipy.client - ERROR - HTTP Error for GET to https://api.spotify.com/v1/search with Params: {'q': '', 'limit': 6, 'offset': 0, 'type': 'track', 'market': None} returned 400 due to No search query
+2024-11-24 19:29:56,536 - main - ERROR - Unexpected error: http status: 400, code:-1 - https://api.spotify.com/v1/search?q=&limit=6&offset=0&type=track:
+ No search query, reason: None
+2024-11-24 19:30:23,015 - spotipy.client - ERROR - HTTP Error for GET to https://api.spotify.com/v1/search with Params: {'q': '', 'limit': 6, 'offset': 0, 'type': 'track', 'market': None} returned 400 due to No search query
+2024-11-24 19:30:23,017 - main - ERROR - Unexpected error: http status: 400, code:-1 - https://api.spotify.com/v1/search?q=&limit=6&offset=0&type=track:
+ No search query, reason: None
+2024-11-24 19:30:39,169 - spotipy.client - ERROR - HTTP Error for GET to https://api.spotify.com/v1/search with Params: {'q': '', 'limit': 6, 'offset': 0, 'type': 'track', 'market': None} returned 400 due to No search query
+2024-11-24 19:30:39,172 - main - ERROR - Unexpected error: http status: 400, code:-1 - https://api.spotify.com/v1/search?q=&limit=6&offset=0&type=track:
+ No search query, reason: None
