@@ -1,25 +1,65 @@
 // // To be used with LyricsDisplay Version 2
 import React, { useState, useEffect, useRef } from "react";
-import sample from "../sample.json";
 import LyricsDisplay from "./LyricsDisplay";
 import { FaPlay, FaPause, FaVolumeUp, FaRedoAlt } from "react-icons/fa";
+import { useQueue } from "./QueueContext";
 
 const ProgressBar = () => {
+  const { queue } = useQueue(); // Access the queue from context
+  const [topSong, setTopSong] = useState(null);
   // const audioRef = useRef(new Audio(instrumental));
   const audioRef = useRef(null); // Initialize without an Audio instance
   const [progress, setProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [instrumental, setInstrumental] = useState(sample.instrumental_url); // Use instrumental_url from the song object
+  const [instrumental, setInstrumental] = useState(null); // Use instrumental_url from the song object
   const [elapsedTime, setElapsedTime] = useState(0);
   const [volume, setVolume] = useState(1);
 
   const intervalRef = useRef(null);
-
-  const durationParts = sample.duration.match(/(\d+)m\s*(\d+)s/);
+  const durationParts = topSong?.duration.match(/(\d+)m\s*(\d+)s/);
   const minutes = durationParts ? parseInt(durationParts[1], 10) : 0;
   const seconds = durationParts ? parseInt(durationParts[2], 10) : 0;
   const songDuration = (minutes * 60 + seconds) * 1000;
 
+
+
+
+  useEffect(() => {
+    // const newTopSong = songs.length > 0 ? songs[0] : null;
+    const newTopSong = queue.getNextSong()
+    console.log("queue changed")
+    if (newTopSong !== topSong) {
+      console.log("setting new top song")
+      setTopSong(newTopSong); // Update only if the top song changes
+      setInstrumental(null)
+    }
+  }, [queue]);
+  
+  // useEffect(() => {
+  //   console.log("Top song changed:", topSong);
+  //   console.log("Instrumental URL in topSong:", topSong?.instrumentalUrl);
+  //   console.log("Current instrumental:", instrumental);
+  
+  //   if (topSong?.instrumentalUrl && topSong.instrumentalUrl !== instrumental) {
+  //     console.log("Updating instrumental");
+  //     setInstrumental(topSong.instrumentalUrl);
+  //   }
+  //   console.log("after instrumental:", instrumental);
+  // }, [topSong]);
+
+  useEffect(() => {
+    console.log("handling new top song change")
+      console.log("handling new top song change2")
+      const interval = setInterval(() => {
+        console.log("Polling for instrumentalUrl:", topSong?.instrumentalUrl);
+        if (topSong?.instrumentalUrl) {
+          setInstrumental(topSong.instrumentalUrl);
+          clearInterval(interval); // Stop polling when the value is available
+        }
+      }, 1000);
+  
+      return () => clearInterval(interval); // Cleanup on unmount
+  }, [topSong]);
   // Function for volume change
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value;
@@ -33,6 +73,7 @@ const ProgressBar = () => {
     } else {
       audioRef.current.src = instrumental; // Dynamically update the source
     }
+    console.log(`${instrumental}`)
   }, [instrumental]); // Runs whenever `instrumental` changes
 
   useEffect(() => {

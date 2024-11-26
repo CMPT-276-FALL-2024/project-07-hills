@@ -70,7 +70,7 @@ class Song(BaseModel):
         spotify_url = track["external_urls"]["spotify"]
         spotify_id = track["id"]
         album_image_URL = track["album"]["images"][0]['url']
-        duration = f"{track['duration_ms'] // 60000}:{(track['duration_ms'] // 1000) % 60:02}"  # Convert ms to mm:ss
+        duration = f"{track['duration_ms'] // 60000}m {(track['duration_ms'] // 1000) % 60}s"
         lyrics = lyrics
 
         return cls(
@@ -105,9 +105,9 @@ class Song(BaseModel):
             "spotdl",
             self.spotify_url,
             "--output",
-            output_folder
+            f"{output_folder}/{{artist}} - {{title}}"  # SpotDL will replace placeholders with actual values
         ]
-
+        
         try:
             print("Downloading...")
             # this should be about 20%

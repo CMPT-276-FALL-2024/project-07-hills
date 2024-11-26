@@ -2,11 +2,13 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import Queue from "../Model/Queue"; // Import your Queue.js class
 import SongFront from "../Model/SongFront"; // Import your Queue.js class
+
 const QueueContext = createContext();
 
 export const QueueProvider = ({ children }) => {
   const [queue, setQueue] = useState(new Queue()); // Initialize the Queue.js class
   const [processingIndex, setProcessingIndex] = useState(null); // Track which song is being processed
+  const [isProcessing, setIsProcessing] = useState(false); // Flag to track if a song is being processed
 
   const addSongToQueue = (song) => {
     // Clone the current songs to avoid mutating the original
@@ -26,6 +28,8 @@ export const QueueProvider = ({ children }) => {
     });
     newQueue.songs = [...queue.getSongs(), songFront]; // Create a new Queue with the updated song list
     setQueue(newQueue); // Update state with the modified queue
+    
+
   };
 
   const removeSongFromQueue = (index) => {
@@ -49,24 +53,83 @@ export const QueueProvider = ({ children }) => {
     setQueue(newQueue);
   };
 
+  // Start song process
   // Function to process the next song in the queue
   const processNextSong = async () => {
+    console.log("processing song")
     const songs = queue.getSongs();
-    const nextIndex = songs.findIndex(song => song.isProcessing);
-
-    if (nextIndex === -1) {
-      console.log("No more songs to process.");
-      return;
+    
+    if (processingIndex === null || processingIndex >= songs.length) {
+      console.log("No valid song to process.");
+      return; // Exit if no valid song is being processed
     }
-    const song = songs[nextIndex];
-    song.pollTaskStatus
+    const currentSong = songs[processingIndex];
 
-  // Automatically process the next song when the queue updates
+    try {
+      await currentSong.StartAudioProcess();
+      // poll status until complete
+      await currentSong.pollTaskStatus((updatedSong) => {
+        setQueue((prevQueue) => {
+          const updatedQueue = new Queue();
+          updatedQueue.songs = prevQueue.getSongs().map((s, i) =>
+            i === processingIndex ? updatedSong : s
+          );
+          return updatedQueue;
+        });
+      });
+      const new_queue = queue.getSongs()
+      console.log(`Finished processing song: ${currentSong.title}`);
+      console.log(queue.getNextSong())
+    }
+    catch (error) {
+      console.error(`Error processing song: ${currentSong.title}`, error);
+      setProcessingIndex(null); // Reset processing index on error
+    } finally {
+      setProcessingIndex(null); // Always reset processingIndex
+      setIsProcessing(false); // Reset processing flag
+    }
+  };
+
+  // useEffect(() => {
+  //   if (processingIndex !== null) {
+  //     processNextSong();
+  //   }
+  // }, [processingIndex]); // Only call when processingIndex changes
+
+  // useEffect(() => {
+  //   if (processingIndex === null) {
+  //     const songs = queue.getSongs();
+  //     const nextIndex = songs.findIndex((song) => !song.hasInstrumental());
+  
+  //     if (nextIndex !== -1) {
+  //       console.log(`Found next song to process at index: ${nextIndex}`);
+  //       setProcessingIndex(nextIndex);
+  //     } else {
+  //       console.log("No songs left to process.");
+  //     }
+  //   }
+  // }, [processingIndex]);
+
+ 
   useEffect(() => {
-    // if (processingIndex === null) {
-    //   processNextSong();
-    // }
-  }, [queue]);
+    const songs = queue.getSongs();
+
+    if (!isProcessing) {
+      if (processingIndex === null) {
+        const nextIndex = songs.findIndex((song) => !song.hasInstrumental());
+
+        if (nextIndex !== -1) {
+          console.log(`Found next song to process at index: ${nextIndex}`);
+          setProcessingIndex(nextIndex);
+        } else {
+          console.log("No songs left to process.");
+        }
+      } else {
+        setIsProcessing(true);
+        processNextSong();
+      }
+    }
+  }, [processingIndex, queue, isProcessing]);
 
   return (
     <QueueContext.Provider
