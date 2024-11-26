@@ -4,3 +4,4 @@
 2024-11-26 00:18:36,804 - audio_separator.separator.separator - INFO - Using pydub for writing.
 2024-11-26 00:18:39,814 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
 2024-11-26 00:18:39,818 - audio_separator.separator.separator - INFO - Separation duration: 00:00:24
+2024-11-26 01:05:52,911 - main - ERROR - Unexpected error: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)
