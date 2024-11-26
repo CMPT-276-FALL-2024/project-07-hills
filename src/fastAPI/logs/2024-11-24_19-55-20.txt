@@ -1,0 +1,9 @@
+2024-11-24 19:55:22,050 - main - INFO - Searching for artist: Eminem
+2024-11-24 19:55:22,051 - main - ERROR - Unexpected error while searching for artists: 'SpotifyDIY' object has no attribute 'get_artist'
+2024-11-24 19:55:22,903 - main - INFO - Searching for artist: Eminem
+2024-11-24 19:55:22,905 - main - ERROR - Unexpected error while searching for artists: 'SpotifyDIY' object has no attribute 'get_artist'
+2024-11-24 19:55:23,563 - main - INFO - Searching for artist: Eminem
+2024-11-24 19:55:23,564 - main - ERROR - Unexpected error while searching for artists: 'SpotifyDIY' object has no attribute 'get_artist'
+2024-11-24 19:59:15,730 - spotipy.client - ERROR - HTTP Error for GET to https://api.spotify.com/v1/search with Params: {'q': '', 'limit': 6, 'offset': 0, 'type': 'track', 'market': None} returned 400 due to No search query
+2024-11-24 19:59:15,733 - main - ERROR - Unexpected error: http status: 400, code:-1 - https://api.spotify.com/v1/search?q=&limit=6&offset=0&type=track:
+ No search query, reason: None

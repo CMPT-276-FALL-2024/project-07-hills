@@ -1,0 +1,14 @@
+2024-11-25 22:03:09,066 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ken Carson - Yale.mp3
+2024-11-25 22:03:21,388 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Ken Carson - Yale_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-25 22:03:21,451 - audio_separator.separator.separator - INFO - Audio duration is 0.03 hours (106.54 seconds).
+2024-11-25 22:03:21,452 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-25 22:03:23,215 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-25 22:03:23,217 - audio_separator.separator.separator - INFO - Separation duration: 00:00:14
+2024-11-25 22:04:00,265 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ken Carson - Hardcore.mp3
+2024-11-25 22:04:13,290 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Ken Carson - Hardcore_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-25 22:04:13,293 - audio_separator.separator.separator - INFO - Audio duration is 0.03 hours (124.57 seconds).
+2024-11-25 22:04:13,293 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-25 22:04:15,245 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-25 22:04:15,247 - audio_separator.separator.separator - INFO - Separation duration: 00:00:14
+2024-11-25 22:14:12,330 - main - ERROR - Unexpected error: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)
+2024-11-25 22:14:33,021 - main - ERROR - Error processing song with ID 2xLMifQCjDGFmkHkpNLD9h: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
