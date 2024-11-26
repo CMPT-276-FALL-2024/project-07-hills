@@ -19,69 +19,66 @@ const ProgressBar = () => {
   const seconds = durationParts ? parseInt(durationParts[2], 10) : 0;
   const songDuration = (minutes * 60 + seconds) * 1000;
 
+  // Check if the top song has changed
   useEffect(() => {
     const newTopSong = queue.getNextSong();
     if (newTopSong !== topSong) {
       setTopSong(newTopSong);
-      setInstrumental(null);
+      setInstrumental(null); // Reset instrumental URL when the song changes
     }
   }, [queue]);
 
+  // Poll for instrumental URL
   useEffect(() => {
     console.log("Handling new top song change");
     const interval = setInterval(() => {
       console.log("Polling for instrumentalUrl:", topSong?.instrumentalUrl);
       if (topSong?.instrumentalUrl) {
-        const baseUrl = "http://localhost:8000/static/";
-        const encodedUrl = topSong.instrumentalUrl.replace(/ /g, "%20");
-        const fullUrl = `${baseUrl}${encodedUrl}`;
+        let fullUrl = topSong.instrumentalUrl;
+
+        // Prepend base URL only if necessary
+        if (!fullUrl.startsWith("http://")) {
+          const baseUrl = "http://localhost:8000/static/";
+          const encodedUrl = fullUrl.replace(/ /g, "%20");
+          fullUrl = `${baseUrl}${encodedUrl}`;
+        }
+
         console.log("Instrumental ready for", topSong.title, ":", fullUrl);
         setInstrumental(fullUrl);
-        clearInterval(interval); // Stop polling
+        clearInterval(interval); // Stop polling once we have the URL
       }
     }, 1000);
-  
-    return () => clearInterval(interval); // Cleanup on unmount
-  }, [topSong]);    
 
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [topSong]);
+
+  // Set up audio player and load instrumental
   useEffect(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio();
     }
-  
-    if (instrumental) {
+
+    if (instrumental && audioRef.current.src !== instrumental) { // Only update the source if it has changed
       audioRef.current.src = instrumental;
-      audioRef.current.load();
-  
+      audioRef.current.load(); // Load the new instrumental
       audioRef.current.addEventListener("canplaythrough", () => {
         console.log("Audio is ready to play:", instrumental);
       });
-  
+
       audioRef.current.addEventListener("error", (e) => {
         console.error("Error loading audio:", instrumental, e);
       });
     }
-  
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.src = ""; // Clear the source to prevent errors
       }
     };
-  }, [instrumental]);
-  
-  
+  }, [instrumental]); // Runs only when instrumental URL changes
 
-  useEffect(() => {
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = "";
-        audioRef.current = null;
-      }
-    };
-  }, []);
-
+  // Set up time update listener
   useEffect(() => {
     const audio = audioRef.current;
 
@@ -96,11 +93,13 @@ const ProgressBar = () => {
     };
   }, []);
 
+  // Update progress percentage based on elapsed time
   useEffect(() => {
     const progressPercentage = (elapsedTime / songDuration) * 100;
     setProgress(progressPercentage);
   }, [elapsedTime, songDuration]);
 
+  // Handle play/pause click
   const handlePlayPauseClick = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -110,6 +109,7 @@ const ProgressBar = () => {
     setIsPlaying(!isPlaying);
   };
 
+  // Handle replay click
   const handleReplayClick = () => {
     setProgress(0);
     setElapsedTime(0);
@@ -119,12 +119,14 @@ const ProgressBar = () => {
     setIsPlaying(true);
   };
 
+  // Handle volume change
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value;
     setVolume(newVolume);
     audioRef.current.volume = newVolume;
   };
 
+  // Format time for display
   const formatTime = (timeInMs) => {
     const timeInSeconds = Math.floor(timeInMs / 1000);
     const minutes = Math.floor(timeInSeconds / 60);
@@ -132,6 +134,7 @@ const ProgressBar = () => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  // Scrub progress bar
   const handleScrub = (e) => {
     const bar = e.currentTarget;
     const rect = bar.getBoundingClientRect();
@@ -141,13 +144,14 @@ const ProgressBar = () => {
     const newElapsedTime = (newProgress / 100) * songDuration;
 
     setProgress(newProgress);
-    setElapsedTime(newElapsedTime);
-    audioRef.current.currentTime = newElapsedTime / 1000;
+    setElapsedTime(newElapsedTime); // Update time
+    audioRef.current.currentTime = newElapsedTime / 1000; // Move to the specific time in seconds
   };
 
+  // Click on lyric to jump to that part of the song
   const handleLyricClick = (timestamp) => {
-    setElapsedTime(timestamp);
-    audioRef.current.currentTime = timestamp / 1000;
+    setElapsedTime(timestamp); // Update the elapsed time
+    audioRef.current.currentTime = timestamp / 1000; // Move to the specific time in seconds
   };
 
   return (
