@@ -28,15 +28,21 @@ const ProgressBar = () => {
   }, [queue]);
 
   useEffect(() => {
-    if (topSong?.instrumentalUrl) {
-      const baseUrl = "http://localhost:8000/static/";
-      const encodedUrl = topSong.instrumentalUrl.replace(/ /g, "%20");
-      const fullUrl = `${baseUrl}${encodedUrl}`;
-      console.log("Instrumental ready for", topSong.title, ":", fullUrl);
-      setInstrumental(fullUrl);
-    }
-  }, [topSong]);
-    
+    console.log("Handling new top song change");
+    const interval = setInterval(() => {
+      console.log("Polling for instrumentalUrl:", topSong?.instrumentalUrl);
+      if (topSong?.instrumentalUrl) {
+        const baseUrl = "http://localhost:8000/static/";
+        const encodedUrl = topSong.instrumentalUrl.replace(/ /g, "%20");
+        const fullUrl = `${baseUrl}${encodedUrl}`;
+        console.log("Instrumental ready for", topSong.title, ":", fullUrl);
+        setInstrumental(fullUrl);
+        clearInterval(interval); // Stop polling
+      }
+    }, 1000);
+  
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [topSong]);    
 
   useEffect(() => {
     if (!audioRef.current) {
