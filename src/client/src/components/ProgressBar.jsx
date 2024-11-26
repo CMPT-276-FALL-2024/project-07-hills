@@ -30,26 +30,18 @@ const ProgressBar = () => {
 
   // Poll for instrumental URL
   useEffect(() => {
-    console.log("Handling new top song change");
-    const interval = setInterval(() => {
-      console.log("Polling for instrumentalUrl:", topSong?.instrumentalUrl);
-      if (topSong?.instrumentalUrl) {
-        let fullUrl = topSong.instrumentalUrl;
-
-        // Prepend base URL only if necessary
-        if (!fullUrl.startsWith("http://")) {
-          const baseUrl = "http://localhost:8000/static/";
-          const encodedUrl = fullUrl.replace(/ /g, "%20");
-          fullUrl = `${baseUrl}${encodedUrl}`;
+    console.log("handling new top song change")
+      console.log("handling new top song change2")
+      const interval = setInterval(() => {
+        console.log("Polling for instrumentalUrl:", topSong?.instrumentalUrl);
+        if (topSong?.instrumentalUrl) {
+          setInstrumental(topSong.instrumentalUrl);
+          clearInterval(interval); // Stop polling when the value is available
         }
-
-        console.log("Instrumental ready for", topSong.title, ":", fullUrl);
-        setInstrumental(fullUrl);
-        clearInterval(interval); // Stop polling once we have the URL
-      }
-    }, 1000);
-
+      }, 1000);
+  
     return () => clearInterval(interval); // Cleanup on unmount
+    console.log(topSong)
   }, [topSong]);
 
   // Set up audio player and load instrumental
@@ -59,23 +51,20 @@ const ProgressBar = () => {
     }
 
     if (instrumental && audioRef.current.src !== instrumental) { // Only update the source if it has changed
+      console.log("hoho")
       audioRef.current.src = instrumental;
-      audioRef.current.load(); // Load the new instrumental
+      // audioRef.current.load(); // Load the new instrumental
+      console.log("Audio source set to:", instrumental);
+
       audioRef.current.addEventListener("canplaythrough", () => {
         console.log("Audio is ready to play:", instrumental);
+        console.log("Curwtf:", audioRef.current.src);
       });
 
       audioRef.current.addEventListener("error", (e) => {
         console.error("Error loading audio:", instrumental, e);
       });
     }
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = ""; // Clear the source to prevent errors
-      }
-    };
   }, [instrumental]); // Runs only when instrumental URL changes
 
   // Set up time update listener
@@ -145,7 +134,16 @@ const ProgressBar = () => {
 
     setProgress(newProgress);
     setElapsedTime(newElapsedTime); // Update time
-    audioRef.current.currentTime = newElapsedTime / 1000; // Move to the specific time in seconds
+    console.log("New Elapsed time: " + newElapsedTime)
+    
+    if (audioRef.current.readyState >= 4) {
+      console.log("New Elapsed time: " + newElapsedTime / 1000)
+      audioRef.current.currentTime = newElapsedTime / 1000;
+      console.log("audioRef.current.currentTime: " + audioRef.current.currentTime)
+      console.log("Scrubbed to time:", newElapsedTime / 1000);
+    } else {
+      console.warn("Audio is not ready for seeking.");
+    }
   };
 
   // Click on lyric to jump to that part of the song
