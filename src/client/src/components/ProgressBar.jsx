@@ -157,7 +157,7 @@ const ProgressBar = () => {
       console.log("New Elapsed time: " + newElapsedTime / 1000)
       audioRef.current.currentTime = newElapsedTime / 1000;
       console.log("audioRef.current.currentTime: " + audioRef.current.currentTime)
-      console.log("Scrubbed to time:", newElapsedTime / 1000);
+      console.log("Scrubbed to time:", audioRef.current.currentTime);
     } else {
       console.warn("Audio is not ready for seeking.");
     }
