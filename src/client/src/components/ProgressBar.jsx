@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import LyricsDisplay from "./LyricsDisplay";
-import { FaPlay, FaPause, FaVolumeUp, FaRedoAlt } from "react-icons/fa";
+import { FaPlay, FaPause, FaVolumeUp, FaRedoAlt, FaStepForward } from "react-icons/fa";
 import { useQueue } from "./QueueContext";
 
 const ProgressBar = () => {
@@ -108,6 +108,23 @@ const ProgressBar = () => {
     setIsPlaying(true);
   };
 
+  const handleNextSong = () => {
+    queue.removeSong(0); // Remove the current song from the queue
+    const nextSong = queue.getNextSong(); // Get the next song
+    if (nextSong) {
+      setTopSong(nextSong);
+      setInstrumental(nextSong.instrumentalUrl || null);
+      setElapsedTime(0);
+      setProgress(0);
+      audioRef.current.pause();
+      audioRef.current.src = nextSong.instrumentalUrl || "";
+      audioRef.current.play();
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+  };
+
   // Handle volume change
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value;
@@ -155,6 +172,21 @@ const ProgressBar = () => {
   return (
     <div className="w-[1200px] ml-[30px] mt-[30px] mb-[30px] flex flex-col">
       <div className="flex items-center mb-4">
+        {/* <button
+          onClick={handlePreviousSong}
+          className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
+        >
+          <FaStepBackward />
+        </button> */}
+
+        {/* Next song button */}
+        <button
+          onClick={handleNextSong}
+          className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
+        >
+          <FaStepForward />
+        </button>
+
         <button
           onClick={handlePlayPauseClick}
           className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
