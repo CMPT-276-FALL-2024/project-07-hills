@@ -57,7 +57,7 @@ def process_task(task: Task, query: str):
 
         # Step 2: Fetch the track details
         task.update_progress("Fetching track details", 20)
-        track = spotify.get_single_track(query)
+        track = spotify.get_single_track_by_id(query)
 
         # Step 3: Fetch lyrics
         task.update_progress("Fetching lyrics", 30)
@@ -78,8 +78,9 @@ def process_task(task: Task, query: str):
         # song.get_audio()
 
         # # Step 5: Complete
-        task.complete(song)
+        task.complete(song.instrumental_URL)
         
         # task.complete(song)
     except Exception as e:
         task.fail(str(e))
+        

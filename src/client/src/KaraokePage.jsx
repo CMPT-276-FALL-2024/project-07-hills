@@ -14,7 +14,7 @@ const Karaoke = () => {
     setCurrentTime(time);
   };
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen ">
       {/** Lyrics and music player area */}
       <div className="flex-1 bg-gray-100 p-8 flex-col">
         {/** Progress bar and the timer */}

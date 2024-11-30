@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { useQueue } from './QueueContext'; // Use the hook, no need to re-import the context
 
 const SideNavbar = () => {
   const [activePage, setActivePage] = useState('search');
   const [searchQuery, setSearchQuery] = useState('');// State to hold the search query
   const [showResults, setShowResults] = useState(false); // State to control the result visibility
 
-  const [results, setResults] = useState([ // Example data with placeholder images for now lolol :skull: 
-    { title: 'Song Title 1', artist: 'Artist 1', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 2', artist: 'Artist 2', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 3', artist: 'Artist 3', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 1', artist: 'Artist 1', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 2', artist: 'Artist 2', imageUrl: 'https://via.placeholder.com/50' },
-    { title: 'Song Title 3', artist: 'Artist 3', imageUrl: 'https://via.placeholder.com/50' },
-  ]); 
+  const [results, setResults] = useState([]);
+  const { addSongToQueue } = useQueue(); // Access functions from QueueContext
 
   // Function to handle changes in the search input
   const handleSearchChange = (event) => {
@@ -21,12 +16,61 @@ const SideNavbar = () => {
   };
 
   // Function to handle search button click
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
     if (searchQuery) {
       setShowResults(true); // Show results only after clicking the search button
       console.log('Searching for:', searchQuery);
+      try {
+        const response = await fetch('http://localhost:8000/search-songs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query: searchQuery }), // Send the search query as JSON
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch songs');
+        }
+
+        const data = await response.json() // Parse JSON response
+        // Assuming the response is a list of song objects
+        console.log('Received data:', data);
+        setResults(data); // Update the results state with the received song objects
+
+      }
+      catch (error) {
+        console.error('Error fetching songs: ', error)
+      }
     }
   };
+  const handleAddToQueue = async (song) => {
+    // Fetch lyriced song form server
+    try {
+      const response = await fetch('http://localhost:8000/fetch-song', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(song),
+      });
+
+      if (response.ok) {
+        const updatedSong = await response.json();
+        console.log(`Song with lyrics added to queue: ${updatedSong.title}`);
+        addSongToQueue(updatedSong); // Add the song with lyrics to the queue
+      } else if (response.status === 404) {
+        console.error(`Lyrics not found for the song: ${song.title}`);
+        alert(`Lyrics not found for the song: ${song.title}`);
+      } else {
+        throw new Error('Failed to fetch song with lyrics');
+      }
+    }
+    catch (error) {
+      console.error('Error adding song to queue:', error);
+      alert('An error occurred while adding the song to the queue. Please try again.');
+    }
+  };
+
 
   return (
     <div className="w-80 bg-gray-800 text-white flex flex-col justify-between p-0 h-screen">
@@ -40,6 +84,11 @@ const SideNavbar = () => {
               className="w-[200px] p-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
               value={searchQuery}
               onChange={handleSearchChange}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSearchClick();
+                }
+              }}
             />
             {/* Search Button */}
             <button
@@ -51,15 +100,17 @@ const SideNavbar = () => {
 
             {/* Dropdown Results */}
             {showResults && (
-              <div className="absolute mt-[525px] left-[-8px] w-[200px] bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto">
+              // <div className="absolute mt-[610px] left-[-8px] w-[200px] bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto">
+              <div className="absolute top-full mt-[10px] left-[-8px] w-full bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto z-10">
                 {results.map((result, index) => (
                   <div
                     key={index}
                     className="flex items-center p-2 hover:bg-gray-600 cursor-pointer"
+                    onClick={() => handleAddToQueue(result)} // Add song to queue on click
                   >
                     {/* Album Cover */}
                     <img
-                      src={result.imageUrl}
+                      src={result.album_image_URL}
                       alt="Album Cover"
                       className="w-12 h-12 rounded mr-3"
                     />

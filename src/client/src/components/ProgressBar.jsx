@@ -1,50 +1,73 @@
-// // To be used with LyricsDisplay Version 2
 import React, { useState, useEffect, useRef } from "react";
-import sample from "../sample.json";
 import LyricsDisplay from "./LyricsDisplay";
-import { FaPlay, FaPause, FaVolumeUp, FaRedoAlt } from "react-icons/fa";
+import { FaPlay, FaPause, FaVolumeUp, FaRedoAlt, FaStepForward } from "react-icons/fa";
+import { useQueue } from "./QueueContext";
 
 const ProgressBar = () => {
-  // const audioRef = useRef(new Audio(instrumental));
+  const { queue } = useQueue(); // Access the queue from context
+  const [topSong, setTopSong] = useState(null);
   const audioRef = useRef(null); // Initialize without an Audio instance
   const [progress, setProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [instrumental, setInstrumental] = useState(sample.instrumental_url); // Use instrumental_url from the song object
+  const [instrumental, setInstrumental] = useState(null); // Instrumental URL
   const [elapsedTime, setElapsedTime] = useState(0);
   const [volume, setVolume] = useState(1);
 
   const intervalRef = useRef(null);
-
-  const durationParts = sample.duration.match(/(\d+)m\s*(\d+)s/);
+  const durationParts = topSong?.duration.match(/(\d+)m\s*(\d+)s/);
   const minutes = durationParts ? parseInt(durationParts[1], 10) : 0;
   const seconds = durationParts ? parseInt(durationParts[2], 10) : 0;
   const songDuration = (minutes * 60 + seconds) * 1000;
 
-  // Function for volume change
-  const handleVolumeChange = (e) => {
-    const newVolume = e.target.value;
-    setVolume(newVolume);
-    audioRef.current.volume = newVolume;
-  };
+  // Check if the top song has changed
+  useEffect(() => {
+    const newTopSong = queue.getNextSong();
+    if (newTopSong !== topSong) {
+      setTopSong(newTopSong);
+      setInstrumental(null); // Reset instrumental URL when the song changes
+    }
+  }, [queue]);
 
+  // Poll for instrumental URL
+  useEffect(() => {
+    console.log("handling new top song change")
+      console.log("handling new top song change2")
+      const interval = setInterval(() => {
+        console.log("Polling for instrumentalUrl:", topSong?.instrumentalUrl);
+        if (topSong?.instrumentalUrl) {
+          setInstrumental(topSong.instrumentalUrl);
+          clearInterval(interval); // Stop polling when the value is available
+        }
+      }, 1000);
+  
+    return () => clearInterval(interval); // Cleanup on unmount
+    console.log(topSong)
+  }, [topSong]);
+
+  // Set up audio player and load instrumental
   useEffect(() => {
     if (!audioRef.current) {
-      audioRef.current = new Audio(instrumental); // Initialize Audio instance if not already
-    } else {
-      audioRef.current.src = instrumental; // Dynamically update the source
+      audioRef.current = new Audio();
     }
-  }, [instrumental]); // Runs whenever `instrumental` changes
 
-  useEffect(() => {
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause(); // Stop audio playback
-        audioRef.current.src = ""; // Clear source
-        audioRef.current = null; // Remove reference
-      }
-    };
-  }, []);
+    if (instrumental && audioRef.current.src !== instrumental) { // Only update the source if it has changed
+      console.log("hoho")
+      audioRef.current.src = instrumental;
+      // audioRef.current.load(); // Load the new instrumental
+      console.log("Audio source set to:", instrumental);
 
+      audioRef.current.addEventListener("canplaythrough", () => {
+        console.log("Audio is ready to play:", instrumental);
+        console.log("Curwtf:", audioRef.current.src);
+      });
+
+      audioRef.current.addEventListener("error", (e) => {
+        console.error("Error loading audio:", instrumental, e);
+      });
+    }
+  }, [instrumental]); // Runs only when instrumental URL changes
+
+  // Set up time update listener
   useEffect(() => {
     const audio = audioRef.current;
 
@@ -59,12 +82,13 @@ const ProgressBar = () => {
     };
   }, []);
 
+  // Update progress percentage based on elapsed time
   useEffect(() => {
     const progressPercentage = (elapsedTime / songDuration) * 100;
     setProgress(progressPercentage);
   }, [elapsedTime, songDuration]);
 
-  // Function to play and puase the audio
+  // Handle play/pause click
   const handlePlayPauseClick = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -74,7 +98,7 @@ const ProgressBar = () => {
     setIsPlaying(!isPlaying);
   };
 
-  // Replay function 
+  // Handle replay click
   const handleReplayClick = () => {
     setProgress(0);
     setElapsedTime(0);
@@ -84,7 +108,31 @@ const ProgressBar = () => {
     setIsPlaying(true);
   };
 
-  // Function to convert milliseconds into minutes and seconds
+  const handleNextSong = () => {
+    queue.removeSong(0); // Remove the current song from the queue
+    const nextSong = queue.getNextSong(); // Get the next song
+    if (nextSong) {
+      setTopSong(nextSong);
+      setInstrumental(nextSong.instrumentalUrl || null);
+      setElapsedTime(0);
+      setProgress(0);
+      audioRef.current.pause();
+      audioRef.current.src = nextSong.instrumentalUrl || "";
+      audioRef.current.play();
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+  };
+
+  // Handle volume change
+  const handleVolumeChange = (e) => {
+    const newVolume = e.target.value;
+    setVolume(newVolume);
+    audioRef.current.volume = newVolume;
+  };
+
+  // Format time for display
   const formatTime = (timeInMs) => {
     const timeInSeconds = Math.floor(timeInMs / 1000);
     const minutes = Math.floor(timeInSeconds / 60);
@@ -92,7 +140,7 @@ const ProgressBar = () => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  // Make the progress bar interactive and switch to parts in the song
+  // Scrub progress bar
   const handleScrub = (e) => {
     const bar = e.currentTarget;
     const rect = bar.getBoundingClientRect();
@@ -102,19 +150,43 @@ const ProgressBar = () => {
     const newElapsedTime = (newProgress / 100) * songDuration;
 
     setProgress(newProgress);
-    setElapsedTime(newElapsedTime);
-    audioRef.current.currentTime = newElapsedTime / 1000;
+    setElapsedTime(newElapsedTime); // Update time
+    console.log("New Elapsed time: " + newElapsedTime)
+    
+    if (audioRef.current.readyState >= 4) {
+      console.log("New Elapsed time: " + newElapsedTime / 1000)
+      audioRef.current.currentTime = newElapsedTime / 1000;
+      console.log("audioRef.current.currentTime: " + audioRef.current.currentTime)
+      console.log("Scrubbed to time:", audioRef.current.currentTime);
+    } else {
+      console.warn("Audio is not ready for seeking.");
+    }
   };
 
-  // Function for the timestamp when you click on the lyrics
+  // Click on lyric to jump to that part of the song
   const handleLyricClick = (timestamp) => {
-    setElapsedTime(timestamp);
-    audioRef.current.currentTime = timestamp / 1000;
+    setElapsedTime(timestamp); // Update the elapsed time
+    audioRef.current.currentTime = timestamp / 1000; // Move to the specific time in seconds
   };
 
   return (
     <div className="w-[1200px] ml-[30px] mt-[30px] mb-[30px] flex flex-col">
       <div className="flex items-center mb-4">
+        {/* <button
+          onClick={handlePreviousSong}
+          className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
+        >
+          <FaStepBackward />
+        </button> */}
+
+        {/* Next song button */}
+        <button
+          onClick={handleNextSong}
+          className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
+        >
+          <FaStepForward />
+        </button>
+
         <button
           onClick={handlePlayPauseClick}
           className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
@@ -140,7 +212,9 @@ const ProgressBar = () => {
         </div>
 
         <div className="text-[18px] w-[200px] font-bold text-[#444444] mr-[0px]">
-          {formatTime(elapsedTime)} / {minutes}:{seconds.toString().padStart(2, "0")}
+          {formatTime(elapsedTime)} / {minutes}:{seconds
+            .toString()
+            .padStart(2, "0")}
         </div>
 
         <div className="flex items-center">
@@ -169,6 +243,8 @@ const ProgressBar = () => {
 };
 
 export default ProgressBar;
+
+
 
 
 

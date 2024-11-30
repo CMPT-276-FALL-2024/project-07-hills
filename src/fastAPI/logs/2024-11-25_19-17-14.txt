@@ -1,0 +1,6 @@
+2024-11-25 19:19:47,193 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Morgan Wallen - Love Somebody.mp3
+2024-11-25 19:20:24,190 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Morgan Wallen - Love Somebody_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-25 19:20:24,336 - audio_separator.separator.separator - INFO - Audio duration is 0.06 hours (204.83 seconds).
+2024-11-25 19:20:24,336 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-25 19:20:27,498 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-25 19:20:27,502 - audio_separator.separator.separator - INFO - Separation duration: 00:00:40

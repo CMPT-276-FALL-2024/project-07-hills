@@ -60,8 +60,8 @@ class Song(BaseModel):
     duration: str
 
     lyrics: Optional[Lyrics]
-    has_instrumental_audio: bool = False  
-    
+    has_instrumental_audio: bool = False
+
     @classmethod
     def create_from_track(cls, track: dict, lyrics) -> "Song":
         title = sanitize_filename(track["name"])  # Sanitize title
@@ -70,7 +70,7 @@ class Song(BaseModel):
         spotify_url = track["external_urls"]["spotify"]
         spotify_id = track["id"]
         album_image_URL = track["album"]["images"][0]['url']
-        duration = f"{track['duration_ms'] // 60000}:{(track['duration_ms'] // 1000) % 60:02}"  # Convert ms to mm:ss
+        duration = f"{track['duration_ms'] // 60000}m {(track['duration_ms'] // 1000) % 60}s"
         lyrics = lyrics
 
         return cls(
@@ -78,35 +78,36 @@ class Song(BaseModel):
             artist=artist,
             spotify_url=spotify_url,
             spotify_id=spotify_id,
-            album_image_URL = album_image_URL,
-            instrumental_URL="",  
+            album_image_URL=album_image_URL,
+            instrumental_URL="",
             original_path="",
             duration=duration,
             lyrics=lyrics,
-            has_instrumental_audio=False,  
+            has_instrumental_audio=False,
         )
-
 
     def download_original(self):
         output_folder = "./downloads"
-        
+
         inferred_path = f"{output_folder}/{self.artist} - {self.title}.mp3"
-        
+
         print(inferred_path)
         if os.path.exists(inferred_path):
             print(f"File already downloaded: {inferred_path}")
             return inferred_path
-        
+
         sanitized_artist = self.artist
         sanitized_title = self.title
+        output_path = os.path.join(output_folder, f"{sanitized_title} - {sanitized_artist}.mp3")
+
         # CLI command
         command = [
             "spotdl",
             self.spotify_url,
             "--output",
-            f"{output_folder}/{{sanitized_artist}} - {{sanitized_title}}"
+            f"{output_folder}/{{artist}} - {{title}}"  # SpotDL will replace placeholders with actual values
         ]
-
+        
         try:
             print("Downloading...")
             # this should be about 20%
@@ -136,7 +137,6 @@ class Song(BaseModel):
         encoded_file_name = quote(instrumental_filename)
         self.instrumental_URL = f"http://localhost:8000/static/{encoded_file_name}"
         self.has_instrumental_audio = True  # Update the flag
-
 
     def get_audio(self):
         self.original_path = self.download_original()

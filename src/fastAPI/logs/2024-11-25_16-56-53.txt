@@ -1,0 +1,6 @@
+2024-11-25 17:01:18,995 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Creed - One Last Breath.mp3
+2024-11-25 17:01:58,528 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Creed - One Last Breath_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-25 17:01:58,664 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (238.24 seconds).
+2024-11-25 17:01:58,665 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-25 17:02:02,052 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-25 17:02:02,055 - audio_separator.separator.separator - INFO - Separation duration: 00:00:43
