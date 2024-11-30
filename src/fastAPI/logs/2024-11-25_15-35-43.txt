@@ -1,0 +1,11 @@
+2024-11-25 15:48:34,469 - main - ERROR - Unexpected error: error: invalid_client, error_description: Invalid client
+2024-11-25 15:49:16,203 - main - ERROR - Unexpected error: error: invalid_client, error_description: Invalid client
+2024-11-25 15:51:02,559 - main - ERROR - Unexpected error: error: invalid_client, error_description: Invalid client
+2024-11-25 16:01:39,506 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Napalm Death - You Suffer.mp3
+2024-11-25 16:02:32,869 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Napalm Death - You Suffer_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-25 16:02:33,120 - audio_separator.separator.separator - INFO - Audio duration is 0.00 hours (4.93 seconds).
+2024-11-25 16:02:33,122 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-25 16:02:34,052 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-25 16:02:34,056 - audio_separator.separator.separator - INFO - Separation duration: 00:00:54
+2024-11-25 16:08:17,254 - main - ERROR - Unexpected error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2024-11-25 16:08:59,278 - main - ERROR - Unexpected error: error: invalid_client, error_description: Invalid client
