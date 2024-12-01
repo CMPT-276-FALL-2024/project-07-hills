@@ -10,13 +10,15 @@ from spotify_singleton import SpotifySingleton
 
 
 class Task(BaseModel):
-    # Create a task with a unique id
     id: UUID = Field(default_factory=uuid4)
     status: str = "Initializing..."
     progress: int = 0
     result: Optional[str] = None  # Placeholder
+    is_terminated: bool = False  # Add a termination flag
 
     def update_progress(self, status: str, progress: int):
+        if self.is_terminated:
+            raise RuntimeError("Task was terminated")
         self.status = status
         self.progress = progress
 
@@ -29,6 +31,12 @@ class Task(BaseModel):
         self.status = "Failed"
         self.progress = 0
         self.result = error_message
+
+    def terminate(self):
+        self.is_terminated = True
+        self.status = "Terminated"
+        self.progress = 0
+        self.result = None
 
 
 # Simulate task processing
@@ -52,35 +60,47 @@ spotify = SpotifySingleton.get_instance()
 
 def process_task(task: Task, query: str):
     try:
-        # Step 1: Initialize
         task.update_progress("Initializing task", 10)
 
-        # Step 2: Fetch the track details
+        # Check for termination
+        if task.is_terminated:
+            raise RuntimeError("Task terminated by user")
+
         task.update_progress("Fetching track details", 20)
         track = spotify.get_single_track_by_id(query)
 
-        # Step 3: Fetch lyrics
+        if task.is_terminated:
+            raise RuntimeError("Task terminated by user")
+
         task.update_progress("Fetching lyrics", 30)
         lyrics = spotify.get_lyrics_from_track(track)
         if not lyrics:
             raise ValueError("Lyrics not found")
 
-        # Step 4: Download audio
+        if task.is_terminated:
+            raise RuntimeError("Task terminated by user")
+
         task.update_progress("Receiving song name", 40)
         song = Song.create_from_track(track, lyrics)
+
+        if task.is_terminated:
+            raise RuntimeError("Task terminated by user")
 
         task.update_progress("Downloading song", 50)
         song.download_audio()
 
-        task.update_progress("Separating Vocals", 70)
+        if task.is_terminated:
+            raise RuntimeError("Task terminated by user")
+
+        task.update_progress("Separating Vocals", 95)
         song.get_instrumental()
 
-        # song.get_audio()
-
-        # # Step 5: Complete
         task.complete(song.instrumental_URL)
-        
-        # task.complete(song)
+
+    except RuntimeError as e:
+        if str(e) == "Task terminated by user":
+            task.terminate()
+        else:
+            task.fail(str(e))
     except Exception as e:
         task.fail(str(e))
-        

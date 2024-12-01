@@ -1,0 +1,6 @@
+2024-11-30 18:01:31,742 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Taylor Swift - Love Story.mp3
+2024-11-30 18:02:16,836 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Taylor Swift - Love Story_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-30 18:02:16,924 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (235.28 seconds).
+2024-11-30 18:02:16,924 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-30 18:02:20,140 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-30 18:02:20,144 - audio_separator.separator.separator - INFO - Separation duration: 00:00:48
