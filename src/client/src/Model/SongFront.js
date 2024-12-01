@@ -8,10 +8,11 @@ class SongFront {
       this.duration = duration || "";
       this.lyrics = lyrics || null;
       this.instrumentalUrl = instrumentalUrl || null;
-      this.instrumental_path = instrumental_path
-      this.original_path = original_path
-      this.taskID = ""
-      this.isProcessing = false 
+      this.instrumental_path = instrumental_path;
+      this.original_path = original_path;
+      this.taskID = "";
+      this.isProcessing = false;
+      this.progress = 0; 
     }
   
     // Check if the song has an instrumental URL
@@ -60,6 +61,8 @@ class SongFront {
         const statusData = await response.json();
         console.log(`Task status for ${this.title}:`, statusData);
 
+        this.progress = statusData.progress || 0
+        if (updateCallback) updateCallback(this);
         if (statusData.status === "Completed") {
           isCompleted = true;
           this.isProcessing = false;

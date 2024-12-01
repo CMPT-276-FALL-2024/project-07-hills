@@ -2,6 +2,7 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import Queue from "../Model/Queue"; // Import your Queue.js class
 import SongFront from "../Model/SongFront"; // Import your Queue.js class
+import LoadingBar from "./LoadingBar"
 
 const QueueContext = createContext();
 
@@ -9,6 +10,7 @@ export const QueueProvider = ({ children }) => {
   const [queue, setQueue] = useState(new Queue()); // Initialize the Queue.js class
   const [processingIndex, setProcessingIndex] = useState(null); // Track which song is being processed
   const [isProcessing, setIsProcessing] = useState(false); // Flag to track if a song is being processed
+  const [progress, setProgress] = useState(0); // Track task progress
 
   const addSongToQueue = (song) => {
     // Clone the current songs to avoid mutating the original
