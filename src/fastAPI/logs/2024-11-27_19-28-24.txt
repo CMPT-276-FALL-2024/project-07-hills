@@ -1,0 +1,7 @@
+2024-11-27 19:29:34,507 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Travis Scott - HIGHEST IN THE ROOM.mp3
+2024-11-27 19:29:51,852 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Travis Scott - HIGHEST IN THE ROOM_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-27 19:29:51,919 - audio_separator.separator.separator - INFO - Audio duration is 0.05 hours (175.72 seconds).
+2024-11-27 19:29:51,919 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-27 19:29:54,427 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-27 19:29:54,429 - audio_separator.separator.separator - INFO - Separation duration: 00:00:19
+2024-11-27 19:30:16,574 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Travis Scott - I KNOW.mp3

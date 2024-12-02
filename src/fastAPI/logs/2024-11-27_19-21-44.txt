@@ -1,0 +1,7 @@
+2024-11-27 19:25:29,828 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/TWXN - TELESCOPE.mp3
+2024-11-27 19:25:45,453 - audio_separator.separator.separator - INFO - Saving Instrumental stem to TWXN - TELESCOPE_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-27 19:25:45,530 - audio_separator.separator.separator - INFO - Audio duration is 0.04 hours (146.17 seconds).
+2024-11-27 19:25:45,531 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-27 19:25:47,699 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-27 19:25:47,702 - audio_separator.separator.separator - INFO - Separation duration: 00:00:17
+2024-11-27 19:26:04,129 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Yeat - If We Being Real.mp3

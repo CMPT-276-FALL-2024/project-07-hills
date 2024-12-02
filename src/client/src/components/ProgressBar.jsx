@@ -5,6 +5,8 @@ import { useQueue } from "./QueueContext";
 
 const ProgressBar = () => {
   const { queue } = useQueue(); // Access the queue from context
+  const { removeSongFromQueue } = useQueue();
+
   const [topSong, setTopSong] = useState(null);
   const audioRef = useRef(null); // Initialize without an Audio instance
   const [progress, setProgress] = useState(0);
@@ -110,6 +112,9 @@ const ProgressBar = () => {
 
   const handleNextSong = () => {
     queue.removeSong(0); // Remove the current song from the queue
+
+    // removeSongFromQueue(0);
+
     const nextSong = queue.getNextSong(); // Get the next song
     if (nextSong) {
       setTopSong(nextSong);
