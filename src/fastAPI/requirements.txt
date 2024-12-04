@@ -2,7 +2,7 @@ ffmpeg
 fastapi
 uvicorn[standard]
 yt-dlp
-audio-separator[cpu]
+audio-separator[gpu]
 onnxruntime
 spotdl
 syrics
