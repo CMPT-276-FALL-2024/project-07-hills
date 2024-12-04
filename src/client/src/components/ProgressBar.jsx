@@ -41,7 +41,7 @@ const ProgressBar = () => {
           clearInterval(interval); // Stop polling when the value is available
         }
       }, 1000);
-  
+
     return () => clearInterval(interval); // Cleanup on unmount
     console.log(topSong)
   }, [topSong]);
@@ -55,8 +55,7 @@ const ProgressBar = () => {
     if (instrumental && audioRef.current.src !== instrumental) { // Only update the source if it has changed
       console.log("hoho")
       audioRef.current.src = instrumental;
-      // audioRef.current.load(); // Load the new instrumental
-      console.log("Audio source set to:", instrumental);
+      console.log("Audio source set to: ", instrumental);
 
       audioRef.current.addEventListener("canplaythrough", () => {
         console.log("Audio is ready to play:", instrumental);
@@ -69,7 +68,22 @@ const ProgressBar = () => {
     }
   }, [instrumental]); // Runs only when instrumental URL changes
 
-  // Set up time update listener
+  // Add an event listener for when the song ends
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    const handleSongEnd = () => {
+      handleNextSong(); // Automatically play the next song
+    };
+
+    audio.addEventListener("ended", handleSongEnd);
+
+    return () => {
+      audio.removeEventListener("ended", handleSongEnd);
+    };
+  }, [audioRef.current, queue]); // Add/remove listener when the queue changes
+
+  // Handle time updates
   useEffect(() => {
     const audio = audioRef.current;
 
@@ -110,10 +124,9 @@ const ProgressBar = () => {
     setIsPlaying(true);
   };
 
+  // handle nect song
   const handleNextSong = () => {
     queue.removeSong(0); // Remove the current song from the queue
-
-    // removeSongFromQueue(0);
 
     const nextSong = queue.getNextSong(); // Get the next song
     if (nextSong) {
@@ -155,9 +168,9 @@ const ProgressBar = () => {
     const newElapsedTime = (newProgress / 100) * songDuration;
 
     setProgress(newProgress);
-    setElapsedTime(newElapsedTime); // Update time
+    setElapsedTime(newElapsedTime);
     console.log("New Elapsed time: " + newElapsedTime)
-    
+
     if (audioRef.current.readyState >= 4) {
       console.log("New Elapsed time: " + newElapsedTime / 1000)
       audioRef.current.currentTime = newElapsedTime / 1000;
@@ -177,13 +190,6 @@ const ProgressBar = () => {
   return (
     <div className="w-[1200px] ml-[30px] mt-[30px] mb-[30px] flex flex-col">
       <div className="flex items-center mb-4">
-        {/* <button
-          onClick={handlePreviousSong}
-          className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
-        >
-          <FaStepBackward />
-        </button> */}
-
         {/* Next song button */}
         <button
           onClick={handleNextSong}
@@ -192,6 +198,7 @@ const ProgressBar = () => {
           <FaStepForward />
         </button>
 
+        
         <button
           onClick={handlePlayPauseClick}
           className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
@@ -215,13 +222,11 @@ const ProgressBar = () => {
             style={{ width: `${progress}%` }}
           ></div>
         </div>
-
         <div className="text-[18px] w-[200px] font-bold text-[#444444] mr-[0px]">
           {formatTime(elapsedTime)} / {minutes}:{seconds
             .toString()
             .padStart(2, "0")}
         </div>
-
         <div className="flex items-center">
           <FaVolumeUp size={30} className="mr-2" />
           <input

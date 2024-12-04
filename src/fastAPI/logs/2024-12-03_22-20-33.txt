@@ -1,0 +1,1 @@
+2024-12-03 23:00:50,501 - main - ERROR - Unexpected error: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)

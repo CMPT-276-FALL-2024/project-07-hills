@@ -1,0 +1,7 @@
+2024-12-03 20:49:53,419 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Gregorian - The Sound of Silence.mp3
+2024-12-03 20:50:16,768 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Gregorian - The Sound of Silence_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-03 20:50:16,814 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (257.51 seconds).
+2024-12-03 20:50:16,814 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-03 20:50:20,006 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-03 20:50:20,011 - audio_separator.separator.separator - INFO - Separation duration: 00:00:26
+2024-12-03 21:02:34,807 - main - ERROR - Unexpected error: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)
