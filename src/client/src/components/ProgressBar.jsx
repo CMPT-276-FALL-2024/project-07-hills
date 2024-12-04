@@ -124,11 +124,11 @@ const ProgressBar = () => {
     setIsPlaying(true);
   };
 
-  const handleNextSong = () => {
-    removeSongFromQueue(0); // Remove the first song and handle playback
-  };  
+  // const handleNextSong = () => {
+  //   removeSongFromQueue(0); // Remove the first song and handle playback
+  // }; 
 
-  // // handle nect song
+  // handle nect song
   // const handleNextSong = () => {
   //   // queue.removeSong(0); // Remove the current song from the queue
   //   removeSongFromQueue(0);
@@ -147,6 +147,59 @@ const ProgressBar = () => {
   //     setIsPlaying(false);
   //   }
   // };
+
+  // useEffect(() => {
+  //   if (queue.getSongs().length > 0) {
+  //     const nextSong = queue.getNextSong(); // Get the next song
+  //     if (nextSong) {
+  //       setTopSong(nextSong);
+  //       setInstrumental(nextSong.instrumentalUrl || null);
+  //       setElapsedTime(0);
+  //       setProgress(0);
+  
+  //       // Update the audio player and play the song
+  //       audioRef.current.pause();
+  //       audioRef.current.src = nextSong.instrumentalUrl || "";
+  //       audioRef.current.play();
+  //       setIsPlaying(true);
+  
+  //       // Trigger replay logic (optional: you could directly reset state here)
+  //       handleReplayClick();
+  //     } else {
+  //       setIsPlaying(false);
+  //     }
+  //   }
+  // }, [queue]); // Trigger when the queue changes  
+
+  const handleNextSong = () => {
+    removeSongFromQueue(0); // Remove the current song from the queue
+  
+    const nextSong = queue.getNextSong(); // Get the next song
+    if (nextSong) {
+      setTopSong(nextSong);
+      setInstrumental(nextSong.instrumentalUrl || null);
+      setElapsedTime(0);
+      setProgress(0);
+  
+      // Update the audio player and play the song
+      audioRef.current.pause();
+      audioRef.current.src = nextSong.instrumentalUrl || "";
+      audioRef.current.play();
+      setIsPlaying(true);
+  
+      // Trigger the replay functionality twice
+      for (let i = 0; i < 2; i++) {
+        handlePlayPauseClick();
+      }
+    } else {
+      setIsPlaying(false);
+  
+      // Trigger the replay functionality twice
+      for (let i = 0; i < 2; i++) {
+        handlePlayPauseClick();
+      }
+    }
+  };  
 
   // Handle volume change
   const handleVolumeChange = (e) => {
