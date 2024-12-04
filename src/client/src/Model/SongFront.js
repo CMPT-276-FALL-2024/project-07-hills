@@ -1,5 +1,8 @@
+import { v4 as uuidv4 } from "uuid";
+
 class SongFront {
     constructor({ title, artist, spotifyUrl, spotifyId, albumImageUrl, duration, lyrics, instrumentalUrl, instrumental_path, original_path}) {
+      this.id = uuidv4(); // Unique identifier for each song
       this.title = title || "Unknown Title";
       this.artist = artist || "Unknown Artist";
       this.spotifyUrl = spotifyUrl || "";
@@ -12,7 +15,8 @@ class SongFront {
       this.original_path = original_path;
       this.taskID = "";
       this.isProcessing = false;
-      this.progress = 0; 
+      this.progress = 0;
+      this.shouldTerminate = false; // New flag to terminate processing
     }
   
     // Check if the song has an instrumental URL
@@ -54,7 +58,7 @@ class SongFront {
     try {
       let isCompleted = false;
 
-      while (!isCompleted) {
+      while (!isCompleted && !this.shouldTerminate) {
         const response = await fetch(`http://localhost:8000/task/status/${this.taskID}`);
         if (!response.ok) throw new Error(`Failed to fetch task status for ${this.taskID}`);
 
@@ -76,12 +80,39 @@ class SongFront {
           await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds before next poll
         }
       }
+      if (this.shouldTerminate) {
+        console.log(`Task for ${this.title} was terminated.`);
+      }
     }
     catch (error) {
       console.error(`Error polling task status for ${this.title}:`, error);
       this.isProcessing = false;
     }
   }
+      // Terminate the task
+  async terminateProcess() {
+
+
+        if (!this.taskID) {
+            console.error(`No task ID to terminate for ${this.title}`);
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:8000/task/terminate/${this.taskID}`, {
+                method: "POST",
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to terminate task for ${this.title}`);
+            }
+            this.shouldTerminate = true; // Set termination flag
+            this.isProcessing = false;
+            console.log(`Task terminated for ${this.title}`);
+        } catch (error) {
+            console.error(`Error terminating task for ${this.title}:`, error);
+        }
+      }
   
   // async fetchInstrumental() {
   //     if (!this.taskID) {

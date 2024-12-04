@@ -1,0 +1,8 @@
+2024-12-02 00:18:03,330 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Shivers.mp3
+2024-12-02 00:18:04,591 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Shivers.mp3
+2024-12-02 00:18:16,169 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Perfect.mp3
+2024-12-02 00:18:16,830 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Perfect.mp3
+2024-12-02 00:18:18,046 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Perfect.mp3
+2024-12-02 00:18:18,462 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Perfect.mp3
+2024-12-02 00:18:31,354 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Bad Habits.mp3
+2024-12-02 00:18:33,575 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Bad Habits.mp3

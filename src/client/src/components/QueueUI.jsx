@@ -48,7 +48,7 @@ const QueueUI = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4 w-full relative">
         {currentItems.map((song, index) => (
           <div
-            key={index}
+            key={song.id}
             className="relative flex flex-col justify-between bg-gray-100 border border-gray-300 rounded-lg shadow p-4"
           >
             <div>
