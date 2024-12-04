@@ -79,9 +79,9 @@ export const QueueProvider = ({ children }) => {
     setQueue(newQueue);
 
     // JAKE's Code
-    // const updatedSongs = queue.getSongs().filter((_, i) => i !== index);
-    // newQueue.songs = updatedSongs; // Update the queue with the new list
-    // setQueue(newQueue); // Update state with the new Queue instance
+    const updatedSongs = queue.getSongs().filter((_, i) => i !== index);
+    newQueue.songs = updatedSongs; // Update the queue with the new list
+    setQueue(newQueue); // Update state with the new Queue instance
   
     // // Automatically play the next song if one exists
     // const nextSong = updatedSongs[0]; // Get the first song in the updated queue

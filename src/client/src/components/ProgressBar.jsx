@@ -26,7 +26,7 @@ const ProgressBar = () => {
     const newTopSong = queue.getNextSong();
     if (newTopSong !== topSong) {
       setTopSong(newTopSong);
-      setInstrumental(null); // Reset instrumental URL when the song changes
+      setInstrumental(); // Reset instrumental URL when the song changes
     }
   }, [queue]);
 
