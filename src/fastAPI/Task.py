@@ -94,6 +94,9 @@ def process_task(task: Task, query: str):
 
         task.update_progress("Separating Vocals", 95)
         song.get_instrumental()
+        
+        if task.is_terminated:
+            raise RuntimeError("Task terminated by user")
 
         task.complete(song.instrumental_URL)
 

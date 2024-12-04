@@ -1,0 +1,6 @@
+2024-12-02 01:16:22,852 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Shape of You.mp3
+2024-12-02 01:17:03,866 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Ed Sheeran - Shape of You_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-02 01:17:03,918 - audio_separator.separator.separator - INFO - Audio duration is 0.06 hours (233.71 seconds).
+2024-12-02 01:17:03,918 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-02 01:17:07,008 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-02 01:17:07,011 - audio_separator.separator.separator - INFO - Separation duration: 00:00:44
