@@ -16,6 +16,23 @@ class Queue {
         console.error("Invalid index for song removal");
       }
     }
+
+    // removeSong(index) {
+    //   if (index >= 0 && index < this.songs.length) {
+    //     // Use the filter method to remove the song from the display
+    //     const updatedSongs = this.songs.filter((_, i) => i !== index); // Filter out the song at the specified index
+        
+    //     // Update the internal list of songs
+    //     this.songs = updatedSongs; // Now this.songs holds the updated list without the removed song
+    
+    //     // Optional: If you need to notify the state or UI update, you can do that here as well
+    //     // For example, if you're using React, you would call setQueue(updatedSongs) to trigger a re-render.
+        
+    //   } else {
+    //     console.error("Invalid index for song removal");
+    //   }
+    // }
+    
   
     // Get the next song in the queue
     getNextSong() {

@@ -7,7 +7,6 @@ const QueueUI = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
   console.log("Songs in queue:", queue.getSongs());
-
   // Fetch current page items
   const currentItems = queue
     .getSongs()

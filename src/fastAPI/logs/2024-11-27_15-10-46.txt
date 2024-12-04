@@ -1,0 +1,6 @@
+2024-11-27 15:14:11,663 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Treaty Oak Revival - Stop & Stare.mp3
+2024-11-27 15:14:32,660 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Treaty Oak Revival - Stop & Stare_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-11-27 15:14:32,731 - audio_separator.separator.separator - INFO - Audio duration is 0.06 hours (212.49 seconds).
+2024-11-27 15:14:32,731 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-11-27 15:14:35,377 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-11-27 15:14:35,380 - audio_separator.separator.separator - INFO - Separation duration: 00:00:23

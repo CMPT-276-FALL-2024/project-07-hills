@@ -32,8 +32,6 @@ export const QueueProvider = ({ children }) => {
     });
     newQueue.songs = [...queue.getSongs(), songFront]; // Create a new Queue with the updated song list
     setQueue(newQueue); // Update state with the modified queue
-    
-
   };
 
   // const removeSongFromQueue = (index) => {
@@ -131,26 +129,6 @@ export const QueueProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (processingIndex !== null) {
-  //     processNextSong();
-  //   }
-  // }, [processingIndex]); // Only call when processingIndex changes
-
-  // useEffect(() => {
-  //   if (processingIndex === null) {
-  //     const songs = queue.getSongs();
-  //     const nextIndex = songs.findIndex((song) => !song.hasInstrumental());
-  
-  //     if (nextIndex !== -1) {
-  //       console.log(`Found next song to process at index: ${nextIndex}`);
-  //       setProcessingIndex(nextIndex);
-  //     } else {
-  //       console.log("No songs left to process.");
-  //     }
-  //   }
-  // }, [processingIndex]);
-
   useEffect(() => {
     processingIndexRef.current = processingIndex;
   }, [processingIndex]);
@@ -191,6 +169,5 @@ export const QueueProvider = ({ children }) => {
     </QueueContext.Provider>
   );
 };
-
 
 export const useQueue = () => useContext(QueueContext);

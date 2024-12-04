@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import LyricsDisplay from "./LyricsDisplay";
-import { FaPlay, FaPause, FaVolumeUp, FaRedoAlt } from "react-icons/fa";
+import { FaPlay, FaPause, FaVolumeUp, FaRedoAlt, FaStepForward } from "react-icons/fa";
 import { useQueue } from "./QueueContext";
 
 const ProgressBar = () => {
   const { queue } = useQueue(); // Access the queue from context
+  const { removeSongFromQueue } = useQueue();
+
   const [topSong, setTopSong] = useState(null);
   const audioRef = useRef(null); // Initialize without an Audio instance
   const [progress, setProgress] = useState(0);
@@ -39,7 +41,7 @@ const ProgressBar = () => {
           clearInterval(interval); // Stop polling when the value is available
         }
       }, 1000);
-  
+
     return () => clearInterval(interval); // Cleanup on unmount
     console.log(topSong)
   }, [topSong]);
@@ -53,8 +55,7 @@ const ProgressBar = () => {
     if (instrumental && audioRef.current.src !== instrumental) { // Only update the source if it has changed
       console.log("hoho")
       audioRef.current.src = instrumental;
-      // audioRef.current.load(); // Load the new instrumental
-      console.log("Audio source set to:", instrumental);
+      console.log("Audio source set to: ", instrumental);
 
       audioRef.current.addEventListener("canplaythrough", () => {
         console.log("Audio is ready to play:", instrumental);
@@ -67,7 +68,22 @@ const ProgressBar = () => {
     }
   }, [instrumental]); // Runs only when instrumental URL changes
 
-  // Set up time update listener
+  // Add an event listener for when the song ends
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    const handleSongEnd = () => {
+      handleNextSong(); // Automatically play the next song
+    };
+
+    audio.addEventListener("ended", handleSongEnd);
+
+    return () => {
+      audio.removeEventListener("ended", handleSongEnd);
+    };
+  }, [audioRef.current, queue]); // Add/remove listener when the queue changes
+
+  // Handle time updates
   useEffect(() => {
     const audio = audioRef.current;
 
@@ -108,6 +124,25 @@ const ProgressBar = () => {
     setIsPlaying(true);
   };
 
+  // handle nect song
+  const handleNextSong = () => {
+    queue.removeSong(0); // Remove the current song from the queue
+
+    const nextSong = queue.getNextSong(); // Get the next song
+    if (nextSong) {
+      setTopSong(nextSong);
+      setInstrumental(nextSong.instrumentalUrl || null);
+      setElapsedTime(0);
+      setProgress(0);
+      audioRef.current.pause();
+      audioRef.current.src = nextSong.instrumentalUrl || "";
+      audioRef.current.play();
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+  };
+
   // Handle volume change
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value;
@@ -133,9 +168,9 @@ const ProgressBar = () => {
     const newElapsedTime = (newProgress / 100) * songDuration;
 
     setProgress(newProgress);
-    setElapsedTime(newElapsedTime); // Update time
+    setElapsedTime(newElapsedTime);
     console.log("New Elapsed time: " + newElapsedTime)
-    
+
     if (audioRef.current.readyState >= 4) {
       console.log("New Elapsed time: " + newElapsedTime / 1000)
       audioRef.current.currentTime = newElapsedTime / 1000;
@@ -153,40 +188,55 @@ const ProgressBar = () => {
   };
 
   return (
-    <div className="w-[1200px] ml-[30px] mt-[30px] mb-[30px] flex flex-col">
-      <div className="flex items-center mb-4">
+    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col space-y-4">
+      <div className="flex flex-wrap items-center space-y-4 sm:space-y-0 sm:space-x-4">
+        {/* Next song button */}
+        <button
+          onClick={handleNextSong}
+          className="px-2 py-2 bg-gray-500 text-white rounded-md"
+        >
+          <FaStepForward />
+        </button>
+  
+        {/* Play/Pause Button */}
         <button
           onClick={handlePlayPauseClick}
-          className="px-2 py-2 bg-gray-500 text-white rounded-md mr-2"
+          className="px-2 py-2 bg-gray-500 text-white rounded-md"
         >
           {isPlaying ? <FaPause /> : <FaPlay />}
         </button>
-
+  
+        {/* Replay Button */}
         <button
           onClick={handleReplayClick}
           className="px-2 py-2 bg-gray-500 text-white rounded-md"
         >
           <FaRedoAlt />
         </button>
-
-        <div
-          className="w-[1000px] h-[7px] rounded-[10px] bg-gray-400 mb-[10px] mt-[10px] ml-[20px] mr-[20px] relative cursor-pointer"
-          onClick={handleScrub}
-        >
+  
+        {/* Progress Bar */}
+        <div className="flex-1 mx-4">
           <div
-            className="h-[7px] rounded-[10px] bg-green-500 transition-[width_0.5s_ease-out]"
-            style={{ width: `${progress}%` }}
-          ></div>
+            className="w-full h-2 bg-gray-400 rounded-full cursor-pointer"
+            onClick={handleScrub}
+          >
+            <div
+              className="h-2 bg-green-500 rounded-full transition-[width_0.5s_ease-out]"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
         </div>
-
-        <div className="text-[18px] w-[200px] font-bold text-[#444444] mr-[0px]">
+  
+        {/* Timer */}
+        <div className="text-sm sm:text-base font-bold text-gray-700">
           {formatTime(elapsedTime)} / {minutes}:{seconds
             .toString()
             .padStart(2, "0")}
         </div>
-
-        <div className="flex items-center">
-          <FaVolumeUp size={30} className="mr-2" />
+  
+        {/* Volume Control */}
+        <div className="flex items-center space-x-2">
+          <FaVolumeUp size={24} className="text-gray-700" />
           <input
             id="volume"
             type="range"
@@ -195,19 +245,20 @@ const ProgressBar = () => {
             step="0.1"
             value={volume}
             onChange={handleVolumeChange}
-            className="w-[120px]"
+            className="w-24"
           />
         </div>
       </div>
-
-      <div className="mt-[]">
+  
+      {/* Lyrics Display */}
+      <div className="w-full">
         <LyricsDisplay
           currentTime={elapsedTime}
           onLyricClick={handleLyricClick}
         />
       </div>
     </div>
-  );
+  );  
 };
 
 export default ProgressBar;
