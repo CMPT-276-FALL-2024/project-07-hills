@@ -1,0 +1,15 @@
+ffmpeg
+fastapi
+uvicorn[standard]
+yt-dlp
+audio-separator[gpu]
+onnxruntime
+spotdl
+syrics
+spotipy
+python-dotenv
+lyricsgenius
+dlp
+torch
+numpy
+scipy
