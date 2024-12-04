@@ -124,24 +124,29 @@ const ProgressBar = () => {
     setIsPlaying(true);
   };
 
-  // handle nect song
   const handleNextSong = () => {
-    queue.removeSong(0); // Remove the current song from the queue
+    removeSongFromQueue(0); // Remove the first song and handle playback
+  };  
 
-    const nextSong = queue.getNextSong(); // Get the next song
-    if (nextSong) {
-      setTopSong(nextSong);
-      setInstrumental(nextSong.instrumentalUrl || null);
-      setElapsedTime(0);
-      setProgress(0);
-      audioRef.current.pause();
-      audioRef.current.src = nextSong.instrumentalUrl || "";
-      audioRef.current.play();
-      setIsPlaying(true);
-    } else {
-      setIsPlaying(false);
-    }
-  };
+  // // handle nect song
+  // const handleNextSong = () => {
+  //   // queue.removeSong(0); // Remove the current song from the queue
+  //   removeSongFromQueue(0);
+
+  //   const nextSong = queue.getNextSong(); // Get the next song
+  //   if (nextSong) {
+  //     setTopSong(nextSong);
+  //     setInstrumental(nextSong.instrumentalUrl || null);
+  //     setElapsedTime(0);
+  //     setProgress(0);
+  //     audioRef.current.pause();
+  //     audioRef.current.src = nextSong.instrumentalUrl || "";
+  //     audioRef.current.play();
+  //     setIsPlaying(true);
+  //   } else {
+  //     setIsPlaying(false);
+  //   }
+  // };
 
   // Handle volume change
   const handleVolumeChange = (e) => {

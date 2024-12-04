@@ -30,12 +30,36 @@ export const QueueProvider = ({ children }) => {
     setQueue(newQueue); // Update state with the modified queue
   };
 
+  // const removeSongFromQueue = (index) => {
+  //   // Clone the current songs to avoid mutating the original
+  //   const newQueue = new Queue();
+  //   const updatedSongs = queue.getSongs().filter((_, i) => i !== index);
+  //   newQueue.songs = updatedSongs; // Create a new Queue with the updated song list
+  //   setQueue(newQueue); // Update state with the new Queue instance
+  // };
+
   const removeSongFromQueue = (index) => {
     // Clone the current songs to avoid mutating the original
     const newQueue = new Queue();
     const updatedSongs = queue.getSongs().filter((_, i) => i !== index);
-    newQueue.songs = updatedSongs; // Create a new Queue with the updated song list
+    newQueue.songs = updatedSongs; // Update the queue with the new list
     setQueue(newQueue); // Update state with the new Queue instance
+  
+    // Automatically play the next song if one exists
+    const nextSong = updatedSongs[0]; // Get the first song in the updated queue
+    if (nextSong) {
+      setTopSong(nextSong);
+      setInstrumental(nextSong.instrumentalUrl || null);
+      setElapsedTime(0);
+      setProgress(0);
+      audioRef.current.pause();
+      audioRef.current.src = nextSong.instrumentalUrl || "";
+      audioRef.current.play();
+      setIsPlaying(true);
+    } else {
+      // Stop playback if the queue is empty
+      setIsPlaying(false);
+    }
   };
 
   const getCurrentSong = () => {
