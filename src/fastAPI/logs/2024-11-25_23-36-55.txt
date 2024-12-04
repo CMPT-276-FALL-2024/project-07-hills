@@ -1,0 +1,2 @@
+2024-11-25 23:49:52,105 - main - ERROR - Unexpected error: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)
+2024-11-25 23:50:14,969 - main - ERROR - Error processing song with ID 2xLMifQCjDGFmkHkpNLD9h: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))

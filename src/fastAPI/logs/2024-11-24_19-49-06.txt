@@ -1,0 +1,4 @@
+2024-11-24 19:49:26,960 - main - INFO - Searching for artist: Michael Jackson
+2024-11-24 19:49:26,965 - main - ERROR - Unexpected error while searching for artist: 'SpotifyDIY' object has no attribute 'search_artist'
+2024-11-24 19:49:41,927 - main - INFO - Searching for artist: Michael Jackson
+2024-11-24 19:49:41,928 - main - ERROR - Unexpected error while searching for artist: 'SpotifyDIY' object has no attribute 'search_artist'
