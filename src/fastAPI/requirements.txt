@@ -2,7 +2,7 @@ ffmpeg
 fastapi
 uvicorn[standard]
 yt-dlp
-audio-separator[gpu]
+audio-separator[cpu]
 onnxruntime
 spotdl
 syrics
@@ -10,3 +10,6 @@ spotipy
 python-dotenv
 lyricsgenius
 dlp
+torch
+numpy
+scipy
