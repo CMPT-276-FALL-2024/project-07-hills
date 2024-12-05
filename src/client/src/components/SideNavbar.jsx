@@ -73,15 +73,15 @@ const SideNavbar = () => {
 
 
   return (
-    <div className="w-80 bg-gray-800 text-white flex flex-col justify-between p-0 h-screen">
+    <div className="w-80 bg-gradient-to-b from-blue-100 via-blue-200 to-indigo-300 text-white flex flex-col justify-between p-0 h-screen">
       {activePage === 'search' && (
         <div className="search-subpage flex flex-col justify-center items-center mt-8">
-          <h2 className="text-2xl font-bold mb-4 text-center">Separate a Song!</h2>
+          <h2 className="text-2xl font-bold mb-4 text-center text-gray-500">Separate a Song!</h2>
           <div className="flex items-center space-x-2 relative">
             <input
               type="text"
               placeholder="Song/Artist name here..."
-              className="w-[200px] p-2 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-500"
+              className="w-[200px] p-2 rounded bg-blue-50 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring focus:ring-indigo-400"
               value={searchQuery}
               onChange={handleSearchChange}
               onKeyDown={(e) => {
@@ -101,11 +101,11 @@ const SideNavbar = () => {
             {/* Dropdown Results */}
             {showResults && (
               // <div className="absolute mt-[610px] left-[-8px] w-[200px] bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto">
-              <div className="absolute top-full mt-[10px] left-[-8px] w-full bg-gray-700 rounded-lg shadow-lg max-h-250 overflow-y-auto z-10">
+              <div className="absolute top-full mt-[10px] left-[-8px] w-full bg-gradient-to-b from-blue-200 via-blue-300 to-indigo-400 rounded-lg shadow-lg max-h-250 overflow-y-auto z-10">
                 {results.map((result, index) => (
                   <div
                     key={index}
-                    className="flex items-center p-2 hover:bg-gray-600 cursor-pointer"
+                    className="flex items-center p-2 hover:bg-blue-500 cursor-pointer"
                     onClick={() => handleAddToQueue(result)} // Add song to queue on click
                   >
                     {/* Album Cover */}
@@ -117,7 +117,7 @@ const SideNavbar = () => {
                     {/* Song Title and Artist Name */}
                     <div className="text-white">
                       <p className="font-semibold">{result.title}</p>
-                      <p className="text-sm text-gray-400">{result.artist}</p>
+                      <p className="text-sm text-gray-1000">{result.artist}</p>
                     </div>
                   </div>
                 ))}

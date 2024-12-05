@@ -1,0 +1,6 @@
+2024-12-04 17:58:51,288 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Classified - Oh...Canada - Dirty version.mp3
+2024-12-04 17:59:10,150 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Classified - Oh...Canada - Dirty version_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-04 17:59:10,200 - audio_separator.separator.separator - INFO - Audio duration is 0.06 hours (202.15 seconds).
+2024-12-04 17:59:10,200 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-04 17:59:12,750 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-04 17:59:12,753 - audio_separator.separator.separator - INFO - Separation duration: 00:00:21
