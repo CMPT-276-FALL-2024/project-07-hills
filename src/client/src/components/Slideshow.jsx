@@ -75,7 +75,7 @@ const Slideshow = ({ images }) => {
       </section>
 
       {/* Description section */}
-      <div className="text-center text-sm text-gray-700 mt-[-88px] h-[124px] mb-4">
+      <div className="text-center text-sm text-gray-700 mt-[-88px] h-[192px] mb-4">
         {images[imageIndex]?.description}
       </div>
     </div>
