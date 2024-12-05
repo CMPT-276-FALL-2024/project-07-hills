@@ -25,22 +25,22 @@ const Home = () => {
 
 const images = [
     {
-      url: '/public/InitialKaraokePage.png',
+      url: '/InitialKaraokePage.png',
       alt: 'Initial Karaoke Page',
       description: 'Welcome to VocaFree! When you first access the Karaoke page, this is what you will see. The main section displays the lyrics of the song, along with a progress bar, play/pause controls, replay and skip buttons, and a volume control. On the right, you will find a sidebar where you can search for songs to add to your karaoke session.'
     },
     {
-      url: '/public/SearchResults.png',
+      url: '/SearchResults.png',
       alt: 'Search Results',
       description: 'Once you enter a song name in the search bar, the top 6 results will be displayed based on how closely they match the song or artist name. This allows you to easily find the karaoke song you want to perform.'
     },
     {
-      url: '/public/QueueSongs.png',
+      url: '/QueueSongs.png',
       alt: 'Queue Songs',
       description: 'You can add songs to the queue by selecting them from the search results. Inside the queue, you have the ability to delete songs or skip to the next song using the skip button located at the top left of the screen.'
     },
     {
-      url: '/public/PlaySongs.png',
+      url: '/PlaySongs.png',
       alt: 'Play Songs',
       description: 'As you play a song, the lyrics will flow and sync with the music. The lyrics for the currently playing part of the song will be highlighted, allowing you to follow along. You can also manually scroll through the lyrics to navigate to specific parts of the song. Clicking on a specific lyric will jump to that part, and scrubbing the progress bar will also sync the lyrics with the selected part of the song. After 3 seconds of inactivity, the lyrics will automatically resume scrolling to match the song. FUN FACT: When you add a song to the queue, the system extracts the vocals from the track, leaving only the instrumental version. This allows you to sing along by yourself, creating the perfect karaoke experience!'
     }      
