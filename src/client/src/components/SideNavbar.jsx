@@ -21,7 +21,7 @@ const SideNavbar = () => {
       setShowResults(true); // Show results only after clicking the search button
       console.log('Searching for:', searchQuery);
       try {
-        const response = await fetch('http://localhost:8000/search-songs', {
+        const response = await fetch('https://vocafree.ngrok.app/search-songs', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const SideNavbar = () => {
   const handleAddToQueue = async (song) => {
     // Fetch lyriced song form server
     try {
-      const response = await fetch('http://localhost:8000/fetch-song', {
+      const response = await fetch('https://vocafree.ngrok.app/fetch-song', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
