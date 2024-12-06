@@ -1,3 +1,0 @@
-2024-11-24 20:28:24,247 - spotipy.client - ERROR - HTTP Error for GET to https://api.spotify.com/v1/search with Params: {'q': '', 'limit': 6, 'offset': 0, 'type': 'track', 'market': None} returned 400 due to No search query
-2024-11-24 20:28:24,251 - main - ERROR - Unexpected error: http status: 400, code:-1 - https://api.spotify.com/v1/search?q=&limit=6&offset=0&type=track:
- No search query, reason: None

@@ -1,2 +1,0 @@
-2024-11-24 19:52:22,448 - main - INFO - Searching for artist: Michael Jackson
-2024-11-24 19:52:22,448 - main - ERROR - Unexpected error while searching for artists: 'SpotifyDIY' object has no attribute 'search_artist'

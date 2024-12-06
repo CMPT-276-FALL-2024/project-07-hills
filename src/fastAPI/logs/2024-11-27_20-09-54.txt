@@ -1,6 +1,0 @@
-2024-11-27 20:10:34,345 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Future - Like That.mp3
-2024-11-27 20:10:59,894 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Future - Like That_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
-2024-11-27 20:10:59,967 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (267.71 seconds).
-2024-11-27 20:10:59,969 - audio_separator.separator.separator - INFO - Using pydub for writing.
-2024-11-27 20:11:03,536 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
-2024-11-27 20:11:03,539 - audio_separator.separator.separator - INFO - Separation duration: 00:00:29

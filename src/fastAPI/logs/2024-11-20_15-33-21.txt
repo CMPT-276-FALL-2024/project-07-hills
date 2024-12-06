@@ -1,2 +1,0 @@
-2024-11-20 15:33:24,529 - __main__ - INFO - Starting log
-2024-11-20 15:33:46,946 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/*NSYNC - Bye Bye Bye - From Deadpool and Wolverine Soundtrack.mp3

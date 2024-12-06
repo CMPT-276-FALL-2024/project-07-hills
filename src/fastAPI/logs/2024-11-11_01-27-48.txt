@@ -1,6 +1,0 @@
-2024-11-11 01:27:48,296 - __main__ - INFO - Starting log
-2024-11-11 01:27:55,324 - __main__ - INFO - Received Youtube link: https://www.youtube.com/watch?v=6I9pTxRYDlE
-2024-11-11 01:28:02,745 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: downloads/100 Grandkids.mp3
-2024-11-11 01:28:34,926 - audio_separator.separator.separator - INFO - Saving Instrumental stem to 100 Grandkids_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
-2024-11-11 01:28:39,734 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
-2024-11-11 01:28:39,737 - audio_separator.separator.separator - INFO - Separation duration: 00:00:36

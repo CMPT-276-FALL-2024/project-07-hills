@@ -1,7 +1,0 @@
-2024-11-20 13:08:42,068 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/JAY-Z - Ni**as In Paris.mp3
-2024-11-20 13:08:42,824 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Katy Perry, Snoop Dogg - California Gurls.mp3
-2024-11-20 13:09:19,883 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Katy Perry, Snoop Dogg - California Gurls_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
-2024-11-20 13:09:20,023 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (234.65 seconds).
-2024-11-20 13:09:20,023 - audio_separator.separator.separator - INFO - Using pydub for writing.
-2024-11-20 13:09:22,998 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
-2024-11-20 13:09:23,002 - audio_separator.separator.separator - INFO - Separation duration: 00:00:40

@@ -1,6 +1,0 @@
-2024-11-25 19:01:09,250 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Indila - Love Story.mp3
-2024-11-25 19:01:59,579 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Indila - Love Story_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
-2024-11-25 19:01:59,663 - audio_separator.separator.separator - INFO - Audio duration is 0.09 hours (316.28 seconds).
-2024-11-25 19:01:59,664 - audio_separator.separator.separator - INFO - Using pydub for writing.
-2024-11-25 19:02:04,193 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
-2024-11-25 19:02:04,197 - audio_separator.separator.separator - INFO - Separation duration: 00:00:54

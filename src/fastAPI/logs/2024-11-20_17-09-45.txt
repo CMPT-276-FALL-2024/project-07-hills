@@ -1,2 +1,0 @@
-2024-11-20 17:09:52,460 - __main__ - INFO - Starting log
-2024-11-20 17:10:12,082 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/DJ Snake - Taki Taki (with Selena Gomez, Ozuna & Cardi B).mp3

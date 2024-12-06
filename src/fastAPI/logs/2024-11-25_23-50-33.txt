@@ -1,6 +1,0 @@
-2024-11-26 00:07:47,832 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Playboi Carti - Sky.mp3
-2024-11-26 00:08:06,513 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Playboi Carti - Sky_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
-2024-11-26 00:08:06,591 - audio_separator.separator.separator - INFO - Audio duration is 0.05 hours (193.23 seconds).
-2024-11-26 00:08:06,591 - audio_separator.separator.separator - INFO - Using pydub for writing.
-2024-11-26 00:08:09,089 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
-2024-11-26 00:08:09,092 - audio_separator.separator.separator - INFO - Separation duration: 00:00:21

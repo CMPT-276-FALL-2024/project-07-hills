@@ -1,8 +1,0 @@
-2024-11-25 16:33:09,926 - main - ERROR - Unexpected error: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)
-2024-11-25 17:00:51,918 - main - ERROR - Error processing song with ID 42VsgItocQwOQC3XWZ8JNA: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-2024-11-25 17:11:23,094 - spotipy.client - ERROR - HTTP Error for GET to https://api.spotify.com/v1/search with Params: {'q': '', 'limit': 6, 'offset': 0, 'type': 'track', 'market': None} returned 400 due to No search query
-2024-11-25 17:11:23,097 - main - ERROR - Unexpected error: http status: 400, code:-1 - https://api.spotify.com/v1/search?q=&limit=6&offset=0&type=track:
- No search query, reason: None
-2024-11-25 17:11:26,824 - spotipy.client - ERROR - HTTP Error for GET to https://api.spotify.com/v1/search with Params: {'q': '', 'limit': 6, 'offset': 0, 'type': 'track', 'market': None} returned 400 due to No search query
-2024-11-25 17:11:26,826 - main - ERROR - Unexpected error: http status: 400, code:-1 - https://api.spotify.com/v1/search?q=&limit=6&offset=0&type=track:
- No search query, reason: None

@@ -1,9 +1,0 @@
-2024-11-24 19:53:29,495 - main - INFO - Searching for artist: Michael Jackson
-2024-11-24 19:53:29,498 - main - ERROR - Unexpected error while searching for artists: 'SpotifyDIY' object has no attribute 'search_artist'
-2024-11-24 19:53:47,914 - spotipy.client - ERROR - HTTP Error for GET to https://api.spotify.com/v1/search with Params: {'q': '', 'limit': 6, 'offset': 0, 'type': 'track', 'market': None} returned 400 due to No search query
-2024-11-24 19:53:47,917 - main - ERROR - Unexpected error: http status: 400, code:-1 - https://api.spotify.com/v1/search?q=&limit=6&offset=0&type=track:
- No search query, reason: None
-2024-11-24 19:53:50,429 - main - INFO - Searching for artist: Michael Jackson
-2024-11-24 19:53:50,431 - main - ERROR - Unexpected error while searching for artists: 'SpotifyDIY' object has no attribute 'search_artist'
-2024-11-24 19:53:55,990 - main - INFO - Searching for artist: Eminem
-2024-11-24 19:53:55,991 - main - ERROR - Unexpected error while searching for artists: 'SpotifyDIY' object has no attribute 'search_artist'

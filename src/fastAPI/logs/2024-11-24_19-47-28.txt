@@ -1,4 +1,0 @@
-2024-11-24 19:47:28,904 - main - INFO - Searching for artist: Eminem
-2024-11-24 19:47:28,904 - main - ERROR - Unexpected error while searching for artist: 'SpotifyDIY' object has no attribute 'search_artist'
-2024-11-24 19:47:31,974 - main - INFO - Searching for artist: Eminem
-2024-11-24 19:47:31,975 - main - ERROR - Unexpected error while searching for artist: 'SpotifyDIY' object has no attribute 'search_artist'

@@ -1,2 +1,0 @@
-2024-11-25 14:51:50,788 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Shape of You.mp3
-2024-11-25 14:51:50,802 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Shape of You.mp3

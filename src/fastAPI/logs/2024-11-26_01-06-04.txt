@@ -1,7 +1,0 @@
-2024-11-26 01:19:31,929 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Travis Scott - I KNOW.mp3
-2024-11-26 01:51:32,526 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Travis Scott - goosebumps.mp3
-2024-11-26 01:51:57,097 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Travis Scott - goosebumps_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
-2024-11-26 01:51:57,278 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (243.84 seconds).
-2024-11-26 01:51:57,278 - audio_separator.separator.separator - INFO - Using pydub for writing.
-2024-11-26 01:52:00,980 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
-2024-11-26 01:52:00,984 - audio_separator.separator.separator - INFO - Separation duration: 00:00:28

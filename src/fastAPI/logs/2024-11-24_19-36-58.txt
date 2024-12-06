@@ -1,2 +1,0 @@
-2024-11-24 19:37:10,306 - main - ERROR - Unexpected error: 'SpotifyDIY' object has no attribute 'get_artists'
-2024-11-24 19:37:21,759 - main - ERROR - Unexpected error: 'SpotifyDIY' object has no attribute 'get_artists'

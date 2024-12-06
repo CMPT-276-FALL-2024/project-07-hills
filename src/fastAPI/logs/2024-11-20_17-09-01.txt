@@ -1,1 +1,0 @@
-2024-11-20 17:09:04,902 - __main__ - INFO - Starting log

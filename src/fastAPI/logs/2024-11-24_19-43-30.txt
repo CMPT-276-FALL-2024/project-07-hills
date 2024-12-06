@@ -1,2 +1,0 @@
-2024-11-24 19:43:30,280 - main - INFO - Received artist search query: Eminem
-2024-11-24 19:43:30,280 - main - ERROR - Unexpected error during search for artist 'Eminem': 'SpotifyDIY' object has no attribute 'get_artists'

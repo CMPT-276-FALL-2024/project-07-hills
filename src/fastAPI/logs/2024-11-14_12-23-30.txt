@@ -1,6 +1,0 @@
-2024-11-14 12:23:30,788 - __main__ - INFO - Starting log
-2024-11-14 12:23:48,173 - __main__ - INFO - Received Youtube link: https://www.youtube.com/watch?v=CevxZvSJLk8
-2024-11-14 12:23:57,036 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: downloads/Katy Perry - Roar.mp3
-2024-11-14 12:24:27,910 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Katy Perry - Roar_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
-2024-11-14 12:24:31,541 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
-2024-11-14 12:24:31,546 - audio_separator.separator.separator - INFO - Separation duration: 00:00:34

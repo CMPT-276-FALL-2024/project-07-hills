@@ -1,7 +1,0 @@
-2024-11-27 16:24:52,139 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Mariah Carey - All I Want for Christmas Is You.mp3
-2024-11-27 16:25:14,441 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Mariah Carey - All I Want for Christmas Is You_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
-2024-11-27 16:25:14,518 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (241.11 seconds).
-2024-11-27 16:25:14,518 - audio_separator.separator.separator - INFO - Using pydub for writing.
-2024-11-27 16:25:17,486 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
-2024-11-27 16:25:17,489 - audio_separator.separator.separator - INFO - Separation duration: 00:00:25
-2024-11-27 18:28:34,596 - main - ERROR - Error processing song with ID 7adbMZF8ctKOaEFBkA5Qxp: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))

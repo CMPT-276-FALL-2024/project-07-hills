@@ -1,6 +1,0 @@
-2024-12-03 00:26:19,910 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Perfect.mp3
-2024-12-03 00:27:06,164 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Ed Sheeran - Perfect_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
-2024-12-03 00:27:06,246 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (263.40 seconds).
-2024-12-03 00:27:06,246 - audio_separator.separator.separator - INFO - Using pydub for writing.
-2024-12-03 00:27:09,713 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
-2024-12-03 00:27:09,716 - audio_separator.separator.separator - INFO - Separation duration: 00:00:49

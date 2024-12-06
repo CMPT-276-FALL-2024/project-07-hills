@@ -1,2 +1,0 @@
-2024-11-11 00:57:30,167 - __main__ - INFO - Starting log
-2024-11-11 00:57:34,415 - __main__ - INFO - Received Youtube link: https://www.youtube.com/watch?v=G16ZXU9SUWo
