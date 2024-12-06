@@ -1,0 +1,13 @@
+2024-12-03 23:53:20,415 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Travis Scott - goosebumps.mp3
+2024-12-03 23:53:44,990 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Travis Scott - goosebumps_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-03 23:53:45,062 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (243.84 seconds).
+2024-12-03 23:53:45,062 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-03 23:53:48,699 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-03 23:53:48,702 - audio_separator.separator.separator - INFO - Separation duration: 00:00:28
+2024-12-04 00:17:25,594 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Denzel Curry - KOTMS II INTRO (with Kingpin Skinny Pimp).mp3
+2024-12-04 00:17:29,891 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Denzel Curry - KOTMS II INTRO (with Kingpin Skinny Pimp)_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-04 00:17:29,894 - audio_separator.separator.separator - INFO - Audio duration is 0.01 hours (31.71 seconds).
+2024-12-04 00:17:29,894 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-04 00:17:30,705 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-04 00:17:30,707 - audio_separator.separator.separator - INFO - Separation duration: 00:00:05
+2024-12-04 00:21:12,480 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Franz Schubert - Erlkonig, D. 328.mp3

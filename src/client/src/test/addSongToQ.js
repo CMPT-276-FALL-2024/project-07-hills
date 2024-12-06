@@ -4,7 +4,7 @@ const addSongToQueueFromTask = async (taskId) => {
   const { addSongToQueue } = useQueue(); // Access the Queue context
   try {
     // Fetch song from the FastAPI backend
-    const response = await fetch(`http://localhost:8000/task/output/${taskId}`);
+    const response = await fetch(`https://vocafree.ngrok.app/task/output/${taskId}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch song for Task ID ${taskId}: ${response.statusText}`);
     }

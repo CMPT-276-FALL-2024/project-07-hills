@@ -1,0 +1,270 @@
+2024-12-02 23:57:28,078 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Radiohead - Creep.mp3
+2024-12-02 23:58:11,434 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Radiohead - Creep_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-02 23:58:11,514 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (238.64 seconds).
+2024-12-02 23:58:11,515 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-02 23:58:14,997 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-02 23:58:15,001 - audio_separator.separator.separator - INFO - Separation duration: 00:00:46
+2024-12-02 23:59:31,863 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Wham! - Last Christmas.mp3
+2024-12-03 00:00:17,453 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Wham! - Last Christmas_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-03 00:00:17,457 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (262.96 seconds).
+2024-12-03 00:00:17,458 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-03 00:00:20,704 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-03 00:00:20,709 - audio_separator.separator.separator - INFO - Separation duration: 00:00:48
+2024-12-03 00:00:58,808 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Thinking out Loud.mp3
+2024-12-03 00:01:48,908 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Ed Sheeran - Thinking out Loud_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-03 00:01:48,912 - audio_separator.separator.separator - INFO - Audio duration is 0.08 hours (281.56 seconds).
+2024-12-03 00:01:48,912 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-03 00:01:52,856 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-03 00:01:52,862 - audio_separator.separator.separator - INFO - Separation duration: 00:00:54
+2024-12-03 00:11:36,851 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Metro Boomin - Creepin' (with The Weeknd & 21 Savage).mp3
+2024-12-03 00:12:14,768 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Metro Boomin - Creepin' (with The Weeknd & 21 Savage)_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-03 00:12:14,772 - audio_separator.separator.separator - INFO - Audio duration is 0.06 hours (221.52 seconds).
+2024-12-03 00:12:14,773 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-03 00:12:17,951 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-03 00:12:17,955 - audio_separator.separator.separator - INFO - Separation duration: 00:00:41
+2024-12-03 00:14:07,560 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Merry Christmas.mp3
+2024-12-03 00:14:41,961 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Ed Sheeran - Merry Christmas_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-03 00:14:41,965 - audio_separator.separator.separator - INFO - Audio duration is 0.06 hours (208.55 seconds).
+2024-12-03 00:14:41,965 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-03 00:14:44,801 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-03 00:14:44,805 - audio_separator.separator.separator - INFO - Separation duration: 00:00:37
+2024-12-03 00:15:00,876 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Shivers.mp3
+2024-12-03 00:15:35,752 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Ed Sheeran - Shivers_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-03 00:15:35,756 - audio_separator.separator.separator - INFO - Audio duration is 0.06 hours (207.85 seconds).
+2024-12-03 00:15:35,756 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-03 00:15:38,681 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-03 00:15:38,684 - audio_separator.separator.separator - INFO - Separation duration: 00:00:37
+2024-12-03 00:22:54,061 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,069 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,069 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,071 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,081 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,082 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,085 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,092 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,112 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,112 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,119 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,122 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,208 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 9
+2024-12-03 00:22:54,209 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,209 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,210 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,211 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,212 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,213 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,223 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,231 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,232 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,233 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,294 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,357 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,357 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,360 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,360 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,380 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,391 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,391 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,451 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,452 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,461 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,471 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,520 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,690 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,691 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,703 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,703 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,710 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,723 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,782 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,793 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 9
+2024-12-03 00:22:54,812 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,815 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,817 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,820 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,845 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,847 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,857 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,857 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,857 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,862 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,912 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,931 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,932 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,933 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,933 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,935 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,941 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,942 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,960 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,970 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,979 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,979 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:54,980 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,009 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,029 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,041 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,049 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,062 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,150 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,209 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,230 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,239 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,261 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,310 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:22:55,329 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,329 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,330 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,333 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,334 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,335 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,335 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,335 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,336 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,366 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,373 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,375 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,375 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,375 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,375 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,379 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,390 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,400 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:03,402 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:04,496 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:04,496 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:04,504 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:04,696 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:04,697 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:04,756 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:04,832 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:04,857 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 9
+2024-12-03 00:23:04,875 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:04,877 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,023 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,081 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,103 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,103 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,105 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 9
+2024-12-03 00:23:05,105 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 9
+2024-12-03 00:23:05,112 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,113 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,114 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,124 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 9
+2024-12-03 00:23:05,152 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,201 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,204 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,204 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,211 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,213 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,242 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,242 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,249 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,332 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,334 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,341 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,353 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,371 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,572 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:05,594 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:13,328 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:13,411 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:13,411 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:13,413 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:13,413 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:13,413 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:13,414 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,742 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,742 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,742 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,771 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,771 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,771 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,789 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,789 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,798 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,809 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,819 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,819 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,819 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,829 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,830 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,830 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,839 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,869 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,869 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,878 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,888 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,889 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,899 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,899 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,900 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,908 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:14,919 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,948 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,957 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,968 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,969 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,977 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,988 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,988 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,988 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,998 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:22,999 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:23,017 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:23,037 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:23,047 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,101 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,103 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,111 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,113 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,118 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,120 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,130 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,163 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,171 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,199 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,220 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,231 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,252 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,259 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,259 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,261 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,268 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,339 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,339 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,490 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 9
+2024-12-03 00:23:24,691 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,691 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,691 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,730 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,730 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,730 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,731 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,749 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,749 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,759 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,760 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,770 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,770 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,818 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,819 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,819 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,830 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,830 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,831 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,839 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,909 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,909 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,958 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,989 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:24,989 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:25,059 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: spclient.wg.spotify.com. Connection pool size: 10
+2024-12-03 00:23:25,110 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:25,111 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:25,118 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:32,987 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:33,049 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:33,058 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:33,067 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10
+2024-12-03 00:23:33,087 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: api.spotify.com. Connection pool size: 10

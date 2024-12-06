@@ -1,0 +1,7 @@
+2024-12-04 15:11:20,757 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Kanye West - Stronger.mp3
+2024-12-04 15:11:48,786 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Kanye West - Stronger_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-04 15:11:48,873 - audio_separator.separator.separator - INFO - Audio duration is 0.09 hours (311.87 seconds).
+2024-12-04 15:11:48,874 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-04 15:11:52,597 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-04 15:11:52,601 - audio_separator.separator.separator - INFO - Separation duration: 00:00:31
+2024-12-04 17:42:53,680 - main - ERROR - Unexpected error: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)

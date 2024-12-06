@@ -133,6 +133,14 @@ async def get_task_output(task_id: UUID):
         raise HTTPException(status_code=400, detail="Task is still in progress")
     return {"result": task.result}
 
+@app.post("/task/terminate/{task_id}")
+async def terminate_task(task_id: UUID):
+    task = tasks.get(task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    task.terminate()
+    return {"message": f"Task {task_id} terminated successfully"}
+
 @app.post("/search-songs")
 async def search_songs(search_query: SearchQuery):
     '''

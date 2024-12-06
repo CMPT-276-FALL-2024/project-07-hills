@@ -1,0 +1,15 @@
+2024-12-01 19:05:33,661 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Katy Perry - The One That Got Away.mp3
+2024-12-01 19:05:56,093 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Katy Perry - The One That Got Away_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-01 19:05:56,167 - audio_separator.separator.separator - INFO - Audio duration is 0.06 hours (227.33 seconds).
+2024-12-01 19:05:56,168 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-01 19:05:59,075 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-01 19:05:59,079 - audio_separator.separator.separator - INFO - Separation duration: 00:00:25
+2024-12-01 19:17:48,098 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Young Thug - Abracadabra (feat. Travis Scott).mp3
+2024-12-01 19:18:12,209 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Young Thug - Abracadabra (feat. Travis Scott)_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-01 19:18:12,213 - audio_separator.separator.separator - INFO - Audio duration is 0.07 hours (247.73 seconds).
+2024-12-01 19:18:12,213 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-01 19:18:15,600 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-01 19:18:15,602 - audio_separator.separator.separator - INFO - Separation duration: 00:00:27
+2024-12-01 19:34:52,119 - main - ERROR - Unexpected error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2024-12-01 19:34:54,194 - main - ERROR - Error processing song with ID 6mM8gri8d2abYYomjOV4ut: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2024-12-01 21:52:15,094 - main - ERROR - Unexpected error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))

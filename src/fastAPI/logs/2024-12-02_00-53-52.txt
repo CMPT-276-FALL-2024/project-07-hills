@@ -1,0 +1,7 @@
+2024-12-02 00:54:13,166 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Shivers.mp3
+2024-12-02 00:54:52,395 - audio_separator.separator.separator - INFO - Saving Instrumental stem to Ed Sheeran - Shivers_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3...
+2024-12-02 00:54:52,465 - audio_separator.separator.separator - INFO - Audio duration is 0.06 hours (207.85 seconds).
+2024-12-02 00:54:52,465 - audio_separator.separator.separator - INFO - Using pydub for writing.
+2024-12-02 00:54:55,457 - audio_separator.separator.separator - INFO - Clearing input audio file paths, sources and stems...
+2024-12-02 00:54:55,460 - audio_separator.separator.separator - INFO - Separation duration: 00:00:42
+2024-12-02 00:55:11,888 - audio_separator.separator.separator - INFO - Starting separation process for audio_file_path: ./downloads/Ed Sheeran - Merry Christmas.mp3

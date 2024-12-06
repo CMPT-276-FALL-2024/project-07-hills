@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useQueue } from "./QueueContext";
+import SongLoadingBar from "./LoadingBar";
 
 const QueueUI = () => {
   const { queue, removeSongFromQueue } = useQueue();
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
   console.log("Songs in queue:", queue.getSongs());
-  
   // Fetch current page items
   const currentItems = queue
     .getSongs()
@@ -32,11 +32,10 @@ const QueueUI = () => {
     removeSongFromQueue(globalIndex);
   };
 
-    const isFirstPage = currentPage === 0;
+  const isFirstPage = currentPage === 0;
 
   return (
     <div className="flex items-center">
-      
       {hasPreviousPage && (
         <button
           onClick={handlePrevious}
@@ -48,8 +47,8 @@ const QueueUI = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4 w-full relative">
         {currentItems.map((song, index) => (
           <div
-            key={index}
-            className="relative flex items-center justify-between bg-gray-100 border border-gray-300 rounded-lg shadow p-4"
+            key={song.id}
+            className="relative flex flex-col justify-between bg-gray-100 border border-gray-300 rounded-lg shadow p-4"
           >
             <div>
               <h3 className="text-lg font-bold">{song.title}</h3>
@@ -57,14 +56,19 @@ const QueueUI = () => {
             </div>
             <button
               onClick={() => handleRemove(index)}
-              className="absolute right-2 top-2 p-2  text-stone-600 rounded-full h-1/2 hover:bg-slate-200 rounded"
+              className="absolute right-2 top-2 p-2 text-stone-600 rounded-full hover:bg-slate-200"
             >
               X
             </button>
+
             {index === 0 && isFirstPage && (
-              <div className="absolute right-[-8px] -bottom-0 top-2 h-4/5 w-[1px] bg-gray-300 "></div>
+              <div className="absolute right-[-8px] -bottom-0 top-2 h-4/5 w-[1px] bg-gray-300"></div>
             )}
-            
+
+            {/* Add SongLoadingBar at the bottom */}
+            <div className="mt-4">
+              <SongLoadingBar song={song} />
+            </div>
           </div>
         ))}
       </div>

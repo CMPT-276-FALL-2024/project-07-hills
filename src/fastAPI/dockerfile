@@ -1,0 +1,36 @@
+##############
+# Use NVIDIA's CUDA base image with Ubuntu 22.04 (Python 3.10 by default)
+FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
+
+# Set the working directory
+WORKDIR /app
+
+# Install dependencies
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    python3 \
+    python3-distutils \
+    python3-dev \
+    python3-pip \
+    build-essential \
+    cmake \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+
+# Update pip to the latest version
+RUN pip3 install --no-cache-dir --upgrade pip
+
+# Install PyTorch with CUDA support
+RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Copy requirements file and install Python dependencies
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Expose the backend port
+EXPOSE 8000
+
+# Run the FastAPI server
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

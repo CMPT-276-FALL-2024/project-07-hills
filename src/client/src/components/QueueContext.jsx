@@ -1,7 +1,8 @@
 // QueueContext.jsx`
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect, useRef } from "react";
 import Queue from "../Model/Queue"; // Import your Queue.js class
 import SongFront from "../Model/SongFront"; // Import your Queue.js class
+import LoadingBar from "./LoadingBar"
 
 const QueueContext = createContext();
 
@@ -9,6 +10,9 @@ export const QueueProvider = ({ children }) => {
   const [queue, setQueue] = useState(new Queue()); // Initialize the Queue.js class
   const [processingIndex, setProcessingIndex] = useState(null); // Track which song is being processed
   const [isProcessing, setIsProcessing] = useState(false); // Flag to track if a song is being processed
+  const [progress, setProgress] = useState(0); // Track task progress
+  const [prevProcessingIndex, setPrevProcessingIndex] = useState(null); // Previous processing index
+  const processingIndexRef = useRef(processingIndex);
 
   const addSongToQueue = (song) => {
     // Clone the current songs to avoid mutating the original
@@ -30,13 +34,95 @@ export const QueueProvider = ({ children }) => {
     setQueue(newQueue); // Update state with the modified queue
   };
 
+  // const removeSongFromQueue = (index) => {
+  //     // Check if the song being removed is the one being processed
+  //   if (queue.getSongs()[index].isProcessing) {
+  //     alert("Cannot remove the song currently being processed.");
+  //     return; // Prevent removal
+  //   }
+  //       // Adjust processingIndex if necessary
+  //   if (index < processingIndex) {
+  //     setProcessingIndex(processingIndex - 1);
+  //   } else if (index === queue.getSongs().length - 1) {
+  //     // Reset if last item is removed and no songs remain to process
+  //     setProcessingIndex(null);
+  //   }
+
+  //   // Clone the current songs to avoid mutating the original
+  //   const newQueue = new Queue();
+  //   const updatedSongs = queue.getSongs().filter((_, i) => i !== index);
+  //   newQueue.songs = updatedSongs; // Create a new Queue with the updated song list
+  //   setQueue(newQueue); // Update state with the new Queue instance
+  // };
+
   const removeSongFromQueue = (index) => {
-    // Clone the current songs to avoid mutating the original
+    const songs = queue.getSongs();
+
+    if (index < 0 || index >= songs.length) {
+      console.error("Invalid index for song removal.");
+      return;
+    }
+  
+    if (songs[index].isProcessing) {
+      alert("Cannot remove the song currently being processed.");
+      return;
+    }
+  
+    if (index < processingIndex) {
+      setProcessingIndex(processingIndex - 1);
+    } else if (index === processingIndex) {
+      setProcessingIndex(null);
+    }
+  
     const newQueue = new Queue();
+    newQueue.songs = songs.filter((_, i) => i !== index);
+    setQueue(newQueue);
+
+    // JAKE's Code
     const updatedSongs = queue.getSongs().filter((_, i) => i !== index);
     newQueue.songs = updatedSongs; // Create a new Queue with the updated song list
     setQueue(newQueue); // Update state with the new Queue instance
+  
+    // // Automatically play the next song if one exists
+    // const nextSong = updatedSongs[0]; // Get the first song in the updated queue
+    // if (nextSong) {
+    //   setTopSong(nextSong);
+    //   setInstrumental(nextSong.instrumentalUrl || null);
+    //   setElapsedTime(0);
+    //   setProgress(0);
+    //   audioRef.current.pause();
+    //   audioRef.current.src = nextSong.instrumentalUrl || "";
+    //   audioRef.current.play();
+    //   setIsPlaying(true);
+    // } else {
+    //   // Stop playback if the queue is empty
+    //   setIsPlaying(false);
+    // }
   };
+
+  // const removeSongFromQueue = (index) => {
+  //   // Clone the current songs to avoid mutating the original
+  //   const newQueue = new Queue();
+  //   const updatedSongs = queue.getSongs().filter((_, i) => i !== index);
+  //   newQueue.songs = updatedSongs; // Update the queue with the new list
+  //   setQueue(newQueue); // Update state with the new Queue instance
+  
+  //   // Automatically play the next song if one exists
+  //   const nextSong = updatedSongs[0]; // Get the first song in the updated queue
+  //   if (nextSong) {
+  //     setTopSong(nextSong);
+  //     setInstrumental(nextSong.instrumentalUrl || null);
+  //     setElapsedTime(0);
+  //     setProgress(0);
+  //     audioRef.current.pause();
+  //     audioRef.current.src = nextSong.instrumentalUrl || "";
+  //     audioRef.current.play();
+  //     setIsPlaying(true);
+  //   } else {
+  //     // Stop playback if the queue is empty
+  //     setIsPlaying(false);
+  //   }
+  // };
 
   const getCurrentSong = () => {
     return queue.getNextSong();
@@ -54,7 +140,7 @@ export const QueueProvider = ({ children }) => {
   // Start song process
   // Function to process the next song in the queue
   const processNextSong = async () => {
-    console.log("processing song")
+    console.log("processing song");
     const songs = queue.getSongs();
     
     if (processingIndex === null || processingIndex >= songs.length) {
@@ -70,7 +156,7 @@ export const QueueProvider = ({ children }) => {
         setQueue((prevQueue) => {
           const updatedQueue = new Queue();
           updatedQueue.songs = prevQueue.getSongs().map((s, i) =>
-            i === processingIndex ? updatedSong : s
+            i === processingIndexRef.current ? updatedSong : s
           );
           return updatedQueue;
         });
@@ -87,6 +173,10 @@ export const QueueProvider = ({ children }) => {
       setIsProcessing(false); // Reset processing flag
     }
   };
+
+  useEffect(() => {
+    processingIndexRef.current = processingIndex;
+  }, [processingIndex]);
  
   useEffect(() => {
     const songs = queue.getSongs();
@@ -98,10 +188,12 @@ export const QueueProvider = ({ children }) => {
         if (nextIndex !== -1) {
           console.log(`Found next song to process at index: ${nextIndex}`);
           setProcessingIndex(nextIndex);
-        } else {
+        }
+        else {
           console.log("No songs left to process.");
         }
-      } else {
+      }
+      else {
         setIsProcessing(true);
         processNextSong();
       }
