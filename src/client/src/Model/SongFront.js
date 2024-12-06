@@ -27,7 +27,7 @@ class SongFront {
     // Start audio processing process and fetch task id
     async StartAudioProcess() {
       try {
-        const response = await fetch("http://localhost:8000/task/create", {
+        const response = await fetch("https://teaching-gorilla-rich.ngrok-free.app/task/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ class SongFront {
       let isCompleted = false;
 
       while (!isCompleted && !this.shouldTerminate) {
-        const response = await fetch(`http://localhost:8000/task/status/${this.taskID}`);
+        const response = await fetch(`https://teaching-gorilla-rich.ngrok-free.app/task/status/${this.taskID}`);
         if (!response.ok) throw new Error(`Failed to fetch task status for ${this.taskID}`);
 
         const statusData = await response.json();
@@ -99,7 +99,7 @@ class SongFront {
         }
 
         try {
-            const response = await fetch(`http://localhost:8000/task/terminate/${this.taskID}`, {
+            const response = await fetch(`https://teaching-gorilla-rich.ngrok-free.app/task/terminate/${this.taskID}`, {
                 method: "POST",
             });
 

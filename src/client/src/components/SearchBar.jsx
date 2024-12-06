@@ -15,7 +15,7 @@ const SearchBar = () => {
 
   const addSongToQFinished = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:8000/task/output/${taskId}`);
+      const response = await fetch(`https://teaching-gorilla-rich.ngrok-free.app/task/output/${taskId}`);
       if (!response.ok) {
         throw new Error("Failed to get task output");
       }
@@ -47,7 +47,7 @@ const SearchBar = () => {
   
   const tempTest = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:8000/task/output/$c9e57d65-e77a-430a-8ece-bd23134db36c`);
+      const response = await fetch(`https://teaching-gorilla-rich.ngrok-free.app:8000/task/output/$c9e57d65-e77a-430a-8ece-bd23134db36c`);
       //get song
       if (!response.ok) {
         throw new Error("Failed to get task output");
@@ -74,7 +74,7 @@ const SearchBar = () => {
       console.log("Checking task status for ID:", taskId);
   
       while (isTaskLoading) {
-        const response = await fetch(`http://localhost:8000/task/status/${taskId}`);
+        const response = await fetch(`http://https://teaching-gorilla-rich.ngrok-free.app:8000/task/status/${taskId}`);
         if (!response.ok) {
           throw new Error("Failed to check task status");
         }
@@ -127,7 +127,7 @@ const SearchBar = () => {
 
     try {
       setLoading(true); // Show "Adding..." feedback
-      const response = await fetch("http://localhost:8000/task/create", {
+      const response = await fetch("https://teaching-gorilla-rich.ngrok-free.app:8000/task/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
