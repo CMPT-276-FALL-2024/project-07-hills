@@ -25,3 +25,15 @@ In addition, the app integrates with the OpenAI API to translate lyrics into dif
 [![Milestone 1](https://img.youtube.com/vi/jS0KM7zaAuA/maxresdefault.jpg)](https://youtu.be/jS0KM7zaAuA?si=MkmU113Aa3n2DU3X)
 
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=16375530&assignment_repo_type=AssignmentRepo)
+
+## API Overview
+
+### General Data Retrieval
+Provide a brief description of what this section covers, such as how the API retrieves general information about songs, artists, or lyrics.
+
+### Parameter-Specific Data Retrieval
+Explain the API's capabilities in retrieving data based on specific parameters like artist name, song title, or a snippet of lyrics.
+
+### Error Simulation
+Describe how the API handles errors, such as invalid requests or unavailable data, and the simulation tools provided for testing error handling.
+

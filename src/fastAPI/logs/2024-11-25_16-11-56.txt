@@ -1,0 +1,2 @@
+2024-11-25 16:12:03,914 - main - ERROR - Unexpected error: error: invalid_client, error_description: Invalid client
+2024-11-25 16:13:01,416 - main - ERROR - Unexpected error: error: invalid_client, error_description: Invalid client
