@@ -15,7 +15,7 @@ const SearchBar = () => {
 
   const addSongToQFinished = async (taskId) => {
     try {
-      const response = await fetch(`https://teaching-gorilla-rich.ngrok-free.app/task/output/${taskId}`);
+      const response = await fetch(`https://vocafree.ngrok.app/task/output/${taskId}`);
       if (!response.ok) {
         throw new Error("Failed to get task output");
       }
@@ -44,10 +44,10 @@ const SearchBar = () => {
     }
   };
 
-  
+
   const tempTest = async (taskId) => {
     try {
-      const response = await fetch(`https://teaching-gorilla-rich.ngrok-free.app:8000/task/output/$c9e57d65-e77a-430a-8ece-bd23134db36c`);
+      const response = await fetch(`https://vocafree.ngrok.app/task/output/$c9e57d65-e77a-430a-8ece-bd23134db36c`);
       //get song
       if (!response.ok) {
         throw new Error("Failed to get task output");
@@ -62,30 +62,30 @@ const SearchBar = () => {
   };
 
 
-  
 
-      
+
+
 
   const checkLoading = async (taskId) => {
-    
+
     try {
       let isTaskLoading = true; // Use a local variable to manage the loop condition
-  
+
       console.log("Checking task status for ID:", taskId);
-  
+
       while (isTaskLoading) {
-        const response = await fetch(`http://https://teaching-gorilla-rich.ngrok-free.app:8000/task/status/${taskId}`);
+        const response = await fetch(`https://vocafree.ngrok.app/task/status/${taskId}`);
         if (!response.ok) {
           throw new Error("Failed to check task status");
         }
-  
+
         const data = await response.json();
         console.log("Task Status:", data);
-  
+
         if (data.status === "Completed" || data.status === "Failed") {
           console.log(`Task ${taskId} finished with status: ${data.status}`);
           isTaskLoading = false; // Break the loop when task is done or failed
-  
+
           if (data.status === "Completed") {
             isTaskLoading = false;
             addSongToQFinished(taskId); // Process the completed task result
@@ -117,7 +117,7 @@ const SearchBar = () => {
       return;
     }
     let tempstate = false;
-    if(tempstate === true){ // for testing
+    if (tempstate === true) { // for testing
       let taskId = "8f614bc6-0c68-4223-8a2f-28715bb06cf7"
       addSongToQFinished(taskId);
       return;
@@ -127,7 +127,7 @@ const SearchBar = () => {
 
     try {
       setLoading(true); // Show "Adding..." feedback
-      const response = await fetch("https://teaching-gorilla-rich.ngrok-free.app:8000/task/create", {
+      const response = await fetch("https://vocafree.ngrok.app/task/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -175,7 +175,7 @@ const SearchBar = () => {
 
       {/* Additional action button */}
       <div className="mt-4">
-    
+
         <button
           type="button"
           onClick={createTask}
