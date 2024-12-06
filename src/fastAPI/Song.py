@@ -135,7 +135,7 @@ class Song(BaseModel):
     def get_instrumental(self):
         instrumental_filename = separate_audio(self.original_path)
         encoded_file_name = quote(instrumental_filename)
-        self.instrumental_URL = f"http://localhost:8000/static/{encoded_file_name}"
+        self.instrumental_URL = f"https://vocafree.ngrok.app/static/{encoded_file_name}"
         self.has_instrumental_audio = True  # Update the flag
 
     def get_audio(self):
@@ -147,5 +147,5 @@ class Song(BaseModel):
         # Encode the file name to make it URL-safe
         encoded_file_name = quote(instrumental_filename)
         # change file_name to URL name
-        self.instrumental_URL = f"http://localhost:8000/static/{encoded_file_name}"
+        self.instrumental_URL = f"https://vocafree.ngrok.app/static/{encoded_file_name}"
         self.has_instrumental_audio = True  # Update the flag

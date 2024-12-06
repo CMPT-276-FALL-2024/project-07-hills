@@ -1,60 +1,41 @@
-from audio_separator.separator import Separator
-
-DOWNLOADS_FOLDER = "./downloads"
-OUTPUT_FOLDER = "./downloads/instrumental"
-
+from separator_manager import get_separator
+import logging
 import os
-import glob
-os.makedirs(OUTPUT_FOLDER, exist_ok=True)
-os.environ["PATH"] += os.pathsep + "/opt/homebrew/bin"
-# Initialize the Separator class (with optional configuration properties, below)
-separator = Separator(
-    model_file_dir="/tmp/audio-separator-models/",
-    output_dir=OUTPUT_FOLDER,
-    output_format="mp3",
-    normalization_threshold=0.9,
-    output_single_stem="Instrumental",
-    #22050
-    sample_rate=44100,
-    mdx_params={
-        "hop_length": 1024,
-        "segment_size": 512,  # Try increasing if memory permits
-        "overlap": 0.1,       # Lower overlap to reduce redundant processing
-        "batch_size": 16     # Increase batch size if memory is available
-    }
-)
 
-# Load Model
-separator.load_model(model_filename="UVR-MDX-NET-Inst_HQ_3.onnx")
+# Configure logging
+logger = logging.getLogger(__name__)
 
-
+MODEL_FILE_NAME = "UVR-MDX-NET-Inst_HQ_3.onnx"  # Define the model file name
 
 def check_instrumental_exists(file_path):
+    """
+    Check if the instrumental version of a file already exists.
+    """
     directory = os.path.dirname(file_path)
     instrumental_directory = os.path.join(directory, "instrumental")
-    
-    # Get the base name (filename with extension)
     base_name = os.path.basename(file_path)
     base_name_without_extension = os.path.splitext(base_name)[0]
-    instrumental_file_name = f"{base_name_without_extension}_(Instrumental)_UVR-MDX-NET-Inst_HQ_3.mp3"
-    
-    # Check if the file exists
+    instrumental_file_name = f"{base_name_without_extension}_(Instrumental)_{MODEL_FILE_NAME}.mp3"
     full_instrumental_path = os.path.join(instrumental_directory, instrumental_file_name)
-    
-    if os.path.exists(full_instrumental_path):
-        return True, instrumental_file_name
-    else:
-        return False, None
 
-# Takes in file path, generate an instrumental file and return its file_path
+    return os.path.exists(full_instrumental_path), instrumental_file_name
+
+
 def separate_audio(file_path):
-    exists, instrumental_name = check_instrumental_exists(file_path)
-    if exists:
-        print(f"File already exists at: {instrumental_name}")
-        
-        return os.path.basename(instrumental_name)
-    
-    instrumental_path = separator.separate(file_path)[0]
-    return os.path.basename(instrumental_path)
-# # Perform the separation on specific audio files without reloading the model
-# output_files = separator.separate('downloads/The Real Slim Shady.mp3')
+    """
+    Generate an instrumental file if it doesn't already exist.
+    """
+    separator = get_separator()
+    try:
+        exists, instrumental_name = check_instrumental_exists(file_path)
+        if exists:
+            logger.info(f"Instrumental file already exists: {instrumental_name}")
+            return instrumental_name
+
+        logger.info(f"Processing file: {file_path}")
+        instrumental_path = separator.separate(file_path)[0]
+        logger.info(f"Instrumental generated: {instrumental_path}")
+        return instrumental_path
+    except Exception as e:
+        logger.error(f"Error during audio separation: {e}")
+        raise RuntimeError(f"Failed to process audio: {file_path}")

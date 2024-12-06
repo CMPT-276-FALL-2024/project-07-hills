@@ -36,6 +36,7 @@ class SongFront {
       });
       if (!response.ok) {
         throw new Error("Failed to fetch instrumental audio");
+
       }
 
       const data = await response.json();
@@ -97,7 +98,6 @@ class SongFront {
       console.error(`No task ID to terminate for ${this.title}`);
       return;
     }
-
     try {
       const response = await fetch(`https://vocafree.ngrok.app/task/terminate/${this.taskID}`, {
         method: "POST",
