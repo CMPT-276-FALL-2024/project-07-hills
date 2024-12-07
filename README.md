@@ -27,8 +27,8 @@
 ## AI Disclosure Forms for Milestone 2
 - [An]
 - [Parsa]
-- [Jake]
-- [Caiden]
+- [Jake](docs/ai_disclosure_forms/M2/M2_AI_Declaration_Jake_Choi_301552446.pdf)
+- [Caiden](docs/ai_disclosure_forms/M2/M2_AI_Declaration_Caiden_Merklin_301608302.pdf)
 
 ## User Interface Storyboard
 ![Storyboard](docs/design/UI_storyboard.jpg)
