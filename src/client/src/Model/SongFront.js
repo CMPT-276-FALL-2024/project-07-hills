@@ -114,24 +114,6 @@ class SongFront {
     }
   }
 
-  // async fetchInstrumental() {
-  //     if (!this.taskID) {
-  //       console.error(`No task ID for ${this.title}`);
-  //       return;
-  //     }
-  //     try {
-  //       const response = await fetch("http://localhost:8000/task/output/${this.taskID}"), {
-  //         if(!response.ok) throw new Error(`Failed to fetch instrumental URL for ${this.taskID}`);
-
-  //       const data = await response.json();
-  //       this.taskID = data.task_id;
-  //       this.isProcessing = true;
-  //     } catch (error) {
-  //       console.error("Error starting audio process:", error);
-  //       return null;
-  //     }
-  //     }
-
 }
 
 export default SongFront;

@@ -2,11 +2,7 @@ import React, { useState } from "react";
 
 import { IoSearchOutline } from "react-icons/io5";
 import { useQueue } from "./QueueContext";
-// import addSongToQueueFromTask from "../test/addSongToQ";
-//todo figure out how to change it so once it gets that task id it will add it to the queue
-
 const SearchBar = () => {
-  // const { addSongToQueue } = useQueue(); // Access the context hook here
   const { queue, removeSongFromQueue } = useQueue();
 
   const [query, setQuery] = useState("");

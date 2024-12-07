@@ -4,25 +4,6 @@ import logo from './assets/VocaFree.svg';
 import Slideshow from './components/Slideshow';  // Ensure correct path
 
 const Home = () => {
-//   const images = [
-//     {
-//       url: '/public/InitialKaraokePage.png',
-//       alt: 'Initial Karaoke Page'
-//     },
-//     {
-//         url: '/pub dddlic/SearchResults.png',
-//         alt: 'Search Results'
-//     },
-//     {
-//         url: '/public/QueueSongs.png',
-//         alt: 'Queue Songs'
-//     },
-//     {
-//       url: '/public/PlaySongs.png',
-//       alt: 'Play Songs'
-//     }
-//   ];
-
 const images = [
     {
       url: '/InitialKaraokePage.png',

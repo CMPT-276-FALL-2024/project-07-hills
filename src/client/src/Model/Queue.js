@@ -16,7 +16,7 @@ class Queue {
         console.error("Invalid index for song removal");
       }
     }
-
+//todo - this is not setup, no time :(
     // removeSong(index) {
     //   if (index >= 0 && index < this.songs.length) {
     //     // Use the filter method to remove the song from the display
