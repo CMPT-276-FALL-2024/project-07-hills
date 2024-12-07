@@ -16,7 +16,7 @@
 [Link to M1 Project Proposal Report](docs/proposal/CMPT_276_Milestone_1_Group_07_Hills_Proposal_Report.pdf)
 
 ## Link to Milestone 2 Project Proposal Report
-[Link to M2 Project Proposal Report]()
+[Link to M2 Project Proposal Report](docs/proposal/CMPT_276_Milestone_2_Group_07_Hills_Proposal_Report.pdf)
 
 ## AI Disclosure Forms for Milestone 1
 - [An](docs/ai_disclosure_forms/M1/M1_AI_Declaration_An_Luu_301574874.pdf)
