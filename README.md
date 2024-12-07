@@ -4,9 +4,7 @@
 **This service is not supported on Chromium browsers, as it doesn't allow the seeking of the playbar, or the lyrics scrolling.**
 
 # VocaFree
-**VocaFree** is a web application designed to enhance your karaoke experience by letting you remove vocals from any song, leaving just the instrumental track. Powered by the Genius API, it also allows you to search for and display lyrics or find a song based on a snippet of lyrics you remember. VocaFree provides detailed song and artist information, making it a tool for music discovery. 
-
-In addition, the app integrates with the OpenAI API to translate lyrics into different languages, helping you understand songs from around the world. You can get personalized song recommendations based on prompts or themes, and for non-English songs, VocaFree offers phonetic translations so you can sing along even without knowing the language. The app also features basic lyric analysis, providing insights and themes from your favorite tracks for a deeper musical connection. 
+**VocaFree** is a web application designed to enhance your karaoke experience by letting you remove vocals from any song, leaving just the instrumental track. Powered by the Spotify API, it also allows you to search for and display lyrics or find a song based on a snippet of lyrics you remember. VocaFree provides detailed song and artist information, making it a tool for music discovery. 
 
 ## Group members
 - An Luu (301574874)
