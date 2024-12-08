@@ -27,7 +27,7 @@
 - [Caiden](docs/ai_disclosure_forms/M1/M1_AI_Declaration_Caiden_Merklin_301608302.pdf)
 
 ## AI Disclosure Forms for Milestone 2
-- [An]
+- [An](docs/ai_disclosure_forms/M2/M2_AI_Declaration_An_Luu_301574874.pdf)
 - [Parsa](docs/ai_disclosure_forms/M2/M2_AI_Declaration_MohamadParsa_Ghaderi_301623337.pdf)
 - [Jake](docs/ai_disclosure_forms/M2/M2_AI_Declaration_Jake_Choi_301552446.pdf)
 - [Caiden](docs/ai_disclosure_forms/M2/M2_AI_Declaration_Caiden_Merklin_301608302.pdf)
